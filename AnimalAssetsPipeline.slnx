@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/AnimalAssetPipeline/AnimalAssetsPipeline.csproj" />
+  <Project Path="src/Models/Models.csproj" />
+  <Project Path="src/Services/Services.csproj" />
+</Solution>
