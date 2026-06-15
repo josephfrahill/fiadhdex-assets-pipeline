@@ -1,0 +1,20 @@
+# Ignore Visual Studio temporary files, build results, and OS generated files
+
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / ReSharper
+.idea/
+*.DotSettings.user
+
+# Build logs
+*.log
+
+# Others
+*.DS_Store
+Thumbs.db
