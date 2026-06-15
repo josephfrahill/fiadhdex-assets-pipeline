@@ -1,6 +1,4 @@
-﻿using AnimalAssetPipeline;
-
-//Console.WriteLine("Hello, World!");
+﻿using AnimalAssetsPipeline;
 
 if (args.Length < 2)
 {
@@ -9,18 +7,14 @@ if (args.Length < 2)
     return;
 }
 
-if (args[0].Equals("1"))
+switch (args[0])
 {
-    Console.WriteLine(
-        "Usage: AnimalAssetPipeline <animals.json>");
+    case "1":
+        await SourceImageFetcher.RunAsync(args[1]);
+        break;
 
-    await SourceImageFetcher.RunAsync(args[1]);
-
-    return;
+    default:
+        Console.WriteLine(
+            $"Unknown mode: {args[0]}");
+        break;
 }
-
-return;
-
-
-//await pipeline.RunAsync(args[0]);
-

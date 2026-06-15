@@ -2,10 +2,10 @@
 
 public record Animal
 {
-    public string Id { get; init; } = "";
-    public string Name { get; init; } = "";
-    public string Species { get; init; } = "";
-    public string Class { get; init; } = "";
-    public string Rarity { get; init; } = "";
+    public required string Id { get; init; }
+    public required string Name { get; init; }
+    public required string Species { get; init; }
+    public required string Type { get; init; }
+    public required string Rarity { get; init; }
 }
 

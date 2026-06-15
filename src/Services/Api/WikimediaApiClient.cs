@@ -7,9 +7,20 @@ namespace Services.Api;
 
 public class WikimediaApiClient
 {
-    // think this is bad?
-    private readonly HttpClient _httpClient =
-        new();
+    private readonly HttpClient _httpClient;
+
+    public WikimediaApiClient()
+    {
+        _httpClient = new HttpClient();
+
+        _httpClient.DefaultRequestHeaders.Add(
+            "User-Agent",
+            "AnimalAssetPipeline/1.0 (https://github.com/josephfrahill/animal-assets-pipeline)");
+
+        _httpClient.DefaultRequestHeaders.Add(
+            "Accept",
+            "application/json");
+    }
 
     public async Task<List<string>> SearchImagesAsync(
         string scientificName)

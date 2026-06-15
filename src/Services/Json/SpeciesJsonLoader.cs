@@ -9,7 +9,7 @@ public static class SpeciesJsonLoader
     {
         var json = await File.ReadAllTextAsync(path);
 
-        return JsonSerializer.Deserialize<List<Animal>>(json)
+        return JsonSerializer.Deserialize<List<Animal>>(json, JsonConfigSettings.Options)
                 ?? [];
     }
 }

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "default": {
+      "commandName": "Project",
+      "commandLineArgs": "1 C:\\code\\anidex\\data\\safeLists\\global\\global-safeList.json"
+    }
+  }
+}
