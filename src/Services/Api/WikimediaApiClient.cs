@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Models;
 using System.Text.Json;
 
 namespace Services.Api;
@@ -9,21 +7,18 @@ public class WikimediaApiClient
 {
     private readonly HttpClient _httpClient;
 
-    public WikimediaApiClient()
+    public WikimediaApiClient(HttpClient httpClient)
     {
-        _httpClient = new HttpClient();
+        _httpClient = httpClient;
 
-        _httpClient.DefaultRequestHeaders.Add(
-            "User-Agent",
-            "AnimalAssetPipeline/1.0 (https://github.com/josephfrahill/animal-assets-pipeline)");
+        _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
+            "AnimalAssetPipeline/1.0 (contact: facebookfail2309@gmail.com; https://github.com/josephfrahill/animal-assets-pipeline)"
+        );
 
-        _httpClient.DefaultRequestHeaders.Add(
-            "Accept",
-            "application/json");
+        _httpClient.DefaultRequestHeaders.Accept.ParseAdd("application/json");
     }
 
-    public async Task<List<string>> SearchImagesAsync(
-        string scientificName)
+    public async Task<List<CandidateImage>> GetImagesDataAsync(string scientificName)
     {
         var url =
             $"https://commons.wikimedia.org/w/api.php" +
@@ -31,33 +26,47 @@ public class WikimediaApiClient
             $"&generator=search" +
             $"&gsrsearch={Uri.EscapeDataString(scientificName)}" +
             $"&gsrnamespace=6" +
+            $"&gsrlimit=50" +
             $"&prop=imageinfo" +
-            $"&iiprop=url" +
+            $"&iiprop=url|size" +
             $"&format=json";
 
-        var json =
-            await _httpClient.GetStringAsync(url);
+        var response = await _httpClient.GetAsync(url);
 
-        var results = new List<string>();
+        var body = await response.Content.ReadAsStringAsync();
 
-        using var doc = JsonDocument.Parse(json);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(
+                $"Wikimedia API failed: {(int)response.StatusCode} {response.ReasonPhrase}\n{body}");
+        }
 
-        if (!doc.RootElement
-                .GetProperty("query")
-                .TryGetProperty("pages",
-                    out var pages))
+        using var doc = JsonDocument.Parse(body);
+
+        var results = new List<CandidateImage>();
+
+        if (!doc.RootElement.TryGetProperty("query", out var query))
+            return results;
+
+        if (!query.TryGetProperty("pages", out var pages))
             return results;
 
         foreach (var page in pages.EnumerateObject())
         {
-            var imageInfo =
-                page.Value
-                    .GetProperty("imageinfo")[0];
+            var imageInfoArray = page.Value.GetProperty("imageinfo");
 
-            results.Add(
-                imageInfo
-                    .GetProperty("url")
-                    .GetString()!);
+            if (imageInfoArray.GetArrayLength() == 0)
+                continue;
+
+            var imageInfo = imageInfoArray[0];
+
+            results.Add(new CandidateImage
+            {
+                Title = page.Value.GetProperty("title").GetString() ?? "",
+                Url = imageInfo.GetProperty("url").GetString() ?? "",
+                Width = imageInfo.GetProperty("width").GetInt32(),
+                Height = imageInfo.GetProperty("height").GetInt32()
+            });
         }
 
         return results;

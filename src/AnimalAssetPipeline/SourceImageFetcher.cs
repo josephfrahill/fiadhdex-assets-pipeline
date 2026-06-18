@@ -1,8 +1,10 @@
-﻿using Services.Api;
+﻿using Models;
+using Services;
+using Services.Api;
 using Services.Json;
-using System;
-using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 
 namespace AnimalAssetsPipeline;
 
@@ -10,49 +12,77 @@ public static class SourceImageFetcher
 {
     public static async Task RunAsync(string jsonPath)
     {
-        var wikiApi = new WikimediaApiClient();
-        var downloader = new ImageDownloader();
+        var http = new HttpClient();
+        var wikiApi = new WikimediaApiClient(http);
 
-        var animals =
-            await SpeciesJsonLoader.LoadAsync(jsonPath);
+        var downloader = new ImageDownloader(http, maxConcurrency: 3);
 
-        foreach (var animal in animals)
+        var animals = await SpeciesJsonLoader.LoadAsync(jsonPath);
+
+        foreach (var species in animals)
         {
-            Console.WriteLine(
-                $"Searching {animal.Species}");
+            var candidates = await wikiApi.GetImagesDataAsync(species.Name);
 
-            var images =
-                await wikiApi.SearchImagesAsync(
-                    animal.Species);
+            var metadataList = new List<ImageMetadata>();
 
-            var outputDir = Path.Combine("assets", "source", animal.Id);
+            var keptImages = new List<CandidateImage>();
 
-            Directory.CreateDirectory(outputDir);
-
-            for (int i = 0; i < images.Count; i++)
+            foreach (var img in candidates)
             {
-                var extension =
-                    Path.GetExtension(
-                        new Uri(images[i]).AbsolutePath);
+                var result = ImageFilterService.IsValid(img, species.Name);
 
-                if (string.IsNullOrWhiteSpace(extension))
+                var fileName = ComputeSha256(img.Url) + ".jpg";
+
+                metadataList.Add(new ImageMetadata
                 {
-                    extension = ".jpg";
+                    Url = img.Url,
+                    Title = img.Title,
+                    Width = img.Width,
+                    Height = img.Height,
+                    PassedFilter = result.Passed,
+                    RejectReason = result.Reason,
+                    SpeciesQuery = species.Name,
+                    LocalFileName = fileName
+                });
+
+                if (result.Passed)
+                {
+                    keptImages.Add(img);
                 }
-
-                var outputFile =
-                    Path.Combine(
-                        outputDir,
-                        $"{i + 1:D2}{extension}");
-
-                await downloader.DownloadAsync(
-                    images[i],
-                    outputFile);
             }
 
+            var filtered = keptImages;
 
-            Console.WriteLine(
-                $"Found {images.Count} images");
+            Console.WriteLine($"{species.Name}: {filtered.Count}/{candidates.Count} images kept");
+
+            // write metadata file per species
+            var outputDir = Path.Combine("output", species.Name);
+            Directory.CreateDirectory(outputDir);
+
+            var metadataPath = Path.Combine(outputDir, "metadata.json");
+
+            File.WriteAllText(
+                metadataPath,
+                JsonSerializer.Serialize(metadataList, JsonConfigSettings.Options));
+
+            foreach (var img in filtered)
+            {
+                var fileName = ComputeSha256(img.Url) + ".jpg";
+
+                var path = Path.Combine(outputDir, fileName);
+
+                await downloader.DownloadAsync(img.Url, path);
+            }
+
+            await Task.Delay(200);
         }
+    }
+
+    private static string ComputeSha256(string value)
+    {
+        var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(value));
+
+        return Convert.ToHexString(bytes)
+            .ToLowerInvariant();
     }
 }
