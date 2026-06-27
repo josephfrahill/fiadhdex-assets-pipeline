@@ -2,8 +2,7 @@
 
 if (args.Length < 2)
 {
-    Console.WriteLine(
-        "Invalid args");
+    Console.WriteLine("Invalid args");
     return;
 }
 
@@ -14,7 +13,6 @@ switch (args[0])
         break;
 
     default:
-        Console.WriteLine(
-            $"Unknown mode: {args[0]}");
+        Console.WriteLine($"Unknown mode: {args[0]}");
         break;
 }

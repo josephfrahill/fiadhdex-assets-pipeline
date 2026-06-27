@@ -1,4 +1,4 @@
-﻿namespace Models;
+﻿namespace Models.Images;
 
 public record CandidateImage
 {

@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using Models.Images;
 using System.Text.Json;
 
 namespace Services.Api;
@@ -45,10 +45,7 @@ public class WikimediaApiClient
 
         var results = new List<CandidateImage>();
 
-        if (!doc.RootElement.TryGetProperty("query", out var query))
-            return results;
-
-        if (!query.TryGetProperty("pages", out var pages))
+        if (!doc.RootElement.TryGetProperty("query", out var query) || !query.TryGetProperty("pages", out var pages))
             return results;
 
         foreach (var page in pages.EnumerateObject())

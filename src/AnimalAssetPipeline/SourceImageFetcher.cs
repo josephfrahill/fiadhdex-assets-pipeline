@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Images;
 using Services;
 using Services.Api;
 using Services.Json;
@@ -24,14 +25,20 @@ public static class SourceImageFetcher
             var candidates = await wikiApi.GetImagesDataAsync(species.Name);
 
             var metadataList = new List<ImageMetadata>();
-
             var keptImages = new List<CandidateImage>();
+            var outputDir = Path.Combine("output", string.Concat(species.Id, " - ", species.Name));
+            Directory.CreateDirectory(outputDir);
 
             foreach (var img in candidates)
             {
-                var result = ImageFilterService.IsValid(img, species.Name);
+                // write metadata file per species
+                var metadataPath = Path.Combine(outputDir, "metadata.json");
+                var metadata = await ReturnOrCreateAnimalMetadata(metadataPath, metadataList);
 
-                var fileName = ComputeSha256(img.Url) + ".jpg";
+                var result = ImageFilterService.IsValid(img, species.Name, species.Plurals, metadata.ManualBlackList,
+                    outputDir);
+
+                var fileName = Utils.SanitiseFileName(img.Title);
 
                 metadataList.Add(new ImageMetadata
                 {
@@ -51,23 +58,13 @@ public static class SourceImageFetcher
                 }
             }
 
-            var filtered = keptImages;
+            Console.WriteLine($"{species.Name}: {keptImages.Count}/{candidates.Count} images kept");
 
-            Console.WriteLine($"{species.Name}: {filtered.Count}/{candidates.Count} images kept");
-
-            // write metadata file per species
-            var outputDir = Path.Combine("output", species.Name);
-            Directory.CreateDirectory(outputDir);
-
-            var metadataPath = Path.Combine(outputDir, "metadata.json");
-
-            File.WriteAllText(
-                metadataPath,
-                JsonSerializer.Serialize(metadataList, JsonConfigSettings.Options));
-
-            foreach (var img in filtered)
+            foreach (var img in keptImages)
             {
-                var fileName = ComputeSha256(img.Url) + ".jpg";
+                //var fileName = ComputeSha256(img.Url) + ".jpg";
+
+                var fileName = Utils.SanitiseFileName(img.Title);
 
                 var path = Path.Combine(outputDir, fileName);
 
@@ -84,5 +81,38 @@ public static class SourceImageFetcher
 
         return Convert.ToHexString(bytes)
             .ToLowerInvariant();
+    }
+
+    private static async Task<AnimalMetadata> ReturnOrCreateAnimalMetadata(string metadataPath,
+        List<ImageMetadata> metadataList)
+    {
+        if (File.Exists(metadataPath))
+        {
+            var json = await File.ReadAllTextAsync(metadataPath);
+
+            var animalMetaData = JsonSerializer.Deserialize<AnimalMetadata>(json, JsonConfigSettings.Options);
+
+            animalMetaData = animalMetaData! with
+            {
+                MetadataList = metadataList
+            };
+
+            await File.WriteAllTextAsync(metadataPath,
+                JsonSerializer.Serialize(animalMetaData, JsonConfigSettings.Options));
+
+            return animalMetaData;
+        }
+        else
+        {
+            var animalMetaData = new AnimalMetadata
+            {
+                MetadataList = metadataList
+            };
+
+            await File.WriteAllTextAsync(metadataPath,
+                JsonSerializer.Serialize(animalMetaData, JsonConfigSettings.Options));
+
+            return animalMetaData;
+        }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Models.Images;
 
 namespace Services;
 
@@ -12,31 +10,42 @@ public static class ImageFilterService
         "skeleton", "skull", "bone", "jaw",
         "karyotype", "print", "iconographia",
         "drawing", "illustration", "museum",
-        "taxidermy", "fossil", "anatomy", "diagram", "coat", "multiple", "plush", "toy", "costume", "mascot", "clothing", "clothes", "breeds",
-        "x-ray", "xray", "chromosome", "dogs", "cats", "kittens", "puppies", "human", "person", "people", "girl", "boy", "man", "woman",
+        "taxidermy", "fossil", "anatomy", "diagram", "coat", "multiple", "plush", "toy", "costume", "mascot",
+        "clothing", "clothes", "breeds",
+        "x-ray", "xray", "chromosome", "kittens", "puppies", "human", "person", "people", "girl", "boy",
+        "man", "woman", "baby", "babies", "elder", "elders", "mass",
         ".webm"
     ];
 
-    private static readonly string[] DogBlacklist =
-    [
-        "lccn", "grrenland", "Sommeraften", "Waldemar", "chimneys", "Stevenage"
-    ];
-
-    public static FilterResult IsValid(CandidateImage img, string species)
+    public static FilterResult IsValid(CandidateImage img, string species, string[] plurals, string[] manualBlackList,
+        string outputDirectory)
     {
         var text = $"{img.Title}".ToLowerInvariant();
 
-        if (Blacklist.Any(text.Contains))
-            return new(false, text);
-
-        if (species.Equals("Domestic Dog") && DogBlacklist.Any(text.Contains))
+        if (Blacklist.Any(text.Contains) ||
+            manualBlackList.Any(x => text.Contains(x, StringComparison.OrdinalIgnoreCase)))
         {
-            return new(false, text);
+            return new FilterResult(false, $"Contains blocked data: {text}");
+        }
+
+        var allPlurals = plurals.Select(p => p.ToLowerInvariant()).ToArray();
+        if (allPlurals.Any(text.Contains))
+        {
+            return new FilterResult(false, $"Contains plural: {text}");
         }
 
         if (img.Width < 1000 || img.Height < 1000)
-            return new(false, "Invalid dimensions");
+            return new FilterResult(false, "Invalid dimensions");
 
-        return new(true, null);
+        return DoesImageExist(img.Title, outputDirectory)
+            ? new FilterResult(false, "Existing file")
+            : new FilterResult(true, null);
+    }
+
+    private static bool DoesImageExist(string imgTitle, string outputDir)
+    {
+        var sanitisedTitle = Utils.SanitiseFileName(imgTitle);
+        var imagePath = Path.Combine(outputDir, sanitisedTitle);
+        return File.Exists(imagePath);
     }
 }

@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Models.Images;
 
-namespace Models;
+public record AnimalMetadata
+{
+    public required List<ImageMetadata> MetadataList { get; init; }
+
+    public string[] ManualBlackList { get; init; } = [];
+}
 
 public record ImageMetadata
 {
@@ -13,6 +16,5 @@ public record ImageMetadata
     public int Height { get; init; }
     public bool PassedFilter { get; init; }
     public string? RejectReason { get; init; }
-
     public string? SpeciesQuery { get; init; }
 }

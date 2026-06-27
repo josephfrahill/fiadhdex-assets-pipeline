@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 
 namespace Services.Api;
 
@@ -22,7 +19,7 @@ public class ImageDownloader
 
         try
         {
-            int attempts = 0;
+            var attempts = 0;
 
             while (true)
             {
@@ -34,7 +31,7 @@ public class ImageDownloader
                 if (response.StatusCode == (HttpStatusCode)429)
                 {
                     var retryAfter = response.Headers.RetryAfter?.Delta
-                        ?? TimeSpan.FromSeconds(Math.Pow(2, attempts));
+                                     ?? TimeSpan.FromSeconds(Math.Pow(2, attempts));
 
                     retryAfter += TimeSpan.FromMilliseconds(Random.Shared.Next(0, 500));
 
