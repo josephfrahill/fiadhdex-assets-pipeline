@@ -9,6 +9,8 @@ public record Animal
     public required string Rarity { get; init; }
     public required string Family { get; init; }
     public required string Order { get; init; }
+    public Gender? Gender { get; init; }
+    public required string Young { get; init; }
     public required string[] Plurals { get; init; }
     public required string CollectiveNoun { get; init; }
     public required string ConservationStatus { get; init; }
@@ -24,6 +26,15 @@ public record Animal
     public required string FunFact { get; init; }
     public required string[] NativeRegions { get; init; }
     public required string[] Tags { get; init; }
+}
+
+public record Gender
+{
+    public required string Male { get; init; }
+    public required string Female { get; init; }
+    public string? MaleYoung { get; init; }
+    public string? FemaleYoung { get; init; }
+    public string? MaleCastrated { get; init; }
 }
 
 public record DoubleRange(double Min, double Max);

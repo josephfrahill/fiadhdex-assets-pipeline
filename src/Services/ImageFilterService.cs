@@ -7,13 +7,14 @@ public static class ImageFilterService
 {
     private static readonly string[] Blacklist =
     [
-        "skeleton", "skull", "bone", "jaw",
-        "karyotype", "print", "iconographia",
-        "drawing", "illustration", "museum",
-        "taxidermy", "fossil", "anatomy", "diagram", "coat", "multiple", "plush", "toy", "costume", "mascot",
+        "skeleton", "skull", "bone", "jaw", "brain", "kidney", "testis", "fetus", "heart", "scrotal",
+        "karyotype", "print", "iconographia", "drawing", "illustration",
+        "museum", "taxidermy", "fossil", "anatomy", "diagram",
+        "coat", "multiple", "plush", "toy", "costume", "mascot",
         "clothing", "clothes", "breeds",
-        "x-ray", "xray", "chromosome", "kittens", "puppies", "human", "person", "people", "girl", "boy",
-        "man", "woman", "baby", "babies", "elder", "elders", "mass",
+        "x-ray", "xray", "chromosome",
+        "human", "person", "people", "girl", "boy", "child", "man", "woman", "baby", "babies", "elder", "elders",
+        "mass",
         ".webm"
     ];
 

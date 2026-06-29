@@ -1,5 +1,7 @@
 # Ignore Visual Studio temporary files, build results, and OS generated files
 
+python/processed
+
 .vs/
 bin/
 obj/
