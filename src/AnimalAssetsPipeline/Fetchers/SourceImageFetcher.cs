@@ -1,28 +1,30 @@
-﻿using Models;
-using Models.Images;
+﻿using Models.Images;
 using Services;
 using Services.Api;
 using Services.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using Models;
 
-namespace AnimalAssetsPipeline;
+namespace AnimalAssetsPipeline.Fetchers;
 
-public static class SourceImageFetcher
+public class SourceImageFetcher
 {
-    public static async Task RunAsync(string jsonPath)
+    private readonly WikimediaApiClient _wikiApi;
+    private readonly ImageDownloader _downloader;
+
+    public SourceImageFetcher(WikimediaApiClient wikiApi, ImageDownloader downloader)
     {
-        var http = new HttpClient();
-        var wikiApi = new WikimediaApiClient(http);
+        _wikiApi = wikiApi;
+        _downloader = downloader;
+    }
 
-        var downloader = new ImageDownloader(http, maxConcurrency: 3);
-
-        var animals = await SpeciesJsonLoader.LoadAsync(jsonPath);
-
+    public async Task FetchImagesAsync(List<Animal> animals)
+    {
         foreach (var species in animals)
         {
-            var candidates = await wikiApi.GetImagesDataAsync(species.Name);
+            var candidates = await _wikiApi.GetImagesDataAsync(species.Name);
 
             var metadataList = new List<ImageMetadata>();
             var keptImages = new List<CandidateImage>();
@@ -47,7 +49,7 @@ public static class SourceImageFetcher
                     Width = img.Width,
                     Height = img.Height,
                     PassedFilter = result.Passed,
-                    RejectReason = result.Reason,
+                    RejectReason = result.FailReason,
                     SpeciesQuery = species.Name,
                     LocalFileName = fileName
                 });
@@ -68,7 +70,7 @@ public static class SourceImageFetcher
 
                 var path = Path.Combine(outputDir, fileName);
 
-                await downloader.DownloadAsync(img.Url, path);
+                await _downloader.DownloadAsync(img.Url, path);
             }
 
             await Task.Delay(200);

@@ -1,3 +1,3 @@
 ﻿namespace Models;
 
-public record FilterResult(bool Passed, string? Reason);
+public record FilterResult(bool Passed, string? FailReason);

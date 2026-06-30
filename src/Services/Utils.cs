@@ -10,4 +10,21 @@ public class Utils
 
         return title;
     }
+
+    public static string GetExecutingAppRoot()
+    {
+        var currentDir = new DirectoryInfo(AppContext.BaseDirectory);
+
+        while (currentDir != null)
+        {
+            if (currentDir.GetFiles("*.slnx").Length != 0)
+            {
+                return Path.Combine(currentDir.FullName, "src", "AnimalAssetsPipeline");
+            }
+
+            currentDir = currentDir.Parent;
+        }
+
+        throw new FileNotFoundException("Could not find the solution (.sln) root directory.");
+    }
 }
