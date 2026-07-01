@@ -1,6 +1,23 @@
 from rembg import remove
 from PIL import Image
 import os
+import argparse
+import json
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--input", required=True)
+parser.add_argument("--output", required=True)
+
+args = parser.parse_args()
+
+with open("pipeline-config.json", "r") as f:
+    config = json.load(f)
+
+downloads = config["downloadsDir"]
+processed = config["processedDir"]
+
+##input_path = args.input
+##output_path = args.output
 
 animal_folder = "GL004 - Domestic Cow"
 input_path = "C:/code/pipeline/pipeline/src/AnimalAssetPipeline/bin/Debug/net10.0/output/" + animal_folder
@@ -30,3 +47,5 @@ for filename in os.listdir(input_path):
         result.save(output_full_path)
 
 print("Done!")
+
+

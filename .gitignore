@@ -1,8 +1,7 @@
 # Ignore Visual Studio temporary files, build results, and OS generated files
 
 src/AnimalAssetsPipeline/DataJsons
-pipeline/python/processed
-pipeline/results
+pipeline/output
 
 .vs/
 bin/

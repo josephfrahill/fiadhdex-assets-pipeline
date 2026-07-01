@@ -1,12 +1,25 @@
 ﻿using AnimalAssetsPipeline.Fetchers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Models;
 using Services;
 using Services.Api;
 
+if (args.Length < 2)
+{
+    Console.WriteLine("Invalid args");
+    return;
+}
+
+var solutionDirectory = Utils.GetSolutionDirectory();
+var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
 var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
+    .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
+    .ConfigureServices((context, services) =>
     {
+        services.Configure<PipelineConfig>(context.Configuration);
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
@@ -19,40 +32,24 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-if (args.Length < 2)
-{
-    Console.WriteLine("Invalid args");
-    return;
-}
+var config = host.Services.GetRequiredService<IOptions<PipelineConfig>>().Value;
+var dexName = config.DexConfig.DexName;
+var dexPathRoot = config.DexConfig.DexPathRoot;
+var dexPathCloud = Path.Combine(dexPathRoot, dexName).Replace('\\', '/');
+var outputPathRoot = Path.Combine(config.PipelineRoot, config.Folders.Output).Replace('\\', '/');
+Directory.CreateDirectory(outputPathRoot);
+
+var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline").Replace('\\', '/');
+var localDataJsonsPath = Path.Combine(executingRoot, "DataJsons").Replace('\\', '/');
 
 var dataFetcher = host.Services.GetRequiredService<LifeDexDataFetcher>();
-
-const string dexName = "global-safelist.json";
-const string dexPathRoot = "safelists/global/";
-const string dexPathCloud = $"{dexPathRoot}/{dexName}";
-
-
-var solutionDirectory = Utils.GetSolutionDirectory();
-var resultsDir = Path.Combine(solutionDirectory, "pipeline", "results");
-Directory.CreateDirectory(resultsDir);
-var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline");
-var localDataJsonsPath = Path.Combine(executingRoot, "DataJsons");
-
 var animals = await dataFetcher.FetchDataAsync(dexName, dexPathCloud, localDataJsonsPath);
 
 switch (args[0])
 {
     case "1":
         var fetcher = host.Services.GetRequiredService<SourceImageFetcher>();
-        var dexPathInResults = Path.Combine(resultsDir, dexPathRoot);
-        await fetcher.FetchImagesAsync(animals, dexPathInResults);
+        var outputPathDexPath = Path.Combine(outputPathRoot, dexPathRoot).Replace('\\', '/');
+        await fetcher.FetchImagesAsync(animals, outputPathDexPath);
         break;
-}
-
-static void DefensivelyCreateResultsFolders(string solutionDirectory)
-{
-    // var pipelineDir = Path.Combine(solutionDirectory, "pipeline");
-    // Directory.CreateDirectory(pipelineDir);
-    var resultsDir = Path.Combine(solutionDirectory, "pipeline", "results");
-    Directory.CreateDirectory(resultsDir);
 }

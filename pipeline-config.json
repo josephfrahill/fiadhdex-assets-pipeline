@@ -1,0 +1,14 @@
+{
+  "dexConfig": {
+    "dexName": "global-safelist.json",
+    "dexPathRoot": "safelists/global"
+  },
+  "pipelineRoot": "C:/code/lifedex/pipeline/pipeline",
+  "metadataFileName": "animal-metadata.json",
+  "folders": {
+    "output": "output",
+    "downloaded": "downloaded",
+    "processed": "processed",
+    "results": "results"
+  }
+}

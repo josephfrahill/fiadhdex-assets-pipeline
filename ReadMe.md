@@ -18,3 +18,53 @@
 
 
 
+    ps1 plan
+
+    
+On start, load config-json & display props there like dexName & dexCloudPath.
+
+find executing directory, should be "C:/code/pipeline", + append "pipeline". or get this from configFile
+
+Display list of options to user, including 
+"1. Download images for dex animals", 
+"2. process images by removing bacgrounds"
+"3. Rank processed images and discard both downloaded & processed versions that don't meet certain criteria"
+"4. Icon gen"
+
+Step 0; Not priority. It fetches sthe source json from the cloud if not existing locally. 
+It would be good to include metadata in that source dex json so we can see when it was last updated
+and auto-pull the latets everytime. Need to update cli app to have an option to do only this
+
+Step 1> Mostly done. Needs to pull dexName, dexPathRoot, downlaodedDir from config file. 
+We write a maifest in animalId/downloaded dir that is just for the wikimedia api and prvenets re-downloading junk images
+
+Step 2> Mostly done. Needs to pull dexPathRoot, downlaodedDir, processedDir from config file. 
+DexPathRoot is the important bit.
+Ask the user whether they want to process all animals in this dir or just an individual. Wait for user input
+
+- 0 or All -> It needs to find all the folders in that dir, iterate through them, open the downloadedDir, process each image to the outputPath
+-1 or individual -> user can provide animal folder name as arg, can just use that to process individually
+
+Step 3> .net app again most likely. Needs to get dexPathRoot, processedDir from config file.
+Ask the user whether they want to process all animals in this dir or just an individual. Wait for user input
+
+- 0 or All -> It needs to find all the folders in that dir, iterate through them, open the downloadedDir, process each image to the outputPath
+-1 or individual -> user can provide animal folder name as arg, can just use that to process individually
+
+We might be rate limited here when doing all, so maybe better to just build this stage as individual first
+
+This stage also has to do a lot of clean up. After it ranks each image in the animalId/processed dir, 
+it should create a metadata.json in that dir for the animal. The background-removal stage doesn't do this.
+It should also delete any images here below a certain ranking, which is easy. It should also update the
+wikimeida manifest in animalId/downloaded to prevent re-downloading junk images. 
+
+Step 4> Icon gen. Tbd
+
+
+python background/remove_backgrounds.py `
+    --input $Downloads `
+    --output $Processed
+
+
+
+ 

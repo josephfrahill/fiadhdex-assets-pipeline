@@ -18,12 +18,14 @@ public static class ImageFilterService
         ".webm"
     ];
 
-    public static FilterResult IsValid(CandidateImage img, string species, string[] plurals, string[] manualBlackList,
+    public static FilterResult IsValid(CandidateImage img, string fileName, string species, string[] plurals,
+        string[] manualBlackList,
         string outputDirectory)
     {
-        var text = $"{img.Title}".ToLowerInvariant();
+        //var text = img.Title.ToLowerInvariant();
+        var text = Utils.SanitiseFileName(img.Title);
 
-        if (Blacklist.Any(text.Contains) ||
+        if (Blacklist.Any(x => text.Contains(x, StringComparison.OrdinalIgnoreCase)) ||
             manualBlackList.Any(x => text.Contains(x, StringComparison.OrdinalIgnoreCase)))
         {
             return new FilterResult(false, $"Contains blocked data: {text}");
@@ -46,7 +48,7 @@ public static class ImageFilterService
     private static bool DoesImageExist(string imgTitle, string outputDir)
     {
         var sanitisedTitle = Utils.SanitiseFileName(imgTitle);
-        var imagePath = Path.Combine(outputDir, sanitisedTitle);
+        var imagePath = Path.Combine(outputDir, sanitisedTitle).Replace('\\', '/');
         return File.Exists(imagePath);
     }
 }

@@ -1,11 +1,12 @@
-﻿using Models.Images;
+﻿using Microsoft.Extensions.Options;
+using Models;
+using Models.Images;
 using Services;
 using Services.Api;
 using Services.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using Models;
 
 namespace AnimalAssetsPipeline.Fetchers;
 
@@ -13,36 +14,40 @@ public class SourceImageFetcher
 {
     private readonly WikimediaApiClient _wikiApi;
     private readonly ImageDownloader _downloader;
+    private readonly PipelineConfig _config;
 
-    public SourceImageFetcher(WikimediaApiClient wikiApi, ImageDownloader downloader)
+    public SourceImageFetcher(WikimediaApiClient wikiApi, ImageDownloader downloader, IOptions<PipelineConfig> options)
     {
         _wikiApi = wikiApi;
         _downloader = downloader;
+        _config = options.Value;
     }
 
-    public async Task FetchImagesAsync(List<Animal> animals, string dexPathInResults)
+    public async Task FetchImagesAsync(List<Animal> animals, string outputPathDexPath)
     {
         foreach (var species in animals)
         {
-            var candidates = await _wikiApi.GetImagesDataAsync(species.Name);
+            var speciesNameFormatted = species.Name.ToLowerInvariant().Replace(" ", "-");
+            var outputPathSpeciesPath = Path.Combine(outputPathDexPath,
+                string.Concat(species.Id, "-", speciesNameFormatted)).Replace('\\', '/');
+            Directory.CreateDirectory(outputPathSpeciesPath);
+            var metadataPath = Path.Combine(outputPathSpeciesPath, _config.MetadataFileName).Replace('\\', '/');
+
+            var outputPathSpeciesPathDownloaded =
+                Path.Combine(outputPathSpeciesPath, _config.Folders.Downloaded).Replace('\\', '/');
+            Directory.CreateDirectory(outputPathSpeciesPathDownloaded);
 
             var metadataList = new List<ImageMetadata>();
             var keptImages = new List<CandidateImage>();
-            var speciesNameFormatted = species.Name.ToLowerInvariant().Replace(" ", "-");
-            var outputDir = Path.Combine(dexPathInResults, string.Concat(species.Id, "-", speciesNameFormatted),
-                "sourced");
-            Directory.CreateDirectory(outputDir);
-
+            var candidates = await _wikiApi.GetImagesDataAsync(species.Name);
             foreach (var img in candidates)
             {
-                // write metadata file per species
-                var metadataPath = Path.Combine(outputDir, "metadata.json");
                 var metadata = await ReturnOrCreateAnimalMetadata(metadataPath, metadataList);
-
-                var result = ImageFilterService.IsValid(img, species.Name, species.Plurals, metadata.ManualBlackList,
-                    outputDir);
-
+                //var fileName = Path.GetFileName(new Uri(img.Url).LocalPath);
                 var fileName = Utils.SanitiseFileName(img.Title);
+                var result = ImageFilterService.IsValid(img, fileName, species.Name, species.Plurals,
+                    metadata.ManualBlackList,
+                    outputPathSpeciesPathDownloaded);
 
                 metadataList.Add(new ImageMetadata
                 {
@@ -70,7 +75,7 @@ public class SourceImageFetcher
 
                 var fileName = Utils.SanitiseFileName(img.Title);
 
-                var path = Path.Combine(outputDir, fileName);
+                var path = Path.Combine(outputPathSpeciesPathDownloaded, fileName).Replace('\\', '/');
 
                 await _downloader.DownloadAsync(img.Url, path);
             }
