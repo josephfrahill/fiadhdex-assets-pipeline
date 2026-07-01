@@ -28,7 +28,13 @@ var host = Host.CreateDefaultBuilder(args)
             client.BaseAddress = new Uri("https://muddy-dust-f74c.lifedex.workers.dev/");
         });
         services.AddHttpClient<WikimediaApiClient>();
-        services.AddHttpClient<ImageDownloader>();
+        services.AddHttpClient<ImageDownloader>(client =>
+        {
+            client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
+            client.DefaultRequestHeaders.Add(
+                "User-Agent",
+                "LifeDex-AssetPipeline/1.0 (contact: frahill.joseph@gmail.com)");
+        });
     })
     .Build();
 

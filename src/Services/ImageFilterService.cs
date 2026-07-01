@@ -7,9 +7,9 @@ public static class ImageFilterService
 {
     private static readonly string[] Blacklist =
     [
-        "skeleton", "skull", "bone", "jaw", "brain", "kidney", "testis", "fetus", "heart", "scrotal",
+        "skeleton", "skull", "bone", "jaw", "brain", "kidney", "testis", "fetus", "heart", "scrotal", "cranium",
         "karyotype", "print", "iconographia", "drawing", "illustration",
-        "museum", "taxidermy", "fossil", "anatomy", "diagram",
+        "museum", "taxidermy", "fossil", "dehydration", "anatomy", "diagram",
         "coat", "multiple", "plush", "toy", "costume", "mascot",
         "clothing", "clothes", "breeds",
         "x-ray", "xray", "chromosome",
@@ -19,11 +19,10 @@ public static class ImageFilterService
     ];
 
     public static FilterResult IsValid(CandidateImage img, string fileName, string species, string[] plurals,
-        string[] manualBlackList,
-        string outputDirectory)
+        string[] manualBlackList, string outputDirectory)
     {
         //var text = img.Title.ToLowerInvariant();
-        var text = Utils.SanitiseFileName(img.Title);
+        var text = Utils.SanitiseFileName(img.Title).ToLowerInvariant();
 
         if (Blacklist.Any(x => text.Contains(x, StringComparison.OrdinalIgnoreCase)) ||
             manualBlackList.Any(x => text.Contains(x, StringComparison.OrdinalIgnoreCase)))
