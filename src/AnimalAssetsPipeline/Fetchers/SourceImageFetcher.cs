@@ -20,7 +20,7 @@ public class SourceImageFetcher
         _downloader = downloader;
     }
 
-    public async Task FetchImagesAsync(List<Animal> animals)
+    public async Task FetchImagesAsync(List<Animal> animals, string dexPathInResults)
     {
         foreach (var species in animals)
         {
@@ -28,7 +28,9 @@ public class SourceImageFetcher
 
             var metadataList = new List<ImageMetadata>();
             var keptImages = new List<CandidateImage>();
-            var outputDir = Path.Combine("output", string.Concat(species.Id, " - ", species.Name));
+            var speciesNameFormatted = species.Name.ToLowerInvariant().Replace(" ", "-");
+            var outputDir = Path.Combine(dexPathInResults, string.Concat(species.Id, "-", speciesNameFormatted),
+                "sourced");
             Directory.CreateDirectory(outputDir);
 
             foreach (var img in candidates)

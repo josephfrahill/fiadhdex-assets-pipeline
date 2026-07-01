@@ -11,7 +11,7 @@ public class Utils
         return title;
     }
 
-    public static string GetExecutingAppRoot()
+    public static string GetSolutionDirectory()
     {
         var currentDir = new DirectoryInfo(AppContext.BaseDirectory);
 
@@ -19,7 +19,7 @@ public class Utils
         {
             if (currentDir.GetFiles("*.slnx").Length != 0)
             {
-                return Path.Combine(currentDir.FullName, "src", "AnimalAssetsPipeline");
+                return currentDir.FullName;
             }
 
             currentDir = currentDir.Parent;

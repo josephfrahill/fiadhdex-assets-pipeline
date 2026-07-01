@@ -28,16 +28,31 @@ if (args.Length < 2)
 var dataFetcher = host.Services.GetRequiredService<LifeDexDataFetcher>();
 
 const string dexName = "global-safelist.json";
-const string dexPath = $"safelists/global/{dexName}";
-var executingRoot = Utils.GetExecutingAppRoot();
+const string dexPathRoot = "safelists/global/";
+const string dexPathCloud = $"{dexPathRoot}/{dexName}";
+
+
+var solutionDirectory = Utils.GetSolutionDirectory();
+var resultsDir = Path.Combine(solutionDirectory, "pipeline", "results");
+Directory.CreateDirectory(resultsDir);
+var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline");
 var localDataJsonsPath = Path.Combine(executingRoot, "DataJsons");
 
-var animals = await dataFetcher.FetchDataAsync(dexName, dexPath, localDataJsonsPath);
+var animals = await dataFetcher.FetchDataAsync(dexName, dexPathCloud, localDataJsonsPath);
 
 switch (args[0])
 {
     case "1":
         var fetcher = host.Services.GetRequiredService<SourceImageFetcher>();
-        await fetcher.FetchImagesAsync(animals);
+        var dexPathInResults = Path.Combine(resultsDir, dexPathRoot);
+        await fetcher.FetchImagesAsync(animals, dexPathInResults);
         break;
+}
+
+static void DefensivelyCreateResultsFolders(string solutionDirectory)
+{
+    // var pipelineDir = Path.Combine(solutionDirectory, "pipeline");
+    // Directory.CreateDirectory(pipelineDir);
+    var resultsDir = Path.Combine(solutionDirectory, "pipeline", "results");
+    Directory.CreateDirectory(resultsDir);
 }
