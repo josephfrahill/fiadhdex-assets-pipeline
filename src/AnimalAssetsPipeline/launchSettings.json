@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "default": {
-      "commandName": "Project",
-      "commandLineArgs": "1"
-    }
-  }
-}

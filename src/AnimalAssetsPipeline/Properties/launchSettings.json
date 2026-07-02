@@ -6,7 +6,7 @@
     },
     "AnimalAssetsPipeline": {
       "commandName": "Project",
-      "commandLineArgs": "1\r\nC:\\code\\anidex\\data\\safeLists\\global\\global-safeList.json"
+      "commandLineArgs": "1"
     }
   }
 }

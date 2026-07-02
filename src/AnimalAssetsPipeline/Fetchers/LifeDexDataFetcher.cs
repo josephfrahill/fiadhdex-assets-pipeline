@@ -22,12 +22,14 @@ public class LifeDexDataFetcher
         if (File.Exists(localDexPath))
         {
             animals = await JsonDexLoader.LoadAsync(localDexPath);
+            Console.WriteLine($"Loading local dex: `{dexName}`...");
         }
         else
         {
             animals = await GetFromCloudAsync(cloudDexPath);
             Directory.CreateDirectory(localDataJsonsPath);
             SaveJsonLocally(animals, localDexPath);
+            Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
         }
 
         return animals;

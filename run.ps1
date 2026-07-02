@@ -17,12 +17,16 @@ switch ($choice)
 {
     "1"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- fetch
+        dotnet run --project ./src/AnimalAssetsPipeline -- "1"
     }
 
     "2"
     {
-        python ./background-removal/remove_backgrounds.py
+        cd ./pipeline/background-removal
+        .venv\Scripts\activate
+        python ./remove_backgrounds.py --speciesIdFolder "GL001-domestic-dog"
+        deactivate
+        cd ../../
     }
 
     "3"

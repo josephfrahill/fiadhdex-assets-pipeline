@@ -71,13 +71,10 @@ public class SourceImageFetcher
 
             foreach (var img in keptImages)
             {
-                //var fileName = ComputeSha256(img.Url) + ".jpg";
-
                 var fileName = Utils.SanitiseFileName(img.Title);
-
                 var path = Path.Combine(outputPathSpeciesPathDownloaded, fileName).Replace('\\', '/');
-
                 await _downloader.DownloadAsync(img.Url, path);
+                // remember to compress where needed
             }
 
             await Task.Delay(200);

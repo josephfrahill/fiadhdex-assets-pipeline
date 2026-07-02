@@ -7,7 +7,7 @@ using Models;
 using Services;
 using Services.Api;
 
-if (args.Length < 2)
+if (args.Length < 1)
 {
     Console.WriteLine("Invalid args");
     return;
@@ -53,6 +53,10 @@ var animals = await dataFetcher.FetchDataAsync(dexName, dexPathCloud, localDataJ
 
 switch (args[0])
 {
+    case "0":
+        Console.WriteLine("Dex data loaded successfully. Finished.");
+        break;
+
     case "1":
         var fetcher = host.Services.GetRequiredService<SourceImageFetcher>();
         var outputPathDexPath = Path.Combine(outputPathRoot, dexPathRoot).Replace('\\', '/');
