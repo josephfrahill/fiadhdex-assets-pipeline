@@ -2,12 +2,12 @@
 
 namespace Services.Api;
 
-public class ImageDownloader
+public class WikimediaImageDownloader
 {
     private readonly HttpClient _http;
     private readonly SemaphoreSlim _throttle;
 
-    public ImageDownloader(HttpClient http, int maxConcurrency = 3)
+    public WikimediaImageDownloader(HttpClient http, int maxConcurrency = 3)
     {
         _http = http;
         _throttle = new SemaphoreSlim(maxConcurrency);

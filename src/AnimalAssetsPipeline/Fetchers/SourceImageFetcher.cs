@@ -12,11 +12,12 @@ namespace AnimalAssetsPipeline.Fetchers;
 
 public class SourceImageFetcher
 {
-    private readonly WikimediaApiClient _wikiApi;
-    private readonly ImageDownloader _downloader;
+    private readonly WikimediaImageQuerrier _wikiApi;
+    private readonly WikimediaImageDownloader _downloader;
     private readonly PipelineConfig _config;
 
-    public SourceImageFetcher(WikimediaApiClient wikiApi, ImageDownloader downloader, IOptions<PipelineConfig> options)
+    public SourceImageFetcher(WikimediaImageQuerrier wikiApi, WikimediaImageDownloader downloader,
+        IOptions<PipelineConfig> options)
     {
         _wikiApi = wikiApi;
         _downloader = downloader;

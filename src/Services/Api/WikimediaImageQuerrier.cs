@@ -3,19 +3,13 @@ using System.Text.Json;
 
 namespace Services.Api;
 
-public class WikimediaApiClient
+public class WikimediaImageQuerrier
 {
     private readonly HttpClient _httpClient;
 
-    public WikimediaApiClient(HttpClient httpClient)
+    public WikimediaImageQuerrier(HttpClient httpClient)
     {
         _httpClient = httpClient;
-
-        _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
-            "AnimalAssetPipeline/1.0 (contact: facebookfail2309@gmail.com; https://github.com/josephfrahill/animal-assets-pipeline)"
-        );
-
-        _httpClient.DefaultRequestHeaders.Accept.ParseAdd("application/json");
     }
 
     public async Task<List<CandidateImage>> GetImagesDataAsync(string scientificName)

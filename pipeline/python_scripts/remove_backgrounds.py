@@ -25,7 +25,7 @@ executing_root = pipeline_root + "/" + output_dir +  "/" + dex_path_root +  "/" 
 input_path = executing_root +  "/" + downloaded_dir
 output_path = executing_root +  "/" + processed_dir
 os.makedirs(output_path, exist_ok=True)
-
+# is webp better to than png?
 image_extensions = (".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff", ".webp")
 
 counter = 1

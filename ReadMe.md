@@ -67,4 +67,29 @@ python background/remove_backgrounds.py `
 
 
 
+----------------------------------------
+
+Dex getter
+
+Manual process to get download for now. Future automation
+- Apiclient to ChecklistBank, can you captured api as template + gbif account. Queues download
+- Need to check when download is available? In emails?
+
+Once have acquired dex:
+- write parser in pipeline app
+- need to parse all animal classes we support - mammals, reptiles, birds, amphibians, arachnids
+- // fish, insects, mollusks, crustaceans, cnidarians, echinoderms, annelids, flatworms, roundworms, sponges
+- should produce 5 files, preferably as json, one for each class. These are the master lists.
+- Each file should contain a list of animals with their metadata, including:
+  - cotId
+  - scientificName
+  - commonName
+  - distribution
+
+  - Dependency on what the distribution data looks like, we should be able to parse it into a list of countries
+  - //, or a list of regions, or a list of continents.
+  - Then we run some code to extrapolate each entry from each list where the distribution data matches each country
+  - This gives us base country dexes
+  - We'll likely need AI review / manual cleanup /addition to each dex
+
  

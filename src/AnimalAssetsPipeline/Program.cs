@@ -27,13 +27,16 @@ var host = Host.CreateDefaultBuilder(args)
         {
             client.BaseAddress = new Uri("https://muddy-dust-f74c.lifedex.workers.dev/");
         });
-        services.AddHttpClient<WikimediaApiClient>();
-        services.AddHttpClient<ImageDownloader>(client =>
+        services.AddHttpClient<WikimediaImageQuerrier>(client =>
         {
+            ConfigureGlobalUserAgent(client);
+
+            client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+        });
+        services.AddHttpClient<WikimediaImageDownloader>(client =>
+        {
+            ConfigureGlobalUserAgent(client);
             client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
-            client.DefaultRequestHeaders.Add(
-                "User-Agent",
-                "LifeDex-AssetPipeline/1.0 (contact: frahill.joseph@gmail.com)");
         });
     })
     .Build();
@@ -63,3 +66,9 @@ switch (args[0])
         await fetcher.FetchImagesAsync(animals, outputPathDexPath);
         break;
 }
+
+return;
+
+static void ConfigureGlobalUserAgent(HttpClient client) =>
+    client.DefaultRequestHeaders.UserAgent.ParseAdd(
+        "LifeDex-AssetPipeline/1.0 (contact: frahill.joseph@gmail.com)");
