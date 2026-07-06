@@ -1,4 +1,6 @@
 ﻿using AnimalAssetsPipeline.Fetchers;
+using Database;
+using Database.Importers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +22,8 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.Configure<PipelineConfig>(context.Configuration);
+        services.AddSingleton<NameUsageImporter>();
+        services.AddDbContext<LifeDexDbContext>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
@@ -41,25 +45,31 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
+if (args[0].Equals("0"))
+{
+    Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
+    var importer = host.Services.GetRequiredService<NameUsageImporter>();
+    await importer.ImportAsync();
+    //var importResult = await HandleCatalogueOfLifeDataImportAsync(importer);
+    //Console.WriteLine(importResult.Message);
+    Console.WriteLine("Data successfully parsed into Db.");
+    return;
+}
+
 var config = host.Services.GetRequiredService<IOptions<PipelineConfig>>().Value;
 var dexName = config.DexConfig.DexName;
 var dexPathRoot = config.DexConfig.DexPathRoot;
-var dexPathCloud = Path.Combine(dexPathRoot, dexName).Replace('\\', '/');
 var outputPathRoot = Path.Combine(config.PipelineRoot, config.Folders.Output).Replace('\\', '/');
 Directory.CreateDirectory(outputPathRoot);
 
 var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline").Replace('\\', '/');
-var localDataJsonsPath = Path.Combine(executingRoot, "DataJsons").Replace('\\', '/');
-
 var dataFetcher = host.Services.GetRequiredService<LifeDexDataFetcher>();
-var animals = await dataFetcher.FetchDataAsync(dexName, dexPathCloud, localDataJsonsPath);
+var dexResult = await HandleJsonDexFetching(dexName, dexPathRoot, executingRoot, dataFetcher);
+Console.WriteLine(dexResult.Message);
 
+var animals = dexResult.Animals;
 switch (args[0])
 {
-    case "0":
-        Console.WriteLine("Dex data loaded successfully. Finished.");
-        break;
-
     case "1":
         var fetcher = host.Services.GetRequiredService<SourceImageFetcher>();
         var outputPathDexPath = Path.Combine(outputPathRoot, dexPathRoot).Replace('\\', '/');
@@ -68,6 +78,29 @@ switch (args[0])
 }
 
 return;
+
+/*
+static async Task<ActionResult> HandleCatalogueOfLifeDataImportAsync(NameUsageImporter importer)
+{
+    await using var dbContext = new LifeDexDbContext();
+    dbContext.Database.EnsureCreated();
+    await importer.ImportAsync();
+    return new ActionResult(true, "Data successfully parsed into Db.");
+}
+*/
+static async Task<ActionResult> HandleJsonDexFetching(string dexName, string dexPathRoot,
+    string executingRoot, LifeDexDataFetcher dataFetcher)
+{
+    var localDataJsonsPath = Path.Combine(executingRoot, "DataJsons").Replace('\\', '/');
+
+    var dexPathCloud = Path.Combine(dexPathRoot, dexName).Replace('\\', '/');
+    var animals = await dataFetcher.FetchDataAsync(dexName, dexPathCloud, localDataJsonsPath);
+
+    return new ActionResult(true, "Dex json successfully fetched.")
+    {
+        Animals = animals
+    };
+}
 
 static void ConfigureGlobalUserAgent(HttpClient client) =>
     client.DefaultRequestHeaders.UserAgent.ParseAdd(

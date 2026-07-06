@@ -92,4 +92,15 @@ Once have acquired dex:
   - This gives us base country dexes
   - We'll likely need AI review / manual cleanup /addition to each dex
 
+
+
+
+Domain (The biggest group, separating things like plants, animals, and bacteria)
+Kingdom (Example: Animalia)
+Phylum (Example: Chordata or Arthropoda)
+Class (Example: Mammalia or Insecta)
+Order (Example: Carnivora—meat eaters)
+Family (Example: Felidae—all cats)
+Genus (Example: Panthera—roaring big cats)
+Species (The final specific animal, like Panthera leo—the lion)
  

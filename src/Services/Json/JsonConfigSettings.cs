@@ -11,11 +11,9 @@ public static class JsonConfigSettings
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         PropertyNameCaseInsensitive = true,
-        /*
         Converters =
         {
-                new JsonStringEnumConverter(null)
+            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
         }
-        */
     };
 }

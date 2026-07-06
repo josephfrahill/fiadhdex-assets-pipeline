@@ -2,10 +2,17 @@
 
 public record PipelineConfig
 {
+    public ColConfig? ColConfig { get; init; }
     public required DexConfig DexConfig { get; init; }
     public required string PipelineRoot { get; init; }
     public required string MetadataFileName { get; init; }
     public required Folders Folders { get; init; }
+}
+
+public record ColConfig
+{
+    public required string DirectoryPath { get; init; }
+    public required string NameUsage { get; init; }
 }
 
 public record DexConfig

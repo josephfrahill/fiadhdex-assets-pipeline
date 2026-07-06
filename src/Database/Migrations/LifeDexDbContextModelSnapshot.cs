@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database.Migrations
 {
-    [DbContext(typeof(WildlifeDexContext))]
-    partial class WildlifeDexContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(LifeDexDbContext))]
+    partial class LifeDexDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SpeciesCatalogueOfLifeId")
+                    b.Property<string>("SpeciesColId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
@@ -40,17 +40,14 @@ namespace Database.Migrations
 
                     b.HasIndex("CatalogueOfLifeId");
 
-                    b.HasIndex("SpeciesCatalogueOfLifeId");
+                    b.HasIndex("SpeciesColId");
 
                     b.ToTable("Distributions");
                 });
 
             modelBuilder.Entity("Database.DbModels.Species", b =>
                 {
-                    b.Property<string>("CatalogueOfLifeId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Class")
+                    b.Property<string>("ColId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Family")
@@ -59,7 +56,14 @@ namespace Database.Migrations
                     b.Property<string>("Genus")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("IsExtinct")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Order")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phylum")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Rank")
@@ -70,7 +74,11 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CatalogueOfLifeId");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ColId");
 
                     b.ToTable("Species");
                 });
@@ -93,14 +101,14 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SpeciesCatalogueOfLifeId")
+                    b.Property<string>("SpeciesColId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CatalogueOfLifeId");
 
-                    b.HasIndex("SpeciesCatalogueOfLifeId");
+                    b.HasIndex("SpeciesColId");
 
                     b.ToTable("VernacularNames");
                 });
@@ -109,14 +117,14 @@ namespace Database.Migrations
                 {
                     b.HasOne("Database.DbModels.Species", null)
                         .WithMany("Distributions")
-                        .HasForeignKey("SpeciesCatalogueOfLifeId");
+                        .HasForeignKey("SpeciesColId");
                 });
 
             modelBuilder.Entity("Database.DbModels.VernacularName", b =>
                 {
                     b.HasOne("Database.DbModels.Species", null)
                         .WithMany("VernacularNames")
-                        .HasForeignKey("SpeciesCatalogueOfLifeId");
+                        .HasForeignKey("SpeciesColId");
                 });
 
             modelBuilder.Entity("Database.DbModels.Species", b =>
