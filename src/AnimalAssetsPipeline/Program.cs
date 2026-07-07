@@ -24,6 +24,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.Configure<PipelineConfig>(context.Configuration);
         services.AddDbContext<LifeDexDbContext>();
         services.AddScoped<NameUsageImporter>();
+        services.AddScoped<VernacularNameImporter>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
@@ -49,10 +50,14 @@ if (args[0].Equals("0"))
 {
     Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
     using var scope = host.Services.CreateScope();
-    var importer = scope.ServiceProvider
-        .GetRequiredService<NameUsageImporter>();
-    await importer.ImportAsync();
-    Console.WriteLine("Data successfully parsed into Db.");
+
+    var usageImporter = scope.ServiceProvider.GetRequiredService<NameUsageImporter>();
+    await usageImporter.ImportAsync();
+
+
+    var vernacularImporter = scope.ServiceProvider.GetRequiredService<VernacularNameImporter>();
+    await vernacularImporter.ImportAsync();
+
     return;
 }
 

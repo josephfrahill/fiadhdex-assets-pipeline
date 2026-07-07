@@ -27,7 +27,10 @@ public class LifeDexDbContext : DbContext
             .HasKey(x => x.ColId);
 
         modelBuilder.Entity<VernacularName>()
-            .HasIndex(x => x.CatalogueOfLifeId);
+            .HasIndex(x => x.ColId);
+
+        modelBuilder.Entity<VernacularName>()
+            .HasIndex(x => x.Language);
 
         modelBuilder.Entity<Distribution>()
             .HasIndex(x => x.CatalogueOfLifeId);

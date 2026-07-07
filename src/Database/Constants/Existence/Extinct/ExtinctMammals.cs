@@ -157,7 +157,7 @@ public static class ExtinctMammals
         "Leptictidae", // extinct eutherian
         "Lophiomerycidae", // extinct ruminant
         "Mayulestidae", // extinct sparassodont
-        "Megalonychidae", // extinct ground sloth
+        //"Megalonychidae", // extinct ground sloth - Wrong family data for some extant sloths..?
         "Megatheriidae", // extinct giant ground sloth
         "Mesotheriidae", // extinct notoungulate
         "Mioclaenidae", // extinct early ungulate

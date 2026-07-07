@@ -17,14 +17,14 @@ namespace Database.Migrations
                     ColId = table.Column<string>(type: "TEXT", nullable: false),
                     ScientificName = table.Column<string>(type: "TEXT", nullable: false),
                     Rank = table.Column<string>(type: "TEXT", nullable: false),
-                    Genus = table.Column<string>(type: "TEXT", nullable: true),
-                    Family = table.Column<string>(type: "TEXT", nullable: true),
-                    Order = table.Column<string>(type: "TEXT", nullable: true),
+                    Genus = table.Column<string>(type: "TEXT", nullable: false),
+                    Family = table.Column<string>(type: "TEXT", nullable: false),
+                    Order = table.Column<string>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
-                    SubPhylum = table.Column<string>(type: "TEXT", nullable: true),
+                    SubPhylum = table.Column<string>(type: "TEXT", nullable: false),
                     Phylum = table.Column<string>(type: "TEXT", nullable: false),
                     IsExtinct = table.Column<string>(type: "TEXT", nullable: true),
-                    ExternalExtantVerified = table.Column<string>(type: "TEXT", nullable: false)
+                    ExternalExtantVerified = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,9 +58,14 @@ namespace Database.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CatalogueOfLifeId = table.Column<string>(type: "TEXT", nullable: false),
-                    Language = table.Column<string>(type: "TEXT", nullable: false),
+                    ColId = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Transliteration = table.Column<string>(type: "TEXT", nullable: true),
+                    Language = table.Column<string>(type: "TEXT", nullable: true),
+                    Preferred = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Country = table.Column<string>(type: "TEXT", nullable: true),
+                    Area = table.Column<string>(type: "TEXT", nullable: true),
+                    Merged = table.Column<bool>(type: "INTEGER", nullable: false),
                     TaxonColId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -84,9 +89,14 @@ namespace Database.Migrations
                 column: "TaxonColId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VernacularNames_CatalogueOfLifeId",
+                name: "IX_VernacularNames_ColId",
                 table: "VernacularNames",
-                column: "CatalogueOfLifeId");
+                column: "ColId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VernacularNames_Language",
+                table: "VernacularNames",
+                column: "Language");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VernacularNames_TaxonColId",

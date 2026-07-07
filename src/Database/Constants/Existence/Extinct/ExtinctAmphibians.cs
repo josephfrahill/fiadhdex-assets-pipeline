@@ -5,7 +5,6 @@ public static class ExtinctAmphibians
     public static readonly HashSet<string> ExtinctAmphibianGenera =
     [
         "Habrosaurus", // — extinct salamander (Cretaceous–Paleocene, sirenid-related)
-        "Latonia", // — extinct fire-bellied toad relative (Miocene–Pleistocene Europe)
         "Lisserpeton", //  — extinct salamander (Paleocene)
         "Mioproteus", //  — extinct proteid salamander (Miocene)
         "Opisthotriton", // — extinct salamander (Paleocene)

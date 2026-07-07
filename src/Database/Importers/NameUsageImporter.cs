@@ -1,10 +1,14 @@
-﻿using Database.Constants.ColModels;
+﻿using System.Text.Json;
+using Database.Constants.ColModels;
 using Database.Constants.Existence;
 using Database.Constants.Existence.Extinct;
 using Database.Constants.Flagged;
 using Database.DbModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
+using Services;
+using Services.Json;
 
 namespace Database.Importers;
 
@@ -36,6 +40,12 @@ public sealed class NameUsageImporter
 
     public async Task<int> ImportAsync()
     {
+        if (await _context.Taxa.AnyAsync())
+        {
+            Console.WriteLine("Existing data in Taxa table, skipping.");
+            return 0;
+        }
+
         await _context.Database.EnsureDeletedAsync(); // while developing
         await _context.Database.EnsureCreatedAsync();
 
@@ -66,7 +76,7 @@ public sealed class NameUsageImporter
 
         var imported = 0;
         var processed = 0;
-
+        var skippedList = new List<Skipped>();
         while (true)
         {
             var line = await reader.ReadLineAsync();
@@ -82,17 +92,17 @@ public sealed class NameUsageImporter
 
             var values = line.Split('\t');
 
-            var rank = GetColumn(values, ColColumns.Rank);
+            var rank = GetColumn(values, ColNameUsageColumns.Rank);
 
             if (!SupportedRanks.Contains(rank))
                 continue;
 
-            var status = GetColumn(values, ColColumns.Status);
+            var status = GetColumn(values, ColNameUsageColumns.Status);
 
             if (!status.Equals("accepted", StringComparison.OrdinalIgnoreCase))
                 continue;
 
-            var type = GetColumn(values, ColColumns.Type);
+            var type = GetColumn(values, ColNameUsageColumns.Type);
 
             if (!SupportedTypes.Contains(type))
                 continue;
@@ -111,7 +121,7 @@ public sealed class NameUsageImporter
                 }
             }
 
-            var isExtinctString = GetColumn(values, ColColumns.Extinct);
+            var isExtinctString = GetColumn(values, ColNameUsageColumns.Extinct);
             string? isExtinct = null;
 
             if (bool.TryParse(isExtinctString, out var isExtinctBool))
@@ -122,17 +132,20 @@ public sealed class NameUsageImporter
                 isExtinct = isExtinctString;
             }
 
-            var genus = GetColumn(values, ColColumns.Genus);
-            var family = GetColumn(values, ColColumns.Family);
+            var genus = GetColumn(values, ColNameUsageColumns.Genus);
+            var family = GetColumn(values, ColNameUsageColumns.Family);
             var externalExtantVerified = false;
 
-            /*
+            var scientificName = GetColumn(values, ColNameUsageColumns.ScientificName);
             switch (type)
             {
                 case "Mammalia":
                     if (!string.IsNullOrEmpty(genus) && ExtinctMammals.ExtinctMammalGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        skippedList.Add(new Skipped(scientificName, genus));
                         continue;
+                    }
 
                     if (!string.IsNullOrEmpty(genus) && ExtantTaxa.ExtantMammalGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)) &&
@@ -142,18 +155,22 @@ public sealed class NameUsageImporter
                     }
 
                     if (!string.IsNullOrEmpty(family) && ExtinctMammals.ExtinctMammalFamilies.Any(x =>
-                            x.Equals(family, StringComparison.OrdinalIgnoreCase)))
-                        continue;
-
-                    if (!string.IsNullOrEmpty(genus) && FlaggedErrors.FlaggedMammalErrors.Any(x =>
+                            x.Equals(family, StringComparison.OrdinalIgnoreCase))
+                        || !string.IsNullOrEmpty(genus) && FlaggedErrors.FlaggedMammalErrors.Any(x =>
                             x.Name.Equals(genus, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        skippedList.Add(new Skipped(scientificName, genus, family));
                         continue;
+                    }
 
                     break;
                 case "Reptilia":
                     if (!string.IsNullOrEmpty(genus) && ExtinctReptiles.ExtinctReptileGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        skippedList.Add(new Skipped(scientificName, genus));
                         continue;
+                    }
 
                     if (!string.IsNullOrEmpty(genus) && ExtantTaxa.ExtantReptileGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)) &&
@@ -164,43 +181,48 @@ public sealed class NameUsageImporter
 
                     if (!string.IsNullOrEmpty(family) && ExtinctReptiles.ExtinctReptileFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        skippedList.Add(new Skipped(scientificName, genus));
                         continue;
+                    }
 
                     break;
                 case "Aves":
                     if (!string.IsNullOrEmpty(genus) && ExtinctBirds.ExtinctBirdGenera.Any(x =>
-                            x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
-                        continue;
-
-                    if (!string.IsNullOrEmpty(family) && ExtinctBirds.ExtinctBirdFamilies.Any(x =>
+                            x.Equals(genus, StringComparison.OrdinalIgnoreCase))
+                        || !string.IsNullOrEmpty(family) && ExtinctBirds.ExtinctBirdFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        skippedList.Add(new Skipped(scientificName, genus, family));
                         continue;
+                    }
 
                     break;
                 case "Amphibia":
                     if (!string.IsNullOrEmpty(genus) && ExtinctAmphibians.ExtinctAmphibianGenera.Any(x =>
-                            x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
-                        continue;
-
-                    if (!string.IsNullOrEmpty(family) && ExtinctAmphibians.ExtinctAmphibianFamilies.Any(x =>
+                            x.Equals(genus, StringComparison.OrdinalIgnoreCase))
+                        || !string.IsNullOrEmpty(family) && ExtinctAmphibians.ExtinctAmphibianFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        skippedList.Add(new Skipped(scientificName, genus));
                         continue;
+                    }
 
                     break;
             }
-            */
+
 
             var species = new Taxon
             {
-                ColId = GetColumn(values, ColColumns.Id),
-                ScientificName = GetColumn(values, ColColumns.ScientificName),
+                ColId = GetColumn(values, ColNameUsageColumns.Id),
+                ScientificName = GetColumn(values, ColNameUsageColumns.ScientificName),
                 Rank = rank,
                 Genus = genus,
                 Family = family,
-                Order = GetColumn(values, ColColumns.Order),
+                Order = GetColumn(values, ColNameUsageColumns.Order),
                 Type = type,
-                SubPhylum = GetColumn(values, ColColumns.SubPhylum),
-                Phylum = GetColumn(values, ColColumns.Phylum),
+                SubPhylum = GetColumn(values, ColNameUsageColumns.SubPhylum),
+                Phylum = GetColumn(values, ColNameUsageColumns.Phylum),
                 IsExtinct = isExtinct,
                 ExternalExtantVerified = externalExtantVerified.ToString().ToLower(),
             };
@@ -237,6 +259,11 @@ public sealed class NameUsageImporter
         Console.WriteLine($"Processed : {processed:N0}");
         Console.WriteLine($"Imported  : {imported:N0}");
 
+        var json = JsonSerializer.Serialize(skippedList, JsonConfigSettings.Options);
+        var jsonPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "skipped.json");
+        await File.WriteAllTextAsync(jsonPath, json);
+
+        Console.WriteLine("Initial usage Data successfully parsed into Taxa table.");
         return imported;
 
         string GetColumn(string[] values, string columnName)
@@ -248,3 +275,5 @@ public sealed class NameUsageImporter
         }
     }
 }
+
+public record Skipped(string Name, string SkippedComponent, string? SecondarySkip = null);

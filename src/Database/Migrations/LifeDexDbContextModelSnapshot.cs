@@ -51,19 +51,21 @@ namespace Database.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ExternalExtantVerified")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Family")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Genus")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IsExtinct")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Order")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phylum")
@@ -79,6 +81,7 @@ namespace Database.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SubPhylum")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
@@ -96,24 +99,40 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CatalogueOfLifeId")
+                    b.Property<string>("Area")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ColId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Language")
-                        .IsRequired()
+                    b.Property<string>("Country")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Merged")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Preferred")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("TaxonColId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Transliteration")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CatalogueOfLifeId");
+                    b.HasIndex("ColId");
+
+                    b.HasIndex("Language");
 
                     b.HasIndex("TaxonColId");
 

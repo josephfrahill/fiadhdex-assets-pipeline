@@ -1,6 +1,6 @@
 ﻿namespace Database.Constants.ColModels;
 
-public static class ColColumns
+public static class ColNameUsageColumns
 {
     public const string Id = "col:ID";
     public const string ScientificName = "col:scientificName";

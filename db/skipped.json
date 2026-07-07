@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Gigarcanum delcourti",
+    "skippedComponent": "Gigarcanum"
+  },
+  {
+    "name": "Tachygyia microlepis",
+    "skippedComponent": "Tachygyia"
+  },
+  {
+    "name": "Bolyeria multocarinata",
+    "skippedComponent": "Bolyeria"
+  },
+  {
+    "name": "Chaeropus ecaudatus occidentalis",
+    "skippedComponent": "Chaeropus",
+    "secondarySkip": "Chaeropodidae"
+  },
+  {
+    "name": "Chaeropus ecaudatus ecaudatus",
+    "skippedComponent": "Chaeropus",
+    "secondarySkip": "Chaeropodidae"
+  }
+]
