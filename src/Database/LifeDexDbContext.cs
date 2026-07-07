@@ -13,7 +13,7 @@ public class LifeDexDbContext : DbContext
         Directory.CreateDirectory(DbDirectory);
     }
 
-    public DbSet<Species> Species => Set<Species>();
+    public DbSet<Taxon> Taxa => Set<Taxon>();
     public DbSet<VernacularName> VernacularNames => Set<VernacularName>();
     public DbSet<Distribution> Distributions => Set<Distribution>();
     public string DbPath { get; } = Path.Combine(DbDirectory, "lifedex.db");
@@ -23,7 +23,7 @@ public class LifeDexDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Species>()
+        modelBuilder.Entity<Taxon>()
             .HasKey(x => x.ColId);
 
         modelBuilder.Entity<VernacularName>()

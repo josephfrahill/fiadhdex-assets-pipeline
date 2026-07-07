@@ -11,7 +11,7 @@ namespace Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Species",
+                name: "Taxa",
                 columns: table => new
                 {
                     ColId = table.Column<string>(type: "TEXT", nullable: false),
@@ -21,12 +21,14 @@ namespace Database.Migrations
                     Family = table.Column<string>(type: "TEXT", nullable: true),
                     Order = table.Column<string>(type: "TEXT", nullable: true),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
+                    SubPhylum = table.Column<string>(type: "TEXT", nullable: true),
                     Phylum = table.Column<string>(type: "TEXT", nullable: false),
-                    IsExtinct = table.Column<string>(type: "TEXT", nullable: true)
+                    IsExtinct = table.Column<string>(type: "TEXT", nullable: true),
+                    ExternalExtantVerified = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Species", x => x.ColId);
+                    table.PrimaryKey("PK_Taxa", x => x.ColId);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,15 +40,15 @@ namespace Database.Migrations
                     CatalogueOfLifeId = table.Column<string>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
-                    SpeciesColId = table.Column<string>(type: "TEXT", nullable: true)
+                    TaxonColId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Distributions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Distributions_Species_SpeciesColId",
-                        column: x => x.SpeciesColId,
-                        principalTable: "Species",
+                        name: "FK_Distributions_Taxa_TaxonColId",
+                        column: x => x.TaxonColId,
+                        principalTable: "Taxa",
                         principalColumn: "ColId");
                 });
 
@@ -59,15 +61,15 @@ namespace Database.Migrations
                     CatalogueOfLifeId = table.Column<string>(type: "TEXT", nullable: false),
                     Language = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    SpeciesColId = table.Column<string>(type: "TEXT", nullable: true)
+                    TaxonColId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VernacularNames", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VernacularNames_Species_SpeciesColId",
-                        column: x => x.SpeciesColId,
-                        principalTable: "Species",
+                        name: "FK_VernacularNames_Taxa_TaxonColId",
+                        column: x => x.TaxonColId,
+                        principalTable: "Taxa",
                         principalColumn: "ColId");
                 });
 
@@ -77,9 +79,9 @@ namespace Database.Migrations
                 column: "CatalogueOfLifeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Distributions_SpeciesColId",
+                name: "IX_Distributions_TaxonColId",
                 table: "Distributions",
-                column: "SpeciesColId");
+                column: "TaxonColId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VernacularNames_CatalogueOfLifeId",
@@ -87,9 +89,9 @@ namespace Database.Migrations
                 column: "CatalogueOfLifeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VernacularNames_SpeciesColId",
+                name: "IX_VernacularNames_TaxonColId",
                 table: "VernacularNames",
-                column: "SpeciesColId");
+                column: "TaxonColId");
         }
 
         /// <inheritdoc />
@@ -102,7 +104,7 @@ namespace Database.Migrations
                 name: "VernacularNames");
 
             migrationBuilder.DropTable(
-                name: "Species");
+                name: "Taxa");
         }
     }
 }

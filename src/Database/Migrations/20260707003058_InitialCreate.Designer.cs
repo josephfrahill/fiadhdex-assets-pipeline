@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(LifeDexDbContext))]
-    [Migration("20260706185430_InitialCreate")]
+    [Migration("20260707003058_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,24 +33,28 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SpeciesColId")
+                    b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("TaxonColId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CatalogueOfLifeId");
 
-                    b.HasIndex("SpeciesColId");
+                    b.HasIndex("TaxonColId");
 
                     b.ToTable("Distributions");
                 });
 
-            modelBuilder.Entity("Database.DbModels.Species", b =>
+            modelBuilder.Entity("Database.DbModels.Taxon", b =>
                 {
                     b.Property<string>("ColId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ExternalExtantVerified")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Family")
@@ -77,13 +81,16 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("SubPhylum")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ColId");
 
-                    b.ToTable("Species");
+                    b.ToTable("Taxa");
                 });
 
             modelBuilder.Entity("Database.DbModels.VernacularName", b =>
@@ -104,33 +111,33 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SpeciesColId")
+                    b.Property<string>("TaxonColId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CatalogueOfLifeId");
 
-                    b.HasIndex("SpeciesColId");
+                    b.HasIndex("TaxonColId");
 
                     b.ToTable("VernacularNames");
                 });
 
             modelBuilder.Entity("Database.DbModels.Distribution", b =>
                 {
-                    b.HasOne("Database.DbModels.Species", null)
+                    b.HasOne("Database.DbModels.Taxon", null)
                         .WithMany("Distributions")
-                        .HasForeignKey("SpeciesColId");
+                        .HasForeignKey("TaxonColId");
                 });
 
             modelBuilder.Entity("Database.DbModels.VernacularName", b =>
                 {
-                    b.HasOne("Database.DbModels.Species", null)
+                    b.HasOne("Database.DbModels.Taxon", null)
                         .WithMany("VernacularNames")
-                        .HasForeignKey("SpeciesColId");
+                        .HasForeignKey("TaxonColId");
                 });
 
-            modelBuilder.Entity("Database.DbModels.Species", b =>
+            modelBuilder.Entity("Database.DbModels.Taxon", b =>
                 {
                     b.Navigation("Distributions");
 

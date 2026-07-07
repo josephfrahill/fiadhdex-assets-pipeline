@@ -22,8 +22,8 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.Configure<PipelineConfig>(context.Configuration);
-        services.AddSingleton<NameUsageImporter>();
         services.AddDbContext<LifeDexDbContext>();
+        services.AddScoped<NameUsageImporter>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
@@ -48,10 +48,10 @@ var host = Host.CreateDefaultBuilder(args)
 if (args[0].Equals("0"))
 {
     Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
-    var importer = host.Services.GetRequiredService<NameUsageImporter>();
+    using var scope = host.Services.CreateScope();
+    var importer = scope.ServiceProvider
+        .GetRequiredService<NameUsageImporter>();
     await importer.ImportAsync();
-    //var importResult = await HandleCatalogueOfLifeDataImportAsync(importer);
-    //Console.WriteLine(importResult.Message);
     Console.WriteLine("Data successfully parsed into Db.");
     return;
 }
@@ -79,15 +79,6 @@ switch (args[0])
 
 return;
 
-/*
-static async Task<ActionResult> HandleCatalogueOfLifeDataImportAsync(NameUsageImporter importer)
-{
-    await using var dbContext = new LifeDexDbContext();
-    dbContext.Database.EnsureCreated();
-    await importer.ImportAsync();
-    return new ActionResult(true, "Data successfully parsed into Db.");
-}
-*/
 static async Task<ActionResult> HandleJsonDexFetching(string dexName, string dexPathRoot,
     string executingRoot, LifeDexDataFetcher dataFetcher)
 {

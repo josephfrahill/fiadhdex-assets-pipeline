@@ -1,6 +1,7 @@
 # Ignore Visual Studio temporary files, build results, and OS generated files
 
-col-data/
+col-data-base/
+col-data-extended/
 src/AnimalAssetsPipeline/DataJsons
 pipeline/output
 

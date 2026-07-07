@@ -1,6 +1,6 @@
 {
   "colConfig": {
-    "directoryPath": "C:/code/lifedex/pipeline/col-data",
+    "directoryPath": "C:/code/lifedex/pipeline/col-data-base",
     "nameUsage": "NameUsage.tsv"
   },
   "dexConfig": {
