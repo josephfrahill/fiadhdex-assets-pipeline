@@ -3,6 +3,7 @@ using Models;
 using Models.Images;
 using Services;
 using Services.Api;
+using Services.IconPipeline;
 using Services.Json;
 using System.Security.Cryptography;
 using System.Text;

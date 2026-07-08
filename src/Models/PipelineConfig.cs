@@ -14,6 +14,7 @@ public record ColConfig
     public required string DirectoryPath { get; init; }
     public required string NameUsage { get; init; }
     public required string VernacularName { get; init; }
+    public required string Distribution { get; init; }
 }
 
 public record DexConfig

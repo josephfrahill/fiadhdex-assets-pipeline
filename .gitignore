@@ -2,6 +2,8 @@
 
 col-data-base/
 col-data-extended/
+db/lifedex.db-shm
+db/lifedex.db-wal
 src/AnimalAssetsPipeline/DataJsons
 pipeline/output
 

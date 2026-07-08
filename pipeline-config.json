@@ -2,7 +2,8 @@
   "colConfig": {
     "directoryPath": "C:/code/lifedex/pipeline/col-data-base",
     "nameUsage": "NameUsage.tsv",
-    "vernacularName": "VernacularName.tsv"
+    "vernacularName": "VernacularName.tsv",
+    "distribution": "Distribution.tsv"
   },
   "dexConfig": {
     "dexName": "global-safelist.json",

@@ -37,9 +37,11 @@ namespace Database.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CatalogueOfLifeId = table.Column<string>(type: "TEXT", nullable: false),
-                    Location = table.Column<string>(type: "TEXT", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", nullable: true),
+                    ColId = table.Column<string>(type: "TEXT", nullable: false),
+                    AreaId = table.Column<string>(type: "TEXT", nullable: false),
+                    EstablishmentMeans = table.Column<string>(type: "TEXT", nullable: true),
+                    DegreeOfEstablishment = table.Column<string>(type: "TEXT", nullable: true),
+                    Merged = table.Column<bool>(type: "INTEGER", nullable: false),
                     TaxonColId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -79,9 +81,9 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Distributions_CatalogueOfLifeId",
+                name: "IX_Distributions_ColId",
                 table: "Distributions",
-                column: "CatalogueOfLifeId");
+                column: "ColId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Distributions_TaxonColId",

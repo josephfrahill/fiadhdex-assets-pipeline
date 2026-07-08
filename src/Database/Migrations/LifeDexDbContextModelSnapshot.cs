@@ -22,23 +22,29 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CatalogueOfLifeId")
+                    b.Property<string>("AreaId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("ColId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("DegreeOfEstablishment")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("EstablishmentMeans")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Merged")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TaxonColId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CatalogueOfLifeId");
+                    b.HasIndex("ColId");
 
                     b.HasIndex("TaxonColId");
 

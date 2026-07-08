@@ -1,9 +1,11 @@
 ﻿using AnimalAssetsPipeline.Fetchers;
 using Database;
 using Database.Importers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Models;
 using Services;
@@ -19,12 +21,24 @@ var solutionDirectory = Utils.GetSolutionDirectory();
 var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
+    .ConfigureLogging(logging =>
+    {
+        logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None);
+    })
     .ConfigureServices((context, services) =>
     {
         services.Configure<PipelineConfig>(context.Configuration);
-        services.AddDbContext<LifeDexDbContext>();
+        services.AddDbContext<LifeDexDbContext>(options =>
+        {
+            var dbDirectory = Path.Combine(solutionDirectory, "db");
+            Directory.CreateDirectory(dbDirectory);
+            var dbPath = Path.Combine(dbDirectory, "lifedex.db");
+            options.UseSqlite($"Data Source={dbPath}");
+        });
+
         services.AddScoped<NameUsageImporter>();
         services.AddScoped<VernacularNameImporter>();
+        services.AddScoped<DistributionImporter>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
@@ -54,10 +68,13 @@ if (args[0].Equals("0"))
     var usageImporter = scope.ServiceProvider.GetRequiredService<NameUsageImporter>();
     await usageImporter.ImportAsync();
 
-
     var vernacularImporter = scope.ServiceProvider.GetRequiredService<VernacularNameImporter>();
     await vernacularImporter.ImportAsync();
 
+    var distributionImporter = scope.ServiceProvider.GetRequiredService<DistributionImporter>();
+    await distributionImporter.ImportAsync();
+
+    Console.WriteLine("Db Generation complete.");
     return;
 }
 

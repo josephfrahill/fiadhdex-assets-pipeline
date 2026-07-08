@@ -1,5 +1,6 @@
 ﻿using Database.Constants.ColModels;
 using Database.DbModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
 
@@ -20,6 +21,12 @@ public sealed class VernacularNameImporter
 
     public async Task<int> ImportAsync()
     {
+        if (await _context.VernacularNames.AnyAsync())
+        {
+            Console.WriteLine("Existing data in VernacularNames table, skipping.");
+            return 0;
+        }
+
         var path = Path.Combine(
             _config.ColConfig?.DirectoryPath ?? "",
             _config.ColConfig?.VernacularName ?? "");

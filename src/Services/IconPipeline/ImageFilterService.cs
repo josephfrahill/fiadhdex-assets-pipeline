@@ -1,7 +1,7 @@
 ﻿using Models;
 using Models.Images;
 
-namespace Services;
+namespace Services.IconPipeline;
 
 public static class ImageFilterService
 {
