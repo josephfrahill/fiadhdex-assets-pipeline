@@ -13,6 +13,7 @@
   "metadataFileName": "animal-metadata.json",
   "folders": {
     "output": "output",
+    "dexes": "dexes",
     "downloaded": "downloaded",
     "processed": "processed",
     "results": "results"

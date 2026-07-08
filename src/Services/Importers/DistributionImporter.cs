@@ -1,10 +1,11 @@
-﻿using Database.Constants.ColModels;
+﻿using Database;
+using Database.Constants.ColModels;
 using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
 
-namespace Database.Importers;
+namespace Services.Importers;
 
 public sealed class DistributionImporter
 {

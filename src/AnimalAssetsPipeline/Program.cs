@@ -1,6 +1,5 @@
 ﻿using AnimalAssetsPipeline.Fetchers;
 using Database;
-using Database.Importers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +9,8 @@ using Microsoft.Extensions.Options;
 using Models;
 using Services;
 using Services.Api;
+using Services.DexCreation;
+using Services.Importers;
 
 if (args.Length < 1)
 {
@@ -39,6 +40,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddScoped<NameUsageImporter>();
         services.AddScoped<VernacularNameImporter>();
         services.AddScoped<DistributionImporter>();
+        services.AddSingleton<DexCreator>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
@@ -93,6 +95,21 @@ var animals = dexResult.Animals;
 switch (args[0])
 {
     case "1":
+        Console.WriteLine($"Processing input: `{args[0]}`: Dex Creation.");
+        if (args.Length < 2)
+        {
+            Console.WriteLine("No second arg for this flow");
+            return;
+        }
+
+        var creator = host.Services.GetRequiredService<DexCreator>();
+        var dexCreationResult = await creator.CreateDex(args[1]);
+
+        if (!dexCreationResult.Successful)
+            Console.WriteLine(dexCreationResult.Message);
+        break;
+
+    case "2":
         var fetcher = host.Services.GetRequiredService<SourceImageFetcher>();
         var outputPathDexPath = Path.Combine(outputPathRoot, dexPathRoot).Replace('\\', '/');
         await fetcher.FetchImagesAsync(animals, outputPathDexPath);

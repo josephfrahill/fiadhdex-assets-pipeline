@@ -26,6 +26,7 @@ public record DexConfig
 public record Folders
 {
     public required string Output { get; init; }
+    public required string Dexes { get; init; }
     public required string Downloaded { get; init; }
     public required string Processed { get; init; }
     public required string Results { get; init; }

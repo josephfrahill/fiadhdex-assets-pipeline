@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Database;
 using Database.Constants.ColModels;
 using Database.Constants.Existence;
 using Database.Constants.Existence.Extinct;
@@ -7,10 +8,9 @@ using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
-using Services;
 using Services.Json;
 
-namespace Database.Importers;
+namespace Services.Importers;
 
 public sealed class NameUsageImporter
 {
