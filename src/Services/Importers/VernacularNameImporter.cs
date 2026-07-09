@@ -4,26 +4,34 @@ using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
+using Services.Json;
+using System.Text.Json;
 
 namespace Services.Importers;
 
 public sealed class VernacularNameImporter
 {
-    private readonly LifeDexDbContext _context;
+    private readonly LifeDexDbContext _dbContext;
     private readonly PipelineConfig _config;
 
-    public VernacularNameImporter(
-        LifeDexDbContext context,
-        IOptions<PipelineConfig> options)
+    public VernacularNameImporter(LifeDexDbContext context, IOptions<PipelineConfig> options)
     {
-        _context = context;
+        _dbContext = context;
         _config = options.Value;
     }
 
     public async Task<int> ImportAsync()
     {
-        if (await _context.VernacularNames.AnyAsync())
+        if (await _dbContext.VernacularNames.AnyAsync())
         {
+            var allNameIds = _dbContext.VernacularNames.Select(y => y.ColId);
+            var existingTaxaWithoutNames = _dbContext.Taxa.Where(x => !allNameIds.Contains(x.ColId));
+
+            var serialised = JsonSerializer.Serialize(existingTaxaWithoutNames, JsonConfigSettings.Options);
+            var serialisedPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "no-name-taxa.json");
+            await File.WriteAllTextAsync(serialisedPath, serialised);
+
+
             Console.WriteLine("Existing data in VernacularNames table, skipping.");
             return 0;
         }
@@ -36,6 +44,8 @@ public sealed class VernacularNameImporter
             throw new FileNotFoundException(path);
 
         Console.WriteLine($"Importing {Path.GetFileName(path)}...");
+
+        var allTaxaIds = _dbContext.Taxa.Select(x => x.ColId);
 
         using var reader = new StreamReader(path);
 
@@ -56,6 +66,7 @@ public sealed class VernacularNameImporter
 
         var processed = 0;
         var imported = 0;
+        //var skippedList = new List<Skipped>();
 
         while (true)
         {
@@ -76,9 +87,17 @@ public sealed class VernacularNameImporter
             if (!language.Equals("eng", StringComparison.OrdinalIgnoreCase))
                 continue;
 
+            var id = Get(values, ColVernacularNameColumns.TaxonId);
+
+            if (!allTaxaIds.Contains(id))
+            {
+                //skippedList.Add(new Skipped(line));
+                continue;
+            }
+
             var record = new VernacularName
             {
-                ColId = Get(values, ColVernacularNameColumns.TaxonId),
+                ColId = id,
                 Name = Get(values, ColVernacularNameColumns.Name),
                 Transliteration = NullIfEmpty(Get(values, ColVernacularNameColumns.Transliteration)),
                 Language = NullIfEmpty(language),
@@ -94,30 +113,36 @@ public sealed class VernacularNameImporter
             if (batch.Count < batchSize)
                 continue;
 
-            await _context.VernacularNames.AddRangeAsync(batch);
-            await _context.SaveChangesAsync();
+            await _dbContext.VernacularNames.AddRangeAsync(batch);
+            await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
 
             Console.WriteLine($"Imported {imported:N0} names...");
 
             batch.Clear();
-            _context.ChangeTracker.Clear();
+            _dbContext.ChangeTracker.Clear();
         }
 
         if (batch.Count > 0)
         {
-            await _context.VernacularNames.AddRangeAsync(batch);
-            await _context.SaveChangesAsync();
+            await _dbContext.VernacularNames.AddRangeAsync(batch);
+            await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
         }
 
+        /*
+        var json = JsonSerializer.Serialize(skippedList, JsonConfigSettings.Options);
+        var jsonPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "skipped-names.json");
+        await File.WriteAllTextAsync(jsonPath, json);
+        */
+
         Console.WriteLine();
         Console.WriteLine($"Processed : {processed:N0}");
         Console.WriteLine($"Imported  : {imported:N0}");
-
         Console.WriteLine("Vernacular data successfully parsed into Vernacular table.");
+        Console.WriteLine();
         return imported;
 
         string Get(string[] values, string column)

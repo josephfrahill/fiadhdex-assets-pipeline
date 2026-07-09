@@ -38,10 +38,9 @@ namespace Database.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ColId = table.Column<string>(type: "TEXT", nullable: false),
-                    AreaId = table.Column<string>(type: "TEXT", nullable: false),
+                    Area = table.Column<string>(type: "TEXT", nullable: false),
                     EstablishmentMeans = table.Column<string>(type: "TEXT", nullable: true),
                     DegreeOfEstablishment = table.Column<string>(type: "TEXT", nullable: true),
-                    Merged = table.Column<bool>(type: "INTEGER", nullable: false),
                     TaxonColId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using Database;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
 using Services.Json;
@@ -20,16 +19,20 @@ public class DexCreator
         Directory.CreateDirectory(_outputPath);
     }
 
-    public async Task<ActionResult> CreateDex(string countryCode)
+    public async Task<ActionResult> CreateDex(string country)
     {
-        if (string.IsNullOrEmpty(countryCode))
-            return new ActionResult(false, $"Expected input country code is empty: {countryCode}.");
+        var countryValidated = country.ToLower().Trim();
+
+        if (string.IsNullOrEmpty(countryValidated))
+            return new ActionResult(false, $"Expected input country is empty: {country}.");
 
         var countryDistributionIds = _dbContext.Distributions.Where(x =>
-            x.AreaId.Equals(countryCode)).Select(x => x.ColId).ToList();
+            x.Area.ToLower().Contains(countryValidated)).Select(x => x.ColId).ToList();
 
         if (countryDistributionIds.Count == 0)
-            return new ActionResult(false, $"No matching countries found for code {countryCode}.");
+            return new ActionResult(false, $"No matching countries found for {countryValidated}.");
+
+        var countryCode = GetCountryCodeFromCountry(countryValidated);
 
         var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals("species")).ToList();
 
@@ -37,30 +40,35 @@ public class DexCreator
 
 
         //var countrySpecies = allSpecies.Where(x => countryDistributionIds.Contains(x.ColId));
-        //.Select(x => x.ColId).Intersect(countryDistributionIds);
-        //.Where(x => countryDistributionIds..Equals(x.ColId));//.ToList();
-        //.Contains(x.ColId)).ToList();
 
-        var countryDex = countrySpecies.Select(x => new ColAnimalData
+        var countryDex = countrySpecies
+            .Select((x, index) => new AnimalBaseData
             {
-                VernacularName = "",
+                ColId = x.ColId,
+                DexId = string.Concat(countryCode, (index + 1).ToString("000")),
+                VernacularNames = _dbContext.VernacularNames
+                    .Where(y => y.ColId.Equals(x.ColId)).Select(z => z.Name).ToList(),
                 ScientificName = x.ScientificName,
                 Rank = x.Rank,
                 Genus = x.Genus,
                 Family = x.Family,
                 Order = x.Order,
                 Type = x.Type,
-                CountyCode = countryCode
             })
             .ToList();
 
-        var dexPath = Path.Combine(_outputPath, $"{countryCode}-dex.json");
+        var dexPath = Path.Combine(_outputPath, $"{countryValidated}-dex.json.");
 
         var json = JsonSerializer.Serialize(countryDex, JsonConfigSettings.Options);
 
-        await File.WriteAllTextAsync(json, dexPath);
-        Console.WriteLine($"created dex for country code: {countryCode} in: {_outputPath}");
+        await File.WriteAllTextAsync(dexPath, json);
+        Console.WriteLine($"Created dex for country: `{countryValidated}` in: {_outputPath}.");
 
         return new ActionResult(true);
+    }
+
+    private static string GetCountryCodeFromCountry(string countryValidated)
+    {
+        return countryValidated[..2].ToUpper();
     }
 }

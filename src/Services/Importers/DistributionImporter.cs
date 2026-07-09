@@ -4,26 +4,35 @@ using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
+using Services.Json;
+using System.Text.Json;
 
 namespace Services.Importers;
 
 public sealed class DistributionImporter
 {
-    private readonly LifeDexDbContext _context;
+    private readonly LifeDexDbContext _dbContext;
     private readonly PipelineConfig _config;
 
     public DistributionImporter(
         LifeDexDbContext context,
         IOptions<PipelineConfig> options)
     {
-        _context = context;
+        _dbContext = context;
         _config = options.Value;
     }
 
     public async Task<int> ImportAsync()
     {
-        if (await _context.Distributions.AnyAsync())
+        if (await _dbContext.Distributions.AnyAsync())
         {
+            var allDistributionIds = _dbContext.Distributions.Select(y => y.ColId);
+            var existingTaxaWithoutDistributions = _dbContext.Taxa.Where(x => !allDistributionIds.Contains(x.ColId));
+
+            var serialised = JsonSerializer.Serialize(existingTaxaWithoutDistributions, JsonConfigSettings.Options);
+            var serialisedPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "no-distribution-taxa.json");
+            await File.WriteAllTextAsync(serialisedPath, serialised);
+
             Console.WriteLine("Existing data in Distributions table, skipping.");
             return 0;
         }
@@ -36,6 +45,8 @@ public sealed class DistributionImporter
             throw new FileNotFoundException(path);
 
         Console.WriteLine($"Importing {Path.GetFileName(path)}...");
+
+        var allAnimalsIds = _dbContext.Taxa.Select(x => x.ColId);
 
         using var reader = new StreamReader(path);
 
@@ -73,23 +84,28 @@ public sealed class DistributionImporter
 
             // Ignore free-text distributions
             if (!Get(values, ColDistributionColumns.Gazetteer)
-                    .Equals("tdwg", StringComparison.OrdinalIgnoreCase))
+                    .Equals("text", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
 
-            var areaId = Get(values, ColDistributionColumns.AreaId);
+            var area = Get(values, ColDistributionColumns.Area);
 
-            if (string.IsNullOrWhiteSpace(areaId))
+            if (string.IsNullOrWhiteSpace(area))
+                continue;
+
+            var id = Get(values, ColDistributionColumns.TaxonId);
+
+            if (!allAnimalsIds.Contains(id))
                 continue;
 
             var record = new Distribution
             {
-                ColId = Get(values, ColDistributionColumns.TaxonId),
-                AreaId = areaId,
+                ColId = id,
+                Area = area,
                 EstablishmentMeans = NullIfEmpty(Get(values, ColDistributionColumns.EstablishmentMeans)),
                 DegreeOfEstablishment = NullIfEmpty(Get(values, ColDistributionColumns.DegreeOfEstablishment)),
-                Merged = bool.TryParse(Get(values, ColDistributionColumns.Merged), out var merged) && merged
+                //Merged = bool.TryParse(Get(values, ColDistributionColumns.Merged), out var merged) && merged
             };
 
             batch.Add(record);
@@ -97,21 +113,21 @@ public sealed class DistributionImporter
             if (batch.Count < batchSize)
                 continue;
 
-            await _context.Distributions.AddRangeAsync(batch);
-            await _context.SaveChangesAsync();
+            await _dbContext.Distributions.AddRangeAsync(batch);
+            await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
 
             Console.WriteLine($"Imported {imported:N0} distributions...");
 
             batch.Clear();
-            _context.ChangeTracker.Clear();
+            _dbContext.ChangeTracker.Clear();
         }
 
         if (batch.Count > 0)
         {
-            await _context.Distributions.AddRangeAsync(batch);
-            await _context.SaveChangesAsync();
+            await _dbContext.Distributions.AddRangeAsync(batch);
+            await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
         }
@@ -121,6 +137,7 @@ public sealed class DistributionImporter
         Console.WriteLine($"Imported  : {imported:N0}");
 
         Console.WriteLine("Distribution data successfully parsed into Distributions table.");
+        Console.WriteLine();
 
         return imported;
 
