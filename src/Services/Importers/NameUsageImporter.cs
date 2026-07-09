@@ -143,7 +143,7 @@ public sealed class NameUsageImporter
                     if (!string.IsNullOrEmpty(genus) && ExtinctMammals.ExtinctMammalGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(scientificName, genus));
+                        skippedList.Add(new Skipped(line));
                         continue;
                     }
 
@@ -159,7 +159,7 @@ public sealed class NameUsageImporter
                         || !string.IsNullOrEmpty(genus) && FlaggedErrors.FlaggedMammalErrors.Any(x =>
                             x.Name.Equals(genus, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(scientificName, genus, family));
+                        skippedList.Add(new Skipped(line));
                         continue;
                     }
 
@@ -168,7 +168,7 @@ public sealed class NameUsageImporter
                     if (!string.IsNullOrEmpty(genus) && ExtinctReptiles.ExtinctReptileGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(scientificName, genus));
+                        skippedList.Add(new Skipped(line));
                         continue;
                     }
 
@@ -182,7 +182,7 @@ public sealed class NameUsageImporter
                     if (!string.IsNullOrEmpty(family) && ExtinctReptiles.ExtinctReptileFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(scientificName, genus));
+                        skippedList.Add(new Skipped(line));
                         continue;
                     }
 
@@ -193,7 +193,7 @@ public sealed class NameUsageImporter
                         || !string.IsNullOrEmpty(family) && ExtinctBirds.ExtinctBirdFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(scientificName, genus, family));
+                        skippedList.Add(new Skipped(line));
                         continue;
                     }
 
@@ -204,7 +204,7 @@ public sealed class NameUsageImporter
                         || !string.IsNullOrEmpty(family) && ExtinctAmphibians.ExtinctAmphibianFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(scientificName, genus));
+                        skippedList.Add(new Skipped(line));
                         continue;
                     }
 
@@ -260,10 +260,11 @@ public sealed class NameUsageImporter
         Console.WriteLine($"Imported  : {imported:N0}");
 
         var json = JsonSerializer.Serialize(skippedList, JsonConfigSettings.Options);
-        var jsonPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "skipped.json");
+        var jsonPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "skipped-taxa.json");
         await File.WriteAllTextAsync(jsonPath, json);
 
         Console.WriteLine("Initial usage Data successfully parsed into Taxa table.");
+        Console.WriteLine();
         return imported;
 
         string GetColumn(string[] values, string columnName)
@@ -276,4 +277,4 @@ public sealed class NameUsageImporter
     }
 }
 
-public record Skipped(string Name, string SkippedComponent, string? SecondarySkip = null);
+public record Skipped(string Line);

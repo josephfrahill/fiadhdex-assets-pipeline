@@ -40,7 +40,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddScoped<NameUsageImporter>();
         services.AddScoped<VernacularNameImporter>();
         services.AddScoped<DistributionImporter>();
-        services.AddSingleton<DexCreator>();
+        services.AddScoped<DexCreator>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();

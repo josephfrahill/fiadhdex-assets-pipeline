@@ -22,7 +22,7 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AreaId")
+                    b.Property<string>("Area")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -35,9 +35,6 @@ namespace Database.Migrations
 
                     b.Property<string>("EstablishmentMeans")
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("Merged")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TaxonColId")
                         .HasColumnType("TEXT");

@@ -6,7 +6,7 @@
     },
     "AnimalAssetsPipeline": {
       "commandName": "Project",
-      "commandLineArgs": "1 THA"
+      "commandLineArgs": "0 Thailand"
     }
   }
 }
