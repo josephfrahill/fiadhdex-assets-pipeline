@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 using Models;
 using Services.Json;
 
-namespace Services.Importers;
+namespace Services.Importers.Col;
 
 public sealed class NameUsageImporter
 {
@@ -136,7 +136,6 @@ public sealed class NameUsageImporter
             var family = GetColumn(values, ColNameUsageColumns.Family);
             var externalExtantVerified = false;
 
-            var scientificName = GetColumn(values, ColNameUsageColumns.ScientificName);
             switch (type)
             {
                 case "Mammalia":
@@ -211,7 +210,6 @@ public sealed class NameUsageImporter
                     break;
             }
 
-
             var species = new Taxon
             {
                 ColId = GetColumn(values, ColNameUsageColumns.Id),
@@ -224,7 +222,7 @@ public sealed class NameUsageImporter
                 SubPhylum = GetColumn(values, ColNameUsageColumns.SubPhylum),
                 Phylum = GetColumn(values, ColNameUsageColumns.Phylum),
                 IsExtinct = isExtinct,
-                ExternalExtantVerified = externalExtantVerified.ToString().ToLower(),
+                ExternalExtantVerified = externalExtantVerified ? externalExtantVerified.ToString().ToLower() : null
             };
 
             batch.Add(species);
@@ -277,4 +275,4 @@ public sealed class NameUsageImporter
     }
 }
 
-public record Skipped(string Line);
+public record Skipped(string Reason = "Extinct", string? Line = null);

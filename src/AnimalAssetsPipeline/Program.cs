@@ -10,7 +10,7 @@ using Models;
 using Services;
 using Services.Api;
 using Services.DexCreation;
-using Services.Importers;
+using Services.Importers.Col;
 
 if (args.Length < 1)
 {
@@ -39,7 +39,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         services.AddScoped<NameUsageImporter>();
         services.AddScoped<VernacularNameImporter>();
-        services.AddScoped<DistributionImporter>();
+        services.AddScoped<ColDistributionImporter>();
         services.AddScoped<DexCreator>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
@@ -73,7 +73,7 @@ if (args[0].Equals("0"))
     var vernacularImporter = scope.ServiceProvider.GetRequiredService<VernacularNameImporter>();
     await vernacularImporter.ImportAsync();
 
-    var distributionImporter = scope.ServiceProvider.GetRequiredService<DistributionImporter>();
+    var distributionImporter = scope.ServiceProvider.GetRequiredService<ColDistributionImporter>();
     await distributionImporter.ImportAsync();
 
     Console.WriteLine("Db Generation complete.");

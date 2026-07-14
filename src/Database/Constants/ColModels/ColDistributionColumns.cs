@@ -7,6 +7,8 @@ public static class ColDistributionColumns
     public const string AreaId = "col:areaID";
     public const string Area = "col:area";
     public const string Gazetteer = "col:gazetteer";
+
+    // these would be useful to capture but always seem to be null when gazetteer is text for animalia
     public const string EstablishmentMeans = "col:establishmentMeans";
     public const string DegreeOfEstablishment = "col:degreeOfEstablishment";
     public const string Pathway = "col:pathway";

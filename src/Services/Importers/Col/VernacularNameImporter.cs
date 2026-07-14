@@ -7,16 +7,14 @@ using Models;
 using Services.Json;
 using System.Text.Json;
 
-namespace Services.Importers;
+namespace Services.Importers.Col;
 
-public sealed class DistributionImporter
+public sealed class VernacularNameImporter
 {
     private readonly LifeDexDbContext _dbContext;
     private readonly PipelineConfig _config;
 
-    public DistributionImporter(
-        LifeDexDbContext context,
-        IOptions<PipelineConfig> options)
+    public VernacularNameImporter(LifeDexDbContext context, IOptions<PipelineConfig> options)
     {
         _dbContext = context;
         _config = options.Value;
@@ -24,29 +22,31 @@ public sealed class DistributionImporter
 
     public async Task<int> ImportAsync()
     {
-        if (await _dbContext.Distributions.AnyAsync())
+        if (await _dbContext.VernacularNames.AnyAsync())
         {
-            var allDistributionIds = _dbContext.Distributions.Select(y => y.ColId);
-            var existingTaxaWithoutDistributions = _dbContext.Taxa.Where(x => !allDistributionIds.Contains(x.ColId));
+            /*
+            var allNameIds = _dbContext.VernacularNames.Select(y => y.ColId);
+            var existingTaxaWithoutNames = _dbContext.Taxa.Where(x => !allNameIds.Contains(x.ColId));
 
-            var serialised = JsonSerializer.Serialize(existingTaxaWithoutDistributions, JsonConfigSettings.Options);
-            var serialisedPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "no-distribution-taxa.json");
+            var serialised = JsonSerializer.Serialize(existingTaxaWithoutNames, JsonConfigSettings.Options);
+            var serialisedPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "no-name-taxa.json");
             await File.WriteAllTextAsync(serialisedPath, serialised);
+            */
 
-            Console.WriteLine("Existing data in Distributions table, skipping.");
+            Console.WriteLine("Existing data in VernacularNames table, skipping.");
             return 0;
         }
 
         var path = Path.Combine(
             _config.ColConfig?.DirectoryPath ?? "",
-            _config.ColConfig?.Distribution ?? "");
+            _config.ColConfig?.VernacularName ?? "");
 
         if (!File.Exists(path))
             throw new FileNotFoundException(path);
 
         Console.WriteLine($"Importing {Path.GetFileName(path)}...");
 
-        var allAnimalsIds = _dbContext.Taxa.Select(x => x.ColId);
+        var allTaxaIds = _dbContext.Taxa.Select(x => x.ColId);
 
         using var reader = new StreamReader(path);
 
@@ -63,7 +63,7 @@ public sealed class DistributionImporter
 
         const int batchSize = 5000;
 
-        var batch = new List<Distribution>(batchSize);
+        var batch = new List<VernacularName>(batchSize);
 
         var processed = 0;
         var imported = 0;
@@ -82,30 +82,29 @@ public sealed class DistributionImporter
 
             var values = line.Split('\t');
 
-            // Ignore free-text distributions
-            if (!Get(values, ColDistributionColumns.Gazetteer)
-                    .Equals("text", StringComparison.OrdinalIgnoreCase))
+            var language = Get(values, ColVernacularNameColumns.Language);
+
+            if (string.IsNullOrEmpty(language))
+                continue;
+
+            if (!language.Equals("eng", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var id = Get(values, ColVernacularNameColumns.TaxonId);
+
+            if (!allTaxaIds.Contains(id))
             {
                 continue;
             }
 
-            var area = Get(values, ColDistributionColumns.Area);
-
-            if (string.IsNullOrWhiteSpace(area))
-                continue;
-
-            var id = Get(values, ColDistributionColumns.TaxonId);
-
-            if (!allAnimalsIds.Contains(id))
-                continue;
-
-            var record = new Distribution
+            var record = new VernacularName
             {
                 ColId = id,
-                Area = area,
-                EstablishmentMeans = NullIfEmpty(Get(values, ColDistributionColumns.EstablishmentMeans)),
-                DegreeOfEstablishment = NullIfEmpty(Get(values, ColDistributionColumns.DegreeOfEstablishment)),
-                //Merged = bool.TryParse(Get(values, ColDistributionColumns.Merged), out var merged) && merged
+                Name = Get(values, ColVernacularNameColumns.Name),
+                Language = language,
+                Transliteration = Get(values, ColVernacularNameColumns.Transliteration),
+                Country = NullIfEmpty(Get(values, ColVernacularNameColumns.Country)),
+                Area = NullIfEmpty(Get(values, ColVernacularNameColumns.Area))
             };
 
             batch.Add(record);
@@ -113,12 +112,12 @@ public sealed class DistributionImporter
             if (batch.Count < batchSize)
                 continue;
 
-            await _dbContext.Distributions.AddRangeAsync(batch);
+            await _dbContext.VernacularNames.AddRangeAsync(batch);
             await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
 
-            Console.WriteLine($"Imported {imported:N0} distributions...");
+            Console.WriteLine($"Imported {imported:N0} names...");
 
             batch.Clear();
             _dbContext.ChangeTracker.Clear();
@@ -126,7 +125,7 @@ public sealed class DistributionImporter
 
         if (batch.Count > 0)
         {
-            await _dbContext.Distributions.AddRangeAsync(batch);
+            await _dbContext.VernacularNames.AddRangeAsync(batch);
             await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
@@ -135,10 +134,8 @@ public sealed class DistributionImporter
         Console.WriteLine();
         Console.WriteLine($"Processed : {processed:N0}");
         Console.WriteLine($"Imported  : {imported:N0}");
-
-        Console.WriteLine("Distribution data successfully parsed into Distributions table.");
+        Console.WriteLine("Vernacular data successfully parsed into Vernacular table.");
         Console.WriteLine();
-
         return imported;
 
         string Get(string[] values, string column)

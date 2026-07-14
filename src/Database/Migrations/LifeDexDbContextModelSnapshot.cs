@@ -16,7 +16,7 @@ namespace Database.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.9");
 
-            modelBuilder.Entity("Database.DbModels.Distribution", b =>
+            modelBuilder.Entity("Database.DbModels.ColDistribution", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,22 +30,11 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DegreeOfEstablishment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EstablishmentMeans")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TaxonColId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ColId");
 
-                    b.HasIndex("TaxonColId");
-
-                    b.ToTable("Distributions");
+                    b.ToTable("ColDistributions");
                 });
 
             modelBuilder.Entity("Database.DbModels.Taxon", b =>
@@ -113,22 +102,15 @@ namespace Database.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Language")
+                        .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("Merged")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Preferred")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TaxonColId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Transliteration")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -137,28 +119,30 @@ namespace Database.Migrations
 
                     b.HasIndex("Language");
 
-                    b.HasIndex("TaxonColId");
-
                     b.ToTable("VernacularNames");
                 });
 
-            modelBuilder.Entity("Database.DbModels.Distribution", b =>
+            modelBuilder.Entity("Database.DbModels.ColDistribution", b =>
                 {
                     b.HasOne("Database.DbModels.Taxon", null)
-                        .WithMany("Distributions")
-                        .HasForeignKey("TaxonColId");
+                        .WithMany("ColDistributions")
+                        .HasForeignKey("ColId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Database.DbModels.VernacularName", b =>
                 {
                     b.HasOne("Database.DbModels.Taxon", null)
                         .WithMany("VernacularNames")
-                        .HasForeignKey("TaxonColId");
+                        .HasForeignKey("ColId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Database.DbModels.Taxon", b =>
                 {
-                    b.Navigation("Distributions");
+                    b.Navigation("ColDistributions");
 
                     b.Navigation("VernacularNames");
                 });

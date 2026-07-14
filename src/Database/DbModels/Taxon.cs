@@ -11,10 +11,8 @@ public record Taxon
     public required string Type { get; init; }
     public required string SubPhylum { get; init; }
     public required string Phylum { get; init; }
-
-    //public string Kingdom { get; set; } - is probably always Animalia
     public string? IsExtinct { get; init; }
     public string? ExternalExtantVerified { get; init; }
     public List<VernacularName> VernacularNames { get; init; } = [];
-    public List<Distribution> Distributions { get; init; } = [];
+    public List<ColDistribution> ColDistributions { get; init; } = [];
 }

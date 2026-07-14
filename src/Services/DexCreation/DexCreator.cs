@@ -26,8 +26,8 @@ public class DexCreator
         if (string.IsNullOrEmpty(countryValidated))
             return new ActionResult(false, $"Expected input country is empty: {country}.");
 
-        var countryDistributionIds = _dbContext.Distributions.Where(x =>
-            x.Area.ToLower().Contains(countryValidated)).Select(x => x.ColId).ToList();
+        var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
+            x.Area.Contains(countryValidated) == true).Select(x => x.ColId).ToList();
 
         if (countryDistributionIds.Count == 0)
             return new ActionResult(false, $"No matching countries found for {countryValidated}.");

@@ -7,7 +7,7 @@ public class LifeDexDbContext(DbContextOptions<LifeDexDbContext> options) : DbCo
 {
     public DbSet<Taxon> Taxa => Set<Taxon>();
     public DbSet<VernacularName> VernacularNames => Set<VernacularName>();
-    public DbSet<Distribution> Distributions => Set<Distribution>();
+    public DbSet<ColDistribution> ColDistributions => Set<ColDistribution>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -15,12 +15,26 @@ public class LifeDexDbContext(DbContextOptions<LifeDexDbContext> options) : DbCo
             .HasKey(x => x.ColId);
 
         modelBuilder.Entity<VernacularName>()
-            .HasIndex(x => x.ColId);
+            .HasKey(x => x.Id);
 
         modelBuilder.Entity<VernacularName>()
             .HasIndex(x => x.Language);
 
-        modelBuilder.Entity<Distribution>()
-            .HasIndex(x => x.ColId);
+        modelBuilder.Entity<VernacularName>()
+            .HasOne<Taxon>()
+            .WithMany(t => t.VernacularNames)
+            .HasForeignKey(x => x.ColId)
+            .OnDelete(DeleteBehavior.Cascade); // Automatically clean up orphans
+
+        modelBuilder.Entity<ColDistribution>()
+            .HasKey(x => x.Id);
+
+        modelBuilder.Entity<ColDistribution>()
+            .HasOne<Taxon>()
+            .WithMany(t => t.ColDistributions)
+            .HasForeignKey(x => x.ColId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Note: EF Core automatically creates an index on Foreign Key columns
     }
 }

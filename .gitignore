@@ -1,11 +1,10 @@
 # Ignore Visual Studio temporary files, build results, and OS generated files
 
-col-data-base/
-col-data-extended/
-col-data-unioned/
+data-col/
+data-gbif/
 db/lifedex.db-shm
 db/lifedex.db-wal
-src/AnimalAssetsPipeline/DataJsons
+src/AnimalAssetsPipeline/Dexes
 pipeline/output
 
 .vs/

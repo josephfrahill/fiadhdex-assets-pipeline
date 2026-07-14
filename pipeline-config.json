@@ -1,6 +1,6 @@
 {
   "colConfig": {
-    "directoryPath": "C:/code/lifedex/pipeline/col-data-unioned",
+    "directoryPath": "C:/code/lifedex/pipeline/data-col/col-data-unioned",
     "nameUsage": "NameUsage.tsv",
     "vernacularName": "VernacularName.tsv",
     "distribution": "Distribution.tsv"

@@ -8,15 +8,11 @@ public record VernacularName
 
     public required string Name { get; init; }
 
-    public string? Transliteration { get; init; }
+    public required string Transliteration { get; init; }
 
-    public string? Language { get; init; }
-
-    public bool Preferred { get; init; }
+    public required string Language { get; init; }
 
     public string? Country { get; init; }
 
     public string? Area { get; init; }
-
-    public bool Merged { get; init; }
 }
