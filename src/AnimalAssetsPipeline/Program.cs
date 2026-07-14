@@ -64,26 +64,48 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-if (args[0].Equals("0"))
+switch (args[0])
 {
-    Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
-    using var scope = host.Services.CreateScope();
+    case "0":
+    {
+        Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
+        using var scope = host.Services.CreateScope();
 
-    var usageImporter = scope.ServiceProvider.GetRequiredService<NameUsageImporter>();
-    await usageImporter.ImportAsync();
+        var usageImporter = scope.ServiceProvider.GetRequiredService<NameUsageImporter>();
+        await usageImporter.ImportAsync();
 
-    var vernacularImporter = scope.ServiceProvider.GetRequiredService<VernacularNameImporter>();
-    await vernacularImporter.ImportAsync();
+        var vernacularImporter = scope.ServiceProvider.GetRequiredService<VernacularNameImporter>();
+        await vernacularImporter.ImportAsync();
 
-    var distributionImporter = scope.ServiceProvider.GetRequiredService<ColDistributionImporter>();
-    await distributionImporter.ImportAsync();
+        var distributionImporter = scope.ServiceProvider.GetRequiredService<ColDistributionImporter>();
+        await distributionImporter.ImportAsync();
 
-    var gbifOccurrenceImporter = scope.ServiceProvider.GetRequiredService<GbifAnnualOccurrenceImporter>();
-    await gbifOccurrenceImporter.ImportAsync();
+        var gbifOccurrenceImporter = scope.ServiceProvider.GetRequiredService<GbifAnnualOccurrenceImporter>();
+        await gbifOccurrenceImporter.ImportAsync();
 
-    Console.WriteLine("Db Generation complete.");
-    return;
+        Console.WriteLine("Db Generation complete.");
+        break;
+    }
+
+    case "1":
+    {
+        Console.WriteLine($"Processing input: `{args[0]}`: Dex Creation.");
+        if (args.Length < 2)
+        {
+            Console.WriteLine("No second arg for this flow");
+            return;
+        }
+
+        var creator = host.Services.GetRequiredService<DexCreator>();
+        var dexCreationResult = await creator.CreateDex(args[1]);
+
+        if (!dexCreationResult.Successful)
+            Console.WriteLine(dexCreationResult.Message);
+        break;
+    }
 }
+
+return;
 
 var config = host.Services.GetRequiredService<IOptions<PipelineConfig>>().Value;
 var dexName = config.DexConfig.DexName;
@@ -99,21 +121,6 @@ Console.WriteLine(dexResult.Message);
 var animals = dexResult.Animals;
 switch (args[0])
 {
-    case "1":
-        Console.WriteLine($"Processing input: `{args[0]}`: Dex Creation.");
-        if (args.Length < 2)
-        {
-            Console.WriteLine("No second arg for this flow");
-            return;
-        }
-
-        var creator = host.Services.GetRequiredService<DexCreator>();
-        var dexCreationResult = await creator.CreateDex(args[1]);
-
-        if (!dexCreationResult.Successful)
-            Console.WriteLine(dexCreationResult.Message);
-        break;
-
     case "2":
         var fetcher = host.Services.GetRequiredService<SourceImageFetcher>();
         var outputPathDexPath = Path.Combine(outputPathRoot, dexPathRoot).Replace('\\', '/');
@@ -126,7 +133,7 @@ return;
 static async Task<ActionResult> HandleJsonDexFetching(string dexName, string dexPathRoot,
     string executingRoot, LifeDexDataFetcher dataFetcher)
 {
-    var localDataJsonsPath = Path.Combine(executingRoot, "DataJsons").Replace('\\', '/');
+    var localDataJsonsPath = Path.Combine(executingRoot, "Dexes").Replace('\\', '/');
 
     var dexPathCloud = Path.Combine(dexPathRoot, dexName).Replace('\\', '/');
     var animals = await dataFetcher.FetchDataAsync(dexName, dexPathCloud, localDataJsonsPath);

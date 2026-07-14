@@ -37,6 +37,34 @@ namespace Database.Migrations
                     b.ToTable("ColDistributions");
                 });
 
+            modelBuilder.Entity("Database.DbModels.GbifAnnualOccurrence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ColId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Occurrences")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColId", "CountryCode", "Year")
+                        .IsUnique();
+
+                    b.ToTable("GbifAnnualOccurrences");
+                });
+
             modelBuilder.Entity("Database.DbModels.Taxon", b =>
                 {
                     b.Property<string>("ColId")
@@ -131,6 +159,15 @@ namespace Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Database.DbModels.GbifAnnualOccurrence", b =>
+                {
+                    b.HasOne("Database.DbModels.Taxon", null)
+                        .WithMany("GbifAnnualOccurrences")
+                        .HasForeignKey("ColId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Database.DbModels.VernacularName", b =>
                 {
                     b.HasOne("Database.DbModels.Taxon", null)
@@ -143,6 +180,8 @@ namespace Database.Migrations
             modelBuilder.Entity("Database.DbModels.Taxon", b =>
                 {
                     b.Navigation("ColDistributions");
+
+                    b.Navigation("GbifAnnualOccurrences");
 
                     b.Navigation("VernacularNames");
                 });

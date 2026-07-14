@@ -142,7 +142,7 @@ public sealed class NameUsageImporter
                     if (!string.IsNullOrEmpty(genus) && ExtinctMammals.ExtinctMammalGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(line));
+                        skippedList.Add(new Skipped("Extinct", line));
                         continue;
                     }
 
@@ -158,7 +158,7 @@ public sealed class NameUsageImporter
                         || !string.IsNullOrEmpty(genus) && FlaggedErrors.FlaggedMammalErrors.Any(x =>
                             x.Name.Equals(genus, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(line));
+                        skippedList.Add(new Skipped("Extinct or Flagged", line));
                         continue;
                     }
 
@@ -167,7 +167,7 @@ public sealed class NameUsageImporter
                     if (!string.IsNullOrEmpty(genus) && ExtinctReptiles.ExtinctReptileGenera.Any(x =>
                             x.Equals(genus, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(line));
+                        skippedList.Add(new Skipped("Extinct", line));
                         continue;
                     }
 
@@ -181,7 +181,7 @@ public sealed class NameUsageImporter
                     if (!string.IsNullOrEmpty(family) && ExtinctReptiles.ExtinctReptileFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(line));
+                        skippedList.Add(new Skipped("Extinct", line));
                         continue;
                     }
 
@@ -192,7 +192,7 @@ public sealed class NameUsageImporter
                         || !string.IsNullOrEmpty(family) && ExtinctBirds.ExtinctBirdFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(line));
+                        skippedList.Add(new Skipped("Extinct", line));
                         continue;
                     }
 
@@ -203,7 +203,7 @@ public sealed class NameUsageImporter
                         || !string.IsNullOrEmpty(family) && ExtinctAmphibians.ExtinctAmphibianFamilies.Any(x =>
                             x.Equals(family, StringComparison.OrdinalIgnoreCase)))
                     {
-                        skippedList.Add(new Skipped(line));
+                        skippedList.Add(new Skipped("Extinct", line));
                         continue;
                     }
 
@@ -275,4 +275,4 @@ public sealed class NameUsageImporter
     }
 }
 
-public record Skipped(string Reason = "Extinct", string? Line = null);
+public record Skipped(string Reason, string Line);

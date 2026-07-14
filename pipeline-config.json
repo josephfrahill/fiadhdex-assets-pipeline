@@ -7,7 +7,7 @@
   },
   "gbifConfig": {
     "directoryPath": "C:/code/lifedex/pipeline/data-gbif",
-    "nameUsage": "gbif-amphibia-1990.csv"
+    "occurenceDataFileName": "gbif-amphibia-1990.csv"
   },
   "dexConfig": {
     "dexName": "global-safelist.json",

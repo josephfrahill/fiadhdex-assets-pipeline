@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(LifeDexDbContext))]
-    [Migration("20260712014917_InitialCreate")]
+    [Migration("20260714043127_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -38,6 +38,34 @@ namespace Database.Migrations
                     b.HasIndex("ColId");
 
                     b.ToTable("ColDistributions");
+                });
+
+            modelBuilder.Entity("Database.DbModels.GbifAnnualOccurrence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ColId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Occurrences")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColId", "CountryCode", "Year")
+                        .IsUnique();
+
+                    b.ToTable("GbifAnnualOccurrences");
                 });
 
             modelBuilder.Entity("Database.DbModels.Taxon", b =>
@@ -134,6 +162,15 @@ namespace Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Database.DbModels.GbifAnnualOccurrence", b =>
+                {
+                    b.HasOne("Database.DbModels.Taxon", null)
+                        .WithMany("GbifAnnualOccurrences")
+                        .HasForeignKey("ColId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Database.DbModels.VernacularName", b =>
                 {
                     b.HasOne("Database.DbModels.Taxon", null)
@@ -146,6 +183,8 @@ namespace Database.Migrations
             modelBuilder.Entity("Database.DbModels.Taxon", b =>
                 {
                     b.Navigation("ColDistributions");
+
+                    b.Navigation("GbifAnnualOccurrences");
 
                     b.Navigation("VernacularNames");
                 });

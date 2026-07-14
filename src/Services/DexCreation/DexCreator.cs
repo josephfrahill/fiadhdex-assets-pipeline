@@ -1,8 +1,10 @@
-﻿using System.Text.Json;
+﻿using Constants.Countries;
 using Database;
 using Microsoft.Extensions.Options;
 using Models;
 using Services.Json;
+using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services.DexCreation;
 
@@ -19,56 +21,74 @@ public class DexCreator
         Directory.CreateDirectory(_outputPath);
     }
 
-    public async Task<ActionResult> CreateDex(string country)
+    public async Task<ActionResult> CreateDex(string givenCountry)
     {
-        var countryValidated = country.ToLower().Trim();
+        var countryValidated = givenCountry.ToLower().Trim();
 
         if (string.IsNullOrEmpty(countryValidated))
-            return new ActionResult(false, $"Expected input country is empty: {country}.");
+            return new ActionResult(false, $"Expected input country is empty: {givenCountry}.");
 
+        if (CountryLookup.TryParse(givenCountry, out var countryData))
+        {
+            Console.WriteLine($"Found: {countryData.Name} [{countryData.Code}]");
+        }
+
+        /*
         var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
-            x.Area.Contains(countryValidated) == true).Select(x => x.ColId).ToList();
+            x.Area.Contains(countryData.Name) == true).Select(x => x.ColId).ToList();
 
         if (countryDistributionIds.Count == 0)
-            return new ActionResult(false, $"No matching countries found for {countryValidated}.");
+            return new ActionResult(false, $"No matching countries found for {countryData.Name}.");
+        */
 
-        var countryCode = GetCountryCodeFromCountry(countryValidated);
+        var countryOccurrencesIds = _dbContext.GbifAnnualOccurrences.Where(x =>
+            x.CountryCode.Equals(countryData.Code)).Select(x => x.ColId);
 
-        var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals("species")).ToList();
+        if (!countryOccurrencesIds.Any())
+            return new ActionResult(false, $"No matching countries found for {countryData.Name}.");
 
-        var countrySpecies = allSpecies.IntersectBy(countryDistributionIds, x => x.ColId).ToList();
+        var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals("species")).Include(taxon => taxon.VernacularNames)
+            .ToList();
 
+        var countrySpecies = allSpecies.IntersectBy(countryOccurrencesIds, x => x.ColId).ToList();
 
-        //var countrySpecies = allSpecies.Where(x => countryDistributionIds.Contains(x.ColId));
-
-        var countryDex = countrySpecies
-            .Select((x, index) => new AnimalBaseData
+        var animals = countrySpecies
+            .Select((x, index) =>
             {
-                ColId = x.ColId,
-                DexId = string.Concat(countryCode, (index + 1).ToString("000")),
-                VernacularNames = _dbContext.VernacularNames
-                    .Where(y => y.ColId.Equals(x.ColId)).Select(z => z.Name).ToList(),
-                ScientificName = x.ScientificName,
-                Rank = x.Rank,
-                Genus = x.Genus,
-                Family = x.Family,
-                Order = x.Order,
-                Type = x.Type,
+                var name = x.VernacularNames.FirstOrDefault()?.Name ?? string.Empty;
+                var otherNames = x.VernacularNames.Select(y => y.Name).Except([name]).ToList();
+
+                var animal = new AnimalBaseData
+                {
+                    DexId = string.Concat(countryData.Code, (index + 1).ToString("000")),
+                    Name = name,
+                    OtherNames = otherNames,
+                    ScientificName = x.ScientificName,
+                    Rank = x.Rank,
+                    Genus = x.Genus,
+                    Family = x.Family,
+                    Order = x.Order,
+                    Type = x.Type,
+                };
+
+                return animal;
             })
             .ToList();
 
-        var dexPath = Path.Combine(_outputPath, $"{countryValidated}-dex.json.");
+        var countryDex = new CountryDex
+        {
+            AnimalCount = animals.Count,
+            DateGenerated = DateTime.UtcNow,
+            Animals = animals
+        };
+
+        var dexPath = Path.Combine(_outputPath, $"{countryData.Name.ToLower()}-dex.json.");
 
         var json = JsonSerializer.Serialize(countryDex, JsonConfigSettings.Options);
 
         await File.WriteAllTextAsync(dexPath, json);
-        Console.WriteLine($"Created dex for country: `{countryValidated}` in: {_outputPath}.");
+        Console.WriteLine($"Created dex for country: `{countryData.Name}` in: {_outputPath}.");
 
         return new ActionResult(true);
-    }
-
-    private static string GetCountryCodeFromCountry(string countryValidated)
-    {
-        return countryValidated[..2].ToUpper();
     }
 }

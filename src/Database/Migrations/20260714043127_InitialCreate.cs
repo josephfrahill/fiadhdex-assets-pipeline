@@ -52,6 +52,28 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GbifAnnualOccurrences",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ColId = table.Column<string>(type: "TEXT", nullable: false),
+                    CountryCode = table.Column<string>(type: "TEXT", nullable: false),
+                    Year = table.Column<int>(type: "INTEGER", nullable: false),
+                    Occurrences = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GbifAnnualOccurrences", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GbifAnnualOccurrences_Taxa_ColId",
+                        column: x => x.ColId,
+                        principalTable: "Taxa",
+                        principalColumn: "ColId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "VernacularNames",
                 columns: table => new
                 {
@@ -81,6 +103,12 @@ namespace Database.Migrations
                 column: "ColId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GbifAnnualOccurrences_ColId_CountryCode_Year",
+                table: "GbifAnnualOccurrences",
+                columns: new[] { "ColId", "CountryCode", "Year" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VernacularNames_ColId",
                 table: "VernacularNames",
                 column: "ColId");
@@ -96,6 +124,9 @@ namespace Database.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ColDistributions");
+
+            migrationBuilder.DropTable(
+                name: "GbifAnnualOccurrences");
 
             migrationBuilder.DropTable(
                 name: "VernacularNames");
