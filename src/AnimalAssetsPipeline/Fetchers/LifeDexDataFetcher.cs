@@ -14,9 +14,9 @@ public class LifeDexDataFetcher
         _http = http;
     }
 
-    public async Task<List<Animal>> FetchDataAsync(string dexName, string cloudDexPath, string localDataJsonsPath)
+    public async Task<List<Animal>> FetchDataAsync(string dexName, string cloudDexPath, string localDexesPath)
     {
-        var localDexPath = Path.Combine(localDataJsonsPath, dexName);
+        var localDexPath = Path.Combine(localDexesPath, dexName);
 
         List<Animal> animals;
         if (File.Exists(localDexPath))
@@ -27,7 +27,7 @@ public class LifeDexDataFetcher
         else
         {
             animals = await GetFromCloudAsync(cloudDexPath);
-            Directory.CreateDirectory(localDataJsonsPath);
+            Directory.CreateDirectory(localDexesPath);
             SaveJsonLocally(animals, localDexPath);
             Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
         }

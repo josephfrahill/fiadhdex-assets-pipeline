@@ -1,14 +1,8 @@
 ﻿namespace Models;
 
-public record Animal
+public record Animal : AnimalBaseData
 {
-    public required string DexId { get; init; }
-    public required string Name { get; init; }
-    public required string Species { get; init; }
-    public required string Type { get; init; }
-    public required string Family { get; init; }
-    public required string Order { get; init; }
-    public required string Rarity { get; init; }
+    //  public required string Species { get; init; }
     public Gender? Gender { get; init; }
     public required string Young { get; init; }
     public required string[] Plurals { get; init; }

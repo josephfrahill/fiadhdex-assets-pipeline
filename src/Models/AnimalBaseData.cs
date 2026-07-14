@@ -2,7 +2,6 @@
 
 public record AnimalBaseData
 {
-    //public required string ColId { get; init; }
     public required string DexId { get; init; }
     public required string Name { get; init; }
     public List<string>? OtherNames { get; init; }
@@ -12,4 +11,5 @@ public record AnimalBaseData
     public required string Family { get; init; }
     public required string Order { get; init; }
     public required string Type { get; init; }
+    public required string Rarity { get; init; }
 }

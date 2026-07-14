@@ -20,10 +20,11 @@ public sealed class GbifAnnualOccurrenceImporter
 
     public async Task<int> ImportAsync()
     {
+        List<string> existingDataIds = [];
         if (await _dbContext.GbifAnnualOccurrences.AnyAsync())
         {
-            Console.WriteLine("Existing data in GbifAnnualOccurrences table, skipping.");
-            return 0;
+            existingDataIds = _dbContext.GbifAnnualOccurrences.Select(x => x.ColId).ToList();
+            Console.WriteLine("Existing data in GbifAnnualOccurrences table, appending.");
         }
 
         var path = Path.Combine(
@@ -75,6 +76,9 @@ public sealed class GbifAnnualOccurrenceImporter
             var acceptedTaxonKey = Get(values, GbifAnnualOccurrenceColumns.AcceptedTaxonKey);
 
             if (!allAnimalsIds.Contains(acceptedTaxonKey))
+                continue;
+
+            if (existingDataIds.Contains(acceptedTaxonKey))
                 continue;
 
             matched++;

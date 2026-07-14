@@ -7,10 +7,11 @@
   },
   "gbifConfig": {
     "directoryPath": "C:/code/lifedex/pipeline/data-gbif",
-    "occurenceDataFileName": "gbif-amphibia-1990.csv"
+    "occurenceDataFileName": "gbif-mammalia-1990.csv"
   },
   "dexConfig": {
-    "dexName": "global-safelist.json",
+    "globalDexName": "global-dex.json",
+    "workingDexName": "global-dex.json",
     "dexPathRoot": "safelists/global"
   },
   "pipelineRoot": "C:/code/lifedex/pipeline/pipeline",

@@ -12,13 +12,19 @@ public class DexCreator
 {
     private readonly LifeDexDbContext _dbContext;
     private readonly string _outputPath;
+    private readonly CountryDex _globalDex;
 
-    public DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options)
+    public DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options, string localDexesPath)
     {
         _dbContext = context;
+
         var config = options.Value;
         _outputPath = Path.Combine(config.PipelineRoot, config.Folders.Output, config.Folders.Dexes);
         Directory.CreateDirectory(_outputPath);
+
+        var globalDexPath = Path.Combine(localDexesPath, config.DexConfig.GlobalDexName);
+        _globalDex = JsonSerializer.Deserialize<CountryDex>(globalDexPath, JsonConfigSettings.Options) ??
+                     throw new JsonException($"Error deserialising global-dex.json at path: `{localDexesPath}`.");
     }
 
     public async Task<ActionResult> CreateDex(string givenCountry)
@@ -31,6 +37,10 @@ public class DexCreator
         if (CountryLookup.TryParse(givenCountry, out var countryData))
         {
             Console.WriteLine($"Found: {countryData.Name} [{countryData.Code}]");
+        }
+        else
+        {
+            return new ActionResult(false, $"No country found for: `{givenCountry}`.");
         }
 
         /*
@@ -64,11 +74,12 @@ public class DexCreator
                     Name = name,
                     OtherNames = otherNames,
                     ScientificName = x.ScientificName,
-                    Rank = x.Rank,
+                    Rank = ToTitleCase(x.Rank),
                     Genus = x.Genus,
                     Family = x.Family,
                     Order = x.Order,
                     Type = x.Type,
+                    Rarity = ""
                 };
 
                 return animal;
@@ -90,5 +101,13 @@ public class DexCreator
         Console.WriteLine($"Created dex for country: `{countryData.Name}` in: {_outputPath}.");
 
         return new ActionResult(true);
+    }
+
+    public static string ToTitleCase(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        return char.ToUpper(input[0]) + input[1..];
     }
 }

@@ -26,7 +26,8 @@ public record GbifConfig
 
 public record DexConfig
 {
-    public required string DexName { get; init; }
+    public required string GlobalDexName { get; init; }
+    public required string WorkingDexName { get; init; }
     public required string DexPathRoot { get; init; }
 }
 
