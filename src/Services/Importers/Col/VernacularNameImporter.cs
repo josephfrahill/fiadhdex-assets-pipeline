@@ -1,11 +1,9 @@
-﻿using Database;
-using Database.Constants.ColModels;
+﻿using Constants.Col.MappingModels;
+using Database;
 using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
-using Services.Json;
-using System.Text.Json;
 
 namespace Services.Importers.Col;
 

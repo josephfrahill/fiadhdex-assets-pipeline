@@ -8,6 +8,7 @@ public class LifeDexDbContext(DbContextOptions<LifeDexDbContext> options) : DbCo
     public DbSet<Taxon> Taxa => Set<Taxon>();
     public DbSet<VernacularName> VernacularNames => Set<VernacularName>();
     public DbSet<ColDistribution> ColDistributions => Set<ColDistribution>();
+    public DbSet<GbifAnnualOccurrence> GbifAnnualOccurrences => Set<GbifAnnualOccurrence>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,6 +35,22 @@ public class LifeDexDbContext(DbContextOptions<LifeDexDbContext> options) : DbCo
             .WithMany(t => t.ColDistributions)
             .HasForeignKey(x => x.ColId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<GbifAnnualOccurrence>()
+            .HasKey(x => x.Id);
+
+        modelBuilder.Entity<GbifAnnualOccurrence>()
+            .HasOne<Taxon>()
+            .WithMany(t => t.GbifAnnualOccurrences)
+            .HasForeignKey(x => x.ColId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<GbifAnnualOccurrence>().HasIndex(x => new
+        {
+            x.ColId,
+            x.CountryCode,
+            x.Year
+        }).IsUnique();
 
         // Note: EF Core automatically creates an index on Foreign Key columns
     }

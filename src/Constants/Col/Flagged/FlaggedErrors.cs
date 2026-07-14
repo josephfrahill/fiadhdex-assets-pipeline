@@ -1,4 +1,4 @@
-﻿namespace Database.Constants.Flagged;
+﻿namespace Constants.Col.Flagged;
 
 public static class FlaggedErrors
 {

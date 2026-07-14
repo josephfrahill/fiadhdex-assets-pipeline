@@ -11,6 +11,7 @@ using Services;
 using Services.Api;
 using Services.DexCreation;
 using Services.Importers.Col;
+using Services.Importers.Gbif;
 
 if (args.Length < 1)
 {
@@ -40,6 +41,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddScoped<NameUsageImporter>();
         services.AddScoped<VernacularNameImporter>();
         services.AddScoped<ColDistributionImporter>();
+        services.AddScoped<GbifAnnualOccurrenceImporter>();
         services.AddScoped<DexCreator>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
@@ -75,6 +77,9 @@ if (args[0].Equals("0"))
 
     var distributionImporter = scope.ServiceProvider.GetRequiredService<ColDistributionImporter>();
     await distributionImporter.ImportAsync();
+
+    var gbifOccurrenceImporter = scope.ServiceProvider.GetRequiredService<GbifAnnualOccurrenceImporter>();
+    await gbifOccurrenceImporter.ImportAsync();
 
     Console.WriteLine("Db Generation complete.");
     return;

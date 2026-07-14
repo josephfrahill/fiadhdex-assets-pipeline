@@ -1,4 +1,4 @@
-﻿namespace Database.Constants.Existence.Extinct;
+﻿namespace Constants.Col.Existence.Extinct;
 
 public static class ExtinctBirds
 {

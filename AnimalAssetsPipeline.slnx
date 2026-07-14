@@ -7,6 +7,7 @@
     <File Path="run.ps1" />
   </Folder>
   <Project Path="src/AnimalAssetsPipeline/AnimalAssetsPipeline.csproj" />
+  <Project Path="src/Constants/Constants.csproj" Id="fcb36c47-4545-4f7b-8cb7-2d720ef81d79" />
   <Project Path="src/Database/Database.csproj" Id="bc8408e7-da50-4b24-90dd-4c56bce3bb33" />
   <Project Path="src/Models/Models.csproj" />
   <Project Path="src/Services/Services.csproj" />

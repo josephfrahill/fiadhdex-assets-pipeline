@@ -1,20 +1,18 @@
-﻿using Constants.Col.MappingModels;
+﻿using Constants.Gbif.MappingModels;
 using Database;
 using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Models;
 
-namespace Services.Importers.Col;
+namespace Services.Importers.Gbif;
 
-public sealed class ColDistributionImporter
+public sealed class GbifAnnualOccurrenceImporter
 {
     private readonly LifeDexDbContext _dbContext;
     private readonly PipelineConfig _config;
 
-    public ColDistributionImporter(
-        LifeDexDbContext context,
-        IOptions<PipelineConfig> options)
+    public GbifAnnualOccurrenceImporter(LifeDexDbContext context, IOptions<PipelineConfig> options)
     {
         _dbContext = context;
         _config = options.Value;
@@ -22,15 +20,15 @@ public sealed class ColDistributionImporter
 
     public async Task<int> ImportAsync()
     {
-        if (await _dbContext.ColDistributions.AnyAsync())
+        if (await _dbContext.GbifAnnualOccurrences.AnyAsync())
         {
-            Console.WriteLine("Existing data in Distributions table, skipping.");
+            Console.WriteLine("Existing data in GbifAnnualOccurrences table, skipping.");
             return 0;
         }
 
         var path = Path.Combine(
-            _config.ColConfig?.DirectoryPath ?? "",
-            _config.ColConfig?.Distribution ?? "");
+            _config.GbifConfig?.DirectoryPath ?? "",
+            _config.GbifConfig?.OccurenceDataFileName ?? "");
 
         if (!File.Exists(path))
             throw new FileNotFoundException(path);
@@ -52,11 +50,12 @@ public sealed class ColDistributionImporter
             .Select((name, index) => new { name, index })
             .ToDictionary(x => x.name, x => x.index);
 
-        const int batchSize = 5000;
+        const int batchSize = 10000;
 
-        var batch = new List<ColDistribution>(batchSize);
+        var batch = new List<GbifAnnualOccurrence>(batchSize);
 
         var processed = 0;
+        var matched = 0;
         var imported = 0;
 
         while (true)
@@ -73,40 +72,41 @@ public sealed class ColDistributionImporter
 
             var values = line.Split('\t');
 
-            // Only this column has area data for animalia
-            if (!Get(values, ColDistributionColumns.Gazetteer)
-                    .Equals("text", StringComparison.OrdinalIgnoreCase))
+            var acceptedTaxonKey = Get(values, GbifAnnualOccurrenceColumns.AcceptedTaxonKey);
+
+            if (!allAnimalsIds.Contains(acceptedTaxonKey))
+                continue;
+
+            matched++;
+
+            var countryCode = Get(values, GbifAnnualOccurrenceColumns.CountryCode);
+
+            if (string.IsNullOrWhiteSpace(countryCode))
+                continue;
+
+            if (!short.TryParse(Get(values, GbifAnnualOccurrenceColumns.Year), out var year))
+                continue;
+
+            if (!int.TryParse(Get(values, GbifAnnualOccurrenceColumns.Occurrences), out var occurrences))
+                continue;
+
+            batch.Add(new GbifAnnualOccurrence
             {
-                continue;
-            }
-
-            var area = Get(values, ColDistributionColumns.Area);
-
-            if (string.IsNullOrWhiteSpace(area))
-                continue;
-
-            var id = Get(values, ColDistributionColumns.TaxonId);
-
-            if (!allAnimalsIds.Contains(id))
-                continue;
-
-            var record = new ColDistribution
-            {
-                ColId = id,
-                Area = area.ToLower()
-            };
-
-            batch.Add(record);
+                ColId = acceptedTaxonKey,
+                CountryCode = countryCode,
+                Year = year,
+                Occurrences = occurrences
+            });
 
             if (batch.Count < batchSize)
                 continue;
 
-            await _dbContext.ColDistributions.AddRangeAsync(batch);
+            await _dbContext.GbifAnnualOccurrences.AddRangeAsync(batch);
             await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
 
-            Console.WriteLine($"Imported {imported:N0} distributions...");
+            Console.WriteLine($"Imported {imported:N0} annual occurrences...");
 
             batch.Clear();
             _dbContext.ChangeTracker.Clear();
@@ -114,7 +114,7 @@ public sealed class ColDistributionImporter
 
         if (batch.Count > 0)
         {
-            await _dbContext.ColDistributions.AddRangeAsync(batch);
+            await _dbContext.GbifAnnualOccurrences.AddRangeAsync(batch);
             await _dbContext.SaveChangesAsync();
 
             imported += batch.Count;
@@ -122,9 +122,10 @@ public sealed class ColDistributionImporter
 
         Console.WriteLine();
         Console.WriteLine($"Processed : {processed:N0}");
+        Console.WriteLine($"Matched   : {matched:N0}");
         Console.WriteLine($"Imported  : {imported:N0}");
-
-        Console.WriteLine("Distribution data successfully parsed into Distributions table.");
+        Console.WriteLine();
+        Console.WriteLine("GBIF annual occurrence data successfully imported.");
         Console.WriteLine();
 
         return imported;

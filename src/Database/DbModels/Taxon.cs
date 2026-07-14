@@ -15,4 +15,5 @@ public record Taxon
     public string? ExternalExtantVerified { get; init; }
     public List<VernacularName> VernacularNames { get; init; } = [];
     public List<ColDistribution> ColDistributions { get; init; } = [];
+    public List<GbifAnnualOccurrence> GbifAnnualOccurrences { get; init; } = [];
 }

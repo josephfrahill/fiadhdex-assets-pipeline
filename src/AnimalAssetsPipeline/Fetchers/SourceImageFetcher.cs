@@ -31,7 +31,7 @@ public class SourceImageFetcher
         {
             var speciesNameFormatted = species.Name.ToLowerInvariant().Replace(" ", "-");
             var outputPathSpeciesPath = Path.Combine(outputPathDexPath,
-                string.Concat(species.Id, "-", speciesNameFormatted)).Replace('\\', '/');
+                string.Concat(species.DexId, "-", speciesNameFormatted)).Replace('\\', '/');
             Directory.CreateDirectory(outputPathSpeciesPath);
             var metadataPath = Path.Combine(outputPathSpeciesPath, _config.MetadataFileName).Replace('\\', '/');
 

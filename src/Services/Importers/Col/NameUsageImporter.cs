@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
+using Constants.Col.Existence;
+using Constants.Col.Existence.Extinct;
+using Constants.Col.Flagged;
+using Constants.Col.MappingModels;
 using Database;
-using Database.Constants.ColModels;
-using Database.Constants.Existence;
-using Database.Constants.Existence.Extinct;
-using Database.Constants.Flagged;
 using Database.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;

@@ -1,4 +1,4 @@
-﻿namespace Database.Constants.ColModels;
+﻿namespace Constants.Col.MappingModels;
 
 public static class ColNameUsageColumns
 {
