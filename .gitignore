@@ -2,8 +2,7 @@
 
 data-col/
 data-gbif/
-db/lifedex.db-shm
-db/lifedex.db-wal
+db/
 output/resources
 
 .vs/
