@@ -18,10 +18,9 @@ public class AssetGenerator
         _imageFetcher = imageFetcher;
     }
 
-    public async Task ExecuteFlowAsync(string solutionDirectory, string[] args, string localDexesPath)
+    public async Task ExecuteFlowAsync(string solutionDirectory, string[] args)
     {
-        var dexName = _config.DexConfig.WorkingDexName;
-        var dexPathRoot = _config.DexConfig.DexPathRoot;
+        var resourcePathRoot = _config.DexConfig.ResourcePathRoot;
         var outputPathRoot = Path.Combine(_config.PipelineRoot, _config.Folders.Output).Replace('\\', '/');
         Directory.CreateDirectory(outputPathRoot);
 
@@ -32,7 +31,7 @@ public class AssetGenerator
         switch (args[0])
         {
             case "2":
-                var outputPathDexPath = Path.Combine(outputPathRoot, dexPathRoot).Replace('\\', '/');
+                var outputPathDexPath = Path.Combine(outputPathRoot, resourcePathRoot).Replace('\\', '/');
                 await _imageFetcher.FetchImagesAsync(animals, outputPathDexPath);
                 break;
         }
@@ -41,12 +40,20 @@ public class AssetGenerator
 
         async Task<ActionResult> HandleJsonDexFetching()
         {
-            var dexPathCloud = Path.Combine(dexPathRoot, dexName).Replace('\\', '/');
-            var fetchedAnimals = await _lifeDexDataFetcher.FetchDataAsync(dexName, dexPathCloud, localDexesPath);
+            //lifedex-data/
+            var dexName = _config.DexConfig.WorkingDexName;
 
-            return new ActionResult(true, "Dex json successfully fetched.")
+            var dexPathCloudFull = Path.Combine("dexes", dexName).Replace('\\', '/');
+            var dexPathLocalRoot = Path.Combine(outputPathRoot, "dexes");
+            Directory.CreateDirectory(dexPathLocalRoot);
+            var dexPathLocalFull = Path.Combine(dexPathLocalRoot, dexName);
+
+            var countryDex =
+                await _lifeDexDataFetcher.FetchDataAsync(dexName, dexPathCloudFull, dexPathLocalFull);
+
+            return new ActionResult(true, $"`{dexName}` successfully fetched.")
             {
-                Animals = fetchedAnimals
+                CountryDex = countryDex
             };
         }
     }

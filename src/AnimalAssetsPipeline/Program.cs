@@ -6,13 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Models;
 using Services;
 using Services.Api;
 using Services.DexCreation;
 using Services.Importers.Col;
 using Services.Importers.Gbif;
-using System.Xml.Linq;
 
 if (args.Length < 1)
 {
@@ -22,8 +22,7 @@ if (args.Length < 1)
 
 var solutionDirectory = Utils.GetSolutionDirectory();
 var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
-var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline").Replace('\\', '/');
-var localDexesPath = Path.Combine(executingRoot, "Dexes").Replace('\\', '/');
+//var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline").Replace('\\', '/');
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
@@ -46,9 +45,11 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddScoped<VernacularNameImporter>();
         services.AddScoped<ColDistributionImporter>();
         services.AddScoped<GbifAnnualOccurrenceImporter>();
+        /*
         services.AddScoped<DexCreator>(provider =>
-            ActivatorUtilities.CreateInstance<DexCreator>(provider, localDexesPath)
+            ActivatorUtilities.CreateInstance<DexCreator>(provider)
         );
+        */
         services.AddSingleton<AssetGenerator>();
         services.AddSingleton<LifeDexDataFetcher>();
         services.AddSingleton<SourceImageFetcher>();
@@ -71,9 +72,10 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-switch (args[0])
+var argAsInt = int.Parse(args[0]);
+switch (argAsInt)
 {
-    case "0":
+    case 0:
     {
         Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
         using var scope = host.Services.CreateScope();
@@ -94,7 +96,7 @@ switch (args[0])
         break;
     }
 
-    case "1":
+    case 1:
     {
         Console.WriteLine($"Processing input: `{args[0]}`: Dex Creation.");
         if (args.Length < 2)
@@ -103,20 +105,26 @@ switch (args[0])
             return;
         }
 
-        var creator = host.Services.GetRequiredService<DexCreator>();
+        //var creator = host.Services.GetRequiredService<DexCreator>();
+
+        using var scope = host.Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<LifeDexDbContext>();
+        var pipelineOptions = scope.ServiceProvider.GetRequiredService<IOptions<PipelineConfig>>();
+
+        var creator = await DexCreator.InitialiseAsync(dbContext, pipelineOptions);
         var dexCreationResult = await creator.CreateDex(args[1]);
 
         if (!dexCreationResult.Successful)
             Console.WriteLine(dexCreationResult.Message);
         break;
     }
-}
-
-var argAsInt = int.Parse(args[0]);
-if (argAsInt <= 4)
-{
-    var generator = host.Services.GetRequiredService<AssetGenerator>();
-    await generator.ExecuteFlowAsync(solutionDirectory, args, localDexesPath);
+    case >= 2:
+    {
+        Console.WriteLine($"Processing input: `{args[0]}`: Image downloading.");
+        var generator = host.Services.GetRequiredService<AssetGenerator>();
+        await generator.ExecuteFlowAsync(solutionDirectory, args);
+        break;
+    }
 }
 
 Console.WriteLine("Application finished.");

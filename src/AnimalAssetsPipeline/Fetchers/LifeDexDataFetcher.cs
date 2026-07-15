@@ -14,38 +14,38 @@ public class LifeDexDataFetcher
         _http = http;
     }
 
-    public async Task<List<Animal>> FetchDataAsync(string dexName, string cloudDexPath, string localDexesPath)
+    public async Task<CountryDex> FetchDataAsync(string dexName, string dexPathCloudFull, string dexPathLocalFull)
     {
-        var localDexPath = Path.Combine(localDexesPath, dexName);
+        //var localDexPath = Path.Combine(localDexesPath, dexName);
 
-        List<Animal> animals;
-        if (File.Exists(localDexPath))
+        CountryDex countryDex;
+        if (File.Exists(dexPathLocalFull))
         {
-            animals = await JsonDexLoader.LoadAsync(localDexPath);
+            countryDex = await JsonDexLoader.LoadAsync(dexPathLocalFull);
             Console.WriteLine($"Loading local dex: `{dexName}`...");
         }
         else
         {
-            animals = await GetFromCloudAsync(cloudDexPath);
-            Directory.CreateDirectory(localDexesPath);
-            SaveJsonLocally(animals, localDexPath);
+            countryDex = await GetFromCloudAsync(dexPathCloudFull);
+            //Directory.CreateDirectory(dexPathLocalFull);
+            SaveJsonLocally(countryDex, dexPathLocalFull);
             Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
         }
 
-        return animals;
+        return countryDex;
     }
 
-    private async Task<List<Animal>> GetFromCloudAsync(string dexPath)
+    private async Task<CountryDex> GetFromCloudAsync(string dexPath)
     {
-        var result = await _http.GetFromJsonAsync<List<Animal>>(dexPath,
+        var result = await _http.GetFromJsonAsync<CountryDex>(dexPath,
             JsonConfigSettings.Options);
 
         return result ?? throw new JsonException($"No data returned for '{dexPath}'.");
     }
 
-    private static void SaveJsonLocally(List<Animal> animals, string localDexPath)
+    private static void SaveJsonLocally(CountryDex countryDex, string localDexPath)
     {
-        var serialised = JsonSerializer.Serialize(animals, JsonConfigSettings.Options);
+        var serialised = JsonSerializer.Serialize(countryDex, JsonConfigSettings.Options);
         File.WriteAllTextAsync(localDexPath, serialised);
     }
 }

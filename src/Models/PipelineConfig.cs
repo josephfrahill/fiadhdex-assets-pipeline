@@ -22,13 +22,14 @@ public record GbifConfig
 {
     public required string DirectoryPath { get; init; }
     public required string OccurenceDataFileName { get; init; }
+    public required bool IsSubSpecies { get; init; }
 }
 
 public record DexConfig
 {
     public required string GlobalDexName { get; init; }
     public required string WorkingDexName { get; init; }
-    public required string DexPathRoot { get; init; }
+    public required string ResourcePathRoot { get; init; }
 }
 
 public record Folders

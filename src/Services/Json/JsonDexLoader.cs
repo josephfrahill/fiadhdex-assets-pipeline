@@ -5,11 +5,11 @@ namespace Services.Json;
 
 public static class JsonDexLoader
 {
-    public static async Task<List<Animal>> LoadAsync(string path)
+    public static async Task<CountryDex> LoadAsync(string path)
     {
         var json = await File.ReadAllTextAsync(path);
 
-        return JsonSerializer.Deserialize<List<Animal>>(json, JsonConfigSettings.Options)
-               ?? [];
+        return JsonSerializer.Deserialize<CountryDex>(json, JsonConfigSettings.Options)
+               ?? throw new JsonException($"Error deserialising requested dex at path: `{path}`.");
     }
 }

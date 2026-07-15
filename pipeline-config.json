@@ -7,14 +7,15 @@
   },
   "gbifConfig": {
     "directoryPath": "C:/code/lifedex/pipeline/data-gbif",
-    "occurenceDataFileName": "gbif-mammalia-1990.csv"
+    "occurenceDataFileName": "gbif-aves-1990.csv",
+    "isSubSpecies": false
   },
   "dexConfig": {
     "globalDexName": "global-dex.json",
     "workingDexName": "global-dex.json",
-    "dexPathRoot": "safelists/global"
+    "resourcePathRoot": "resources/global-dex" // should reflect dir structure in R2
   },
-  "pipelineRoot": "C:/code/lifedex/pipeline/pipeline",
+  "pipelineRoot": "C:/code/lifedex/pipeline", //sln dir
   "metadataFileName": "animal-metadata.json",
   "folders": {
     "output": "output",

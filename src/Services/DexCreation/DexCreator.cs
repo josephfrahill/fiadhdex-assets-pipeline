@@ -11,20 +11,38 @@ namespace Services.DexCreation;
 public class DexCreator
 {
     private readonly LifeDexDbContext _dbContext;
-    private readonly string _outputPath;
-    private readonly CountryDex _globalDex;
+    private readonly PipelineConfig _config;
+    private readonly string _dexesOutputPath;
+    private CountryDex _globalDex = null!;
 
-    public DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options, string localDexesPath)
+    private DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options)
     {
         _dbContext = context;
+        _config = options.Value;
 
-        var config = options.Value;
-        _outputPath = Path.Combine(config.PipelineRoot, config.Folders.Output, config.Folders.Dexes);
-        Directory.CreateDirectory(_outputPath);
+        _dexesOutputPath = Path.Combine(_config.PipelineRoot, _config.Folders.Output, _config.Folders.Dexes);
+        Directory.CreateDirectory(_dexesOutputPath);
+    }
 
-        var globalDexPath = Path.Combine(localDexesPath, config.DexConfig.GlobalDexName);
-        _globalDex = JsonSerializer.Deserialize<CountryDex>(globalDexPath, JsonConfigSettings.Options) ??
-                     throw new JsonException($"Error deserialising global-dex.json at path: `{localDexesPath}`.");
+
+    /// <summary>
+    /// var creator = await DexCreator.CreateAsync(dbContext, options);
+    /// </summary>
+    public static async Task<DexCreator> InitialiseAsync(LifeDexDbContext context, IOptions<PipelineConfig> options)
+    {
+        var creator = new DexCreator(context, options);
+        await creator.LoadGlobalDexAsync();
+        return creator;
+    }
+
+    private async Task LoadGlobalDexAsync()
+    {
+        var globalDexPath = Path.Combine(_dexesOutputPath, _config.DexConfig.GlobalDexName);
+
+        var json = await File.ReadAllTextAsync(globalDexPath);
+
+        _globalDex = JsonSerializer.Deserialize<CountryDex>(json, JsonConfigSettings.Options) ??
+                     throw new JsonException($"Error deserialising global-dex.json at path: `{globalDexPath}`.");
     }
 
     public async Task<ActionResult> CreateDex(string givenCountry)
@@ -36,7 +54,7 @@ public class DexCreator
 
         if (CountryLookup.TryParse(givenCountry, out var countryData))
         {
-            Console.WriteLine($"Found: {countryData.Name} [{countryData.Code}]");
+            Console.WriteLine($"Found: {countryData.Name} [{countryData.Code}].");
         }
         else
         {
@@ -62,7 +80,12 @@ public class DexCreator
 
         var countrySpecies = allSpecies.IntersectBy(countryOccurrencesIds, x => x.ColId).ToList();
 
-        var animals = countrySpecies
+        var globalScientificNames = _globalDex.Animals.Select(x => x.ScientificName);
+
+        var countrySpeciesWithoutGlobals = countrySpecies
+            .Where(x => !globalScientificNames.Contains(x.ScientificName, StringComparer.OrdinalIgnoreCase)).ToArray();
+
+        var animals = countrySpeciesWithoutGlobals
             .Select((x, index) =>
             {
                 var name = x.VernacularNames.FirstOrDefault()?.Name ?? string.Empty;
@@ -88,17 +111,24 @@ public class DexCreator
 
         var countryDex = new CountryDex
         {
-            AnimalCount = animals.Count,
+            TotalCount = animals.Count,
+            AmphibiaCount = animals.Count(x => x.Type.Equals("Amphibia")),
+            AvesCount = animals.Count(x => x.Type.Equals("Aves")),
+            MammaliaCount = animals.Count(x => x.Type.Equals("Mammalia")),
+            ReptiliaCount = animals.Count(x => x.Type.Equals("Reptilia")),
             DateGenerated = DateTime.UtcNow,
             Animals = animals
         };
 
-        var dexPath = Path.Combine(_outputPath, $"{countryData.Name.ToLower()}-dex.json.");
+        var differenceCount = animals.Count - countrySpeciesWithoutGlobals.Length;
+        Console.WriteLine($"Stripped {differenceCount} global entries from new dex of total {animals.Count} count.");
+
+        var dexPath = Path.Combine(_dexesOutputPath, $"{countryData.Name.ToLower()}-dex.json.");
 
         var json = JsonSerializer.Serialize(countryDex, JsonConfigSettings.Options);
 
         await File.WriteAllTextAsync(dexPath, json);
-        Console.WriteLine($"Created dex for country: `{countryData.Name}` in: {_outputPath}.");
+        Console.WriteLine($"Created dex for country: `{countryData.Name}` in: {_dexesOutputPath}.");
 
         return new ActionResult(true);
     }

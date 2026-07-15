@@ -45,6 +45,10 @@ public sealed class GbifAnnualOccurrenceImporter
         if (string.IsNullOrWhiteSpace(header))
             throw new InvalidOperationException("File is empty.");
 
+        var key = _config.GbifConfig?.IsSubSpecies == true
+            ? GbifAnnualOccurrenceColumns.AcceptedTaxonKey
+            : GbifAnnualOccurrenceColumns.SpeciesKey;
+
         var headers = header.Split('\t');
 
         var lookup = headers
@@ -73,7 +77,7 @@ public sealed class GbifAnnualOccurrenceImporter
 
             var values = line.Split('\t');
 
-            var acceptedTaxonKey = Get(values, GbifAnnualOccurrenceColumns.AcceptedTaxonKey);
+            var acceptedTaxonKey = Get(values, key);
 
             if (!allAnimalsIds.Contains(acceptedTaxonKey))
                 continue;

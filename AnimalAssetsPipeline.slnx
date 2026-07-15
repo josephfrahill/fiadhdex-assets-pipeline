@@ -2,7 +2,8 @@
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
     <File Path="pipeline-config.json" />
-    <File Path="pipeline/python_scripts/rank-images.py" />
+    <File Path="python_scripts/rank-images.py" />
+    <File Path="python_scripts/remove_backgrounds.py" />
     <File Path="ReadMe.md" />
     <File Path="run.ps1" />
   </Folder>
