@@ -1,0 +1,274 @@
+[
+  {
+    "regionId": "SEA_M_001",
+    "name": "Crab-eating Macaque",
+    "species": "Macaca fascicularis",
+    "type": "Mammal",
+    "rarity": "Common",
+    "family": "CercopithecregionIdae",
+    "order": "Primates",
+    "young": "Infant",
+    "plurals": [
+      "Macaques",
+      "Infants"
+    ],
+    "collectiveNoun": "A troop of macaques",
+    "conservationStatus": "Vulnerable",
+    "dangerLevel": "Caution",
+    "dangerNotes": "Can bite and scratch. Carries Herpes B virus (potentially fatal to humans). Highly opportunistic — will snatch food, bags, and glasses. Do not feed. Do not make eye contact with dominant males.",
+    "habitat": [
+      "Mangroves",
+      "Coastal forest",
+      "Urban",
+      "Temples",
+      "Riverbanks",
+      "Agricultural fringes"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 20,
+      "max": 38
+    },
+    "weightKg": {
+      "min": 2.5,
+      "max": 9
+    },
+    "lengthCm": {
+      "min": 38,
+      "max": 64
+    },
+    "description": "The crab-eating macaque, also known as the long-tailed macaque, is the most commonly encountered primate across Southeast Asia — ubiquitous at temples, beach resorts, forest parks, and coastal areas. Despite its name, it eats almost anything: crabs, fruit, insects, small animals, and human food. Highly intelligent and socially complex, it lives in troops with rigregionId dominance hierarchies. Its boldness and adaptability have made it both a cultural icon and an urban nuisance.",
+    "funFact": "Crab-eating macaques in Thailand and Myanmar have been observed using stone tools to crack open shellfish and nuts — one of the few non-ape primates documented using tools in the wild.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "Malay Peninsula",
+      "Philippines",
+      "Indonesia"
+    ],
+    "tags": [
+      "Primate",
+      "Wild",
+      "Urban",
+      "Coastal",
+      "Temple animal"
+    ]
+  },
+  {
+    "regionId": "SEA_M_002",
+    "name": "Asian Palm Civet",
+    "species": "Paradoxurus hermaphroditus",
+    "type": "Mammal",
+    "rarity": "Common",
+    "family": "Viverridae",
+    "order": "Carnivora",
+    "young": "Kitten",
+    "plurals": [
+      "Civets",
+      "Kittens"
+    ],
+    "collectiveNoun": "A group of civets",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Nocturnal and reclusive. Will scratch and bite if cornered. Otherwise avoids humans.",
+    "habitat": [
+      "Tropical forest",
+      "Plantations",
+      "Urban",
+      "Gardens",
+      "Forest edges"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 10,
+      "max": 25
+    },
+    "weightKg": {
+      "min": 1.5,
+      "max": 5
+    },
+    "lengthCm": {
+      "min": 43,
+      "max": 71
+    },
+    "description": "The Asian palm civet is a small, cat-like carnivore with a dark grizzled coat, black mask, and pale-spotted flanks. Highly adaptable, it thrives in forest, plantation, and suburban environments across Southeast Asia. Primarily frugivorous, it plays an important role in seed dispersal. It is also, controversially, the source of kopi luwak — coffee made from beans passed through its digestive system — the world's most expensive coffee.",
+    "funFact": "The Asian palm civet is responsible for kopi luwak, the world's most expensive coffee — it eats ripe coffee cherries and the beans, partially digested and fermented in its gut, are collected, cleaned, and sold for up to $700 per kilogram.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China",
+      "Sri Lanka"
+    ],
+    "tags": [
+      "Wild",
+      "Nocturnal",
+      "Forest",
+      "Urban",
+      "Carnivore"
+    ]
+  },
+  {
+    "regionId": "SEA_M_003",
+    "name": "Common Treeshrew",
+    "species": "Tupaia glis",
+    "type": "Mammal",
+    "rarity": "Common",
+    "family": "Tupaiidae",
+    "order": "Scandentia",
+    "young": "Pup",
+    "plurals": [
+      "Treeshrews",
+      "Pups"
+    ],
+    "collectiveNoun": "A group of treeshrews",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Completely harmless. Extremely shy and fast — rarely seen closely.",
+    "habitat": [
+      "Tropical forest",
+      "Forest edges",
+      "Gardens",
+      "Plantations"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 2,
+      "max": 6
+    },
+    "weightKg": {
+      "min": 0.1,
+      "max": 0.19
+    },
+    "lengthCm": {
+      "min": 16,
+      "max": 21
+    },
+    "description": "The common treeshrew resembles a small squirrel with a pointed snout, but is not a rodent — it belongs to the order Scandentia, considered one of the closest living relatives of primates. Hyperactive and diurnal, it dashes along branches and forest floors at high speed, foraging for insects, fruit, and small vertebrates. Despite its name, it spends much of its time on the ground. Its remarkably high metabolic rate means it must eat almost constantly.",
+    "funFact": "Treeshrews have the highest brain-to-body-mass ratio of any mammal — higher even than humans — though this reflects their tiny body size rather than exceptional intelligence.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "Malay Peninsula",
+      "Sumatra",
+      "Borneo"
+    ],
+    "tags": [
+      "Wild",
+      "Forest",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_M_004",
+    "name": "Sunda Flying Lemur",
+    "species": "Galeopterus variegatus",
+    "type": "Mammal",
+    "rarity": "Uncommon",
+    "family": "Cynocephalidae",
+    "order": "Dermoptera",
+    "young": "Pup",
+    "plurals": [
+      "Flying lemurs",
+      "Pups"
+    ],
+    "collectiveNoun": "A group of flying lemurs",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Completely harmless. Nocturnal and arboreal — very rarely encountered.",
+    "habitat": [
+      "Tropical rainforest",
+      "Plantation",
+      "Forest edges"
+    ],
+    "diet": "Herbivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 10,
+      "max": 17
+    },
+    "weightKg": {
+      "min": 0.9,
+      "max": 1.75
+    },
+    "lengthCm": {
+      "min": 33,
+      "max": 42
+    },
+    "description": "The Sunda flying lemur — also called the colugo — is neither a lemur nor capable of true flight, but its gliding membrane (patagium) stretches from its chin to the tips of its fingers, toes, and tail, giving it the most complete gliding surface of any gliding mammal. It can glide over 136 metres between trees with minimal altitude loss. Despite its superficial resemblance to lemurs, it is most closely related to primates — our nearest non-primate relative.",
+    "funFact": "The Sunda flying lemur can glide over 136 metres in a single leap with a height loss of less than 10 metres — a gliding efficiency that exceeds flying squirrels and rivalled only by true bats among nocturnal mammals.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "Malay Peninsula",
+      "Sumatra",
+      "Borneo",
+      "Java"
+    ],
+    "tags": [
+      "Wild",
+      "Nocturnal",
+      "Arboreal",
+      "Forest",
+      "Gliding"
+    ]
+  },
+  {
+    "regionId": "SEA_M_005",
+    "name": "Asian Elephant",
+    "species": "Elephas maximus",
+    "type": "Mammal",
+    "rarity": "Rare",
+    "family": "ElephantregionIdae",
+    "order": "ProboscregionIdea",
+    "young": "Calf",
+    "gender": {
+      "male": "Bull",
+      "female": "Cow"
+    },
+    "plurals": [
+      "Elephants",
+      "Calves",
+      "Bulls",
+      "Cows"
+    ],
+    "collectiveNoun": "A herd of elephants",
+    "conservationStatus": "Endangered",
+    "dangerLevel": "Keep Back",
+    "dangerNotes": "Extremely dangerous. Elephants kill hundreds of people per year across Asia. Bulls in musth are especially unpredictable and lethal. Mothers with calves will charge without warning. Never approach, block an escape route, or get between a mother and her calf.",
+    "habitat": [
+      "Tropical forest",
+      "Dry forest",
+      "Grassland",
+      "Scrubland",
+      "Forest edges"
+    ],
+    "diet": "Herbivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 48,
+      "max": 70
+    },
+    "weightKg": {
+      "min": 2700,
+      "max": 5000
+    },
+    "lengthCm": {
+      "min": 500,
+      "max": 640
+    },
+    "description": "The Asian elephant is the largest land animal in Asia and one of the most intelligent creatures on Earth, with a complex social structure, long-term memory, and documented self-awareness. Smaller than the African elephant with distinctively smaller ears and a domed head, it lives in matriarchal family groups led by the oldest female. In Thailand it holds deep cultural and spiritual significance, serving historically as a war animal, working animal, and national symbol.",
+    "funFact": "Asian elephants are one of the few animals that demonstrate self-awareness — indivregionIduals recognise themselves in mirrors, a cognitive ability shared only with great apes, dolphins, and a handful of other species.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Forest",
+      "Grassland",
+      "Endangered",
+      "Dangerous"
+    ]
+  }
+]

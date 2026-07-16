@@ -1,0 +1,968 @@
+[
+  {
+    "regionId": "SEA_B_001",
+    "name": "Oriental Pied Hornbill",
+    "species": "Anthracoceros albirostris",
+    "type": "Bird",
+    "rarity": "Uncommon",
+    "family": "Bucerotidae",
+    "order": "Bucerotiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Hornbills",
+      "Chicks"
+    ],
+    "collectiveNoun": "A party of hornbills",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Tropical forest",
+      "Forest edges",
+      "Coastal forest",
+      "Plantations"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 20,
+      "max": 35
+    },
+    "weightKg": {
+      "min": 0.6,
+      "max": 1.6
+    },
+    "lengthCm": {
+      "min": 55,
+      "max": 70
+    },
+    "description": "The oriental pied hornbill is the smallest and most widespread hornbill in Southeast Asia, with bold black-and-white plumage and a large yellow-and-black casque atop its bill. Famous for its extraordinary nesting behaviour: the female seals herself inside a tree cavity using mud and droppings, leaving only a narrow slit through which the male passes food, until the chicks are ready to fledge. A noisy, social bird, its loud cackling calls are characteristic of forest edges and offshore islands.",
+    "funFact": "Female hornbills seal themselves inside tree hollows during nesting — entombed with their eggs and then chicks for up to four months while the male feeds them through a narrow slit, making them entirely dependent on their partner's fidelity.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Forest",
+      "Arboreal",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_002",
+    "name": "White-throated Kingfisher",
+    "species": "Halcyon smyrnensis",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Alcedinidae",
+    "order": "Coraciiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Kingfishers",
+      "Chicks"
+    ],
+    "collectiveNoun": "A concentration of kingfishers",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Wetlands",
+      "Farmland",
+      "Forest edges"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.06,
+      "max": 0.09
+    },
+    "lengthCm": {
+      "min": 27,
+      "max": 29
+    },
+    "description": "The white-throated kingfisher is one of the most conspicuous and boldly coloured birds of Southeast Asia, with a vivid turquoise back and wings, chestnut head and flanks, and a brilliant white throat and breast. Unusually for a kingfisher, it hunts far from water — perching on telephone wires, fence posts, and roof edges to dive on lizards, large insects, frogs, and even small rodents. Its loud, laughing call is a defining sound of the tropical dawn.",
+    "funFact": "Despite being called a kingfisher, the white-throated kingfisher often lives far from water and regularly hunts lizards, insects, and rodents in dry urban gardens — it is named for its family, not its diet.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Middle East"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_003",
+    "name": "Collared Kingfisher",
+    "species": "Todiramphus chloris",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Alcedinidae",
+    "order": "Coraciiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Kingfishers",
+      "Chicks"
+    ],
+    "collectiveNoun": "A concentration of kingfishers",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Mangroves",
+      "Coastal areas",
+      "Urban",
+      "Gardens",
+      "Wetlands"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.05,
+      "max": 0.09
+    },
+    "lengthCm": {
+      "min": 22,
+      "max": 29
+    },
+    "description": "The collared kingfisher is one of the most widespread kingfishers in the world, ranging from the Red Sea to the Pacific. In Southeast Asia it is a constant presence in mangroves, coastal parks, and urban gardens. Blue-green above with a crisp white collar and underparts, it hunts from a prominent perch, diving on crabs, mudskippers, lizards, and large insects. Its loud, harsh 'kek-kek-kek' call rings out constantly across mangrove-fringed coastlines.",
+    "funFact": "The collared kingfisher has one of the widest distributions of any kingfisher in the world — 49 recognised subspecies spread from the Red Sea coast to the islands of the Pacific Ocean.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Middle East",
+      "Australia",
+      "Pacific Islands"
+    ],
+    "tags": [
+      "Wild",
+      "Coastal",
+      "Mangrove",
+      "Urban",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_004",
+    "name": "Asian Koel",
+    "species": "Eudynamys scolopaceus",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Cuculidae",
+    "order": "Cuculiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Koels",
+      "Chicks"
+    ],
+    "collectiveNoun": "A covert of coots",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Forest edges",
+      "Plantations"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 12
+    },
+    "weightKg": {
+      "min": 0.19,
+      "max": 0.33
+    },
+    "lengthCm": {
+      "min": 39,
+      "max": 46
+    },
+    "description": "The Asian koel is one of the most heard but rarely seen birds of Southeast Asia. The male is glossy jet black with a vivid red eye; the female is beautifully streaked brown. A brood parasite, the koel lays its eggs in the nests of crows and other large birds, leaving the hosts to raise its chicks. The male's rising, repetitive 'ko-el' call — accelerating in pitch through the dawn hours — is an iconic and sometimes maddening sound of tropical cities.",
+    "funFact": "The Asian koel's call has been scientifically proven to accelerate in tempo and pitch over the breeding season — a vocal performance that can begin before dawn and continue relentlessly for hours, making it both beloved and infamous in equal measure.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China",
+      "Australia"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal",
+      "Brood parasite"
+    ]
+  },
+  {
+    "regionId": "SEA_B_005",
+    "name": "Oriental Magpie-Robin",
+    "species": "Copsychus saularis",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Muscicapidae",
+    "order": "Passeriformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Magpie-robins",
+      "Chicks"
+    ],
+    "collectiveNoun": "A flock of magpie-robins",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Forest edges",
+      "Mangroves"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 12
+    },
+    "weightKg": {
+      "min": 0.023,
+      "max": 0.042
+    },
+    "lengthCm": {
+      "min": 19,
+      "max": 21
+    },
+    "description": "The oriental magpie-robin is one of the finest songbirds in Southeast Asia — a small, bold black-and-white bird that delivers an extraordinarily rich and varied song from exposed perches, often at dawn. Males have a glossy blue-black head and back with white underparts and wing patches; females are grey-brown. Highly territorial, males sing persistently throughout the breeding season. It is the national bird of Bangladesh and deeply familiar across urban Southeast Asia.",
+    "funFact": "The oriental magpie-robin is one of the most accomplished songbirds in Asia — males can produce over 50 distinct song phrases and frequently incorporate imitations of other species into their dawn chorus.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_006",
+    "name": "Olive-backed Sunbird",
+    "species": "Cinnyris jugularis",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Nectariniidae",
+    "order": "Passeriformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Sunbirds",
+      "Chicks"
+    ],
+    "collectiveNoun": "A flock of sunbirds",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Mangroves",
+      "Forest edges",
+      "Coastal scrub"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 4,
+      "max": 8
+    },
+    "weightKg": {
+      "min": 0.006,
+      "max": 0.012
+    },
+    "lengthCm": {
+      "min": 11,
+      "max": 12
+    },
+    "description": "The olive-backed sunbird is the most widespread and commonly seen sunbird in Southeast Asia, a tiny, restless nectarivore with an olive-green back and sulphur-yellow underparts. Males have a brilliant iridescent blue-black throat and breast. It hovers briefly or clings acrobatically to flowers to feed on nectar, and is an important pollinator across the region. It builds a distinctive hanging, pendulous nest of grass and spiders' webs suspended from branches or even laundry lines.",
+    "funFact": "The olive-backed sunbird will happily build its hanging, pendulous nest from a washing line, a light fitting, or a clothes hanger — making it one of the most urban-adapted nesting birds in Southeast Asia.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China",
+      "Australia"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal",
+      "Garden"
+    ]
+  },
+  {
+    "regionId": "SEA_B_007",
+    "name": "Black-naped Oriole",
+    "species": "Oriolus chinensis",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Oriolidae",
+    "order": "Passeriformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Orioles",
+      "Chicks"
+    ],
+    "collectiveNoun": "A flock of orioles",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Forest edges",
+      "Parks",
+      "Mangroves"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.065,
+      "max": 0.1
+    },
+    "lengthCm": {
+      "min": 24,
+      "max": 27
+    },
+    "description": "The black-naped oriole is a strikingly beautiful bird — vivid golden yellow with a black mask and nape band. One of the most conspicuous garden birds across urban Southeast Asia, it is often seen in fruiting trees and flowering canopy. Its rich, fluting whistle is one of the most melodious and instantly recognisable bird calls in the region. Adaptable to urban environments, it nests in a woven cup suspended hammock-like from a high branch.",
+    "funFact": "The black-naped oriole's fluting call is one of the most melodious sounds in Southeast Asian gardens — it can be confused with a human whistling, and individuals are known to incorporate other bird calls and even human-made sounds into their song.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "East Asia"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Forest",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_008",
+    "name": "Blue-tailed Bee-eater",
+    "species": "Merops philippinus",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Meropidae",
+    "order": "Coraciiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Bee-eaters",
+      "Chicks"
+    ],
+    "collectiveNoun": "A flock of bee-eaters",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Open country",
+      "Farmland",
+      "Coastal scrub",
+      "Grassland",
+      "Forest edges",
+      "Beaches"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 12
+    },
+    "weightKg": {
+      "min": 0.024,
+      "max": 0.038
+    },
+    "lengthCm": {
+      "min": 23,
+      "max": 30
+    },
+    "description": "The blue-tailed bee-eater is a vivid, acrobatic bird with green plumage, a rufous-orange throat, blue tail streamers, and a long decurved bill. It hunts bees, wasps, dragonflies, and other flying insects with spectacular aerial precision, catching them in mid-air and returning to a perch to beat and de-venom prey before swallowing. A gregarious, migratory species, it breeds in sandy banks and open ground and is a seasonal visitor across much of Southeast Asia.",
+    "funFact": "Blue-tailed bee-eaters catch bees and wasps mid-flight then thrash them against a branch to remove the sting and squeeze out the venom sac before eating — a learned behaviour that prevents envenomation.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Philippines"
+    ],
+    "tags": [
+      "Wild",
+      "Grassland",
+      "Coastal",
+      "Diurnal",
+      "Migratory"
+    ]
+  },
+  {
+    "regionId": "SEA_B_009",
+    "name": "Brahminy Kite",
+    "species": "Haliastur indus",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Accipitridae",
+    "order": "Accipitriformes",
+    "young": "Eyass",
+    "gender": {
+      "male": "Tiercel",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Kites",
+      "Eyasses"
+    ],
+    "collectiveNoun": "A kettle of kites",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans on the ground. May swoop if nesting nearby.",
+    "habitat": [
+      "Coastal areas",
+      "Mangroves",
+      "Wetlands",
+      "Rivers",
+      "Urban harbours"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 12,
+      "max": 20
+    },
+    "weightKg": {
+      "min": 0.4,
+      "max": 0.8
+    },
+    "lengthCm": {
+      "min": 44,
+      "max": 52
+    },
+    "description": "The brahminy kite is one of the most beautiful raptors in Southeast Asia — a medium-sized bird of prey with a pure white head and chest contrasting vividly with rich chestnut-red wings and back. A coastal and wetland specialist, it soars effortlessly over harbours, estuaries, and fishing villages, snatching dead fish, crabs, and carrion from the water surface. In Hindu mythology it represents Garuda, the vehicle of the god Vishnu.",
+    "funFact": "The brahminy kite is considered a manifestation of the Hindu deity Garuda across much of Southeast Asia — it is a sacred bird in Bali, where it is believed to carry messages from the gods.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Australia"
+    ],
+    "tags": [
+      "Wild",
+      "Coastal",
+      "Raptor",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_010",
+    "name": "Black-shouldered Kite",
+    "species": "Elanus caeruleus",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Accipitridae",
+    "order": "Accipitriformes",
+    "young": "Eyass",
+    "gender": {
+      "male": "Tiercel",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Kites",
+      "Eyasses"
+    ],
+    "collectiveNoun": "A kettle of kites",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Open grassland",
+      "Farmland",
+      "Scrubland",
+      "Roadsides",
+      "Forest edges"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 15
+    },
+    "weightKg": {
+      "min": 0.2,
+      "max": 0.35
+    },
+    "lengthCm": {
+      "min": 31,
+      "max": 37
+    },
+    "description": "The black-shouldered kite is a small, elegant raptor with pale grey-white plumage, jet black shoulder patches, and striking red eyes. It hunts by hovering in place over open grassland — facing into the wind and scanning the ground below with exceptional eyesight before dropping onto rodents and large insects. Increasingly common across agricultural Southeast Asia, it benefits from open farmland where it is a highly effective rat predator.",
+    "funFact": "The black-shouldered kite can hover almost perfectly stationary against the wind, maintaining position for up to a minute using tiny, rapid wingbeats and tail adjustments — a hunting technique called 'kiting'.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Africa",
+      "Southern Europe"
+    ],
+    "tags": [
+      "Wild",
+      "Grassland",
+      "Farmland",
+      "Raptor",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_011",
+    "name": "Sun Conure",
+    "species": "Aratinga solstitialis",
+    "type": "Bird",
+    "rarity": "Uncommon",
+    "family": "Psittacidae",
+    "order": "Psittaciformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Sun conures",
+      "Chicks"
+    ],
+    "collectiveNoun": "A pandemonium of parrots",
+    "conservationStatus": "Endangered",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans. Wild SEA populations are escaped captive birds.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Parks",
+      "Gardens",
+      "Scrubland"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 20,
+      "max": 30
+    },
+    "weightKg": {
+      "min": 0.1,
+      "max": 0.13
+    },
+    "lengthCm": {
+      "min": 30,
+      "max": 30
+    },
+    "description": "The sun conure is a brilliantly coloured parrot native to northeastern South America, with vivid golden-yellow plumage shading to orange-red on the face and green on the wings. In Southeast Asia all wild individuals are escaped or released captive birds — the species is not native to the region. Highly social and extremely noisy, escaped flocks have established themselves in urban parks across Malaysia, Singapore, and Thailand. In its native range it is endangered due to trapping for the pet trade.",
+    "funFact": "Every sun conure seen in the wild across Southeast Asia is descended from escaped or released pets — the species is not native to Asia but has established feral flocks in several major cities.",
+    "nativeRegions": [
+      "South America (native)",
+      "Southeast Asia (introduced — feral)"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Introduced",
+      "Feral",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_012",
+    "name": "Rose-ringed Parakeet",
+    "species": "Psittacula krameri",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Psittaculidae",
+    "order": "Psittaciformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Parakeets",
+      "Chicks"
+    ],
+    "collectiveNoun": "A pandemonium of parakeets",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans. Noisy in large flocks.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Parks",
+      "Farmland",
+      "Forest edges"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 15,
+      "max": 30
+    },
+    "weightKg": {
+      "min": 0.095,
+      "max": 0.14
+    },
+    "lengthCm": {
+      "min": 38,
+      "max": 42
+    },
+    "description": "The rose-ringed parakeet is a long-tailed green parrot with a distinctive red bill and, in males, a black-and-rose neck ring. One of the most successful introduced birds in the world, it has established wild populations across Europe, the Middle East, and Southeast Asia from escaped cage birds. Intelligent, adaptable, and noisy, feral flocks roost communally in large numbers and can be agricultural pests. In Southeast Asia both native and introduced populations exist.",
+    "funFact": "The rose-ringed parakeet is one of the most invasive bird species on Earth — escaped cage birds have established self-sustaining wild populations in over 35 countries, including the UK, where London now has over 12,000 wild individuals.",
+    "nativeRegions": [
+      "South Asia",
+      "Sub-Saharan Africa",
+      "Southeast Asia (partly introduced)"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal",
+      "Introduced"
+    ]
+  },
+  {
+    "regionId": "SEA_B_013",
+    "name": "Red-breasted Parakeet",
+    "species": "Psittacula alexandri",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Psittaculidae",
+    "order": "Psittaciformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Parakeets",
+      "Chicks"
+    ],
+    "collectiveNoun": "A pandemonium of parakeets",
+    "conservationStatus": "Near Threatened",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Tropical forest",
+      "Forest edges",
+      "Urban",
+      "Plantations",
+      "Mangroves"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 15,
+      "max": 30
+    },
+    "weightKg": {
+      "min": 0.09,
+      "max": 0.175
+    },
+    "lengthCm": {
+      "min": 33,
+      "max": 38
+    },
+    "description": "The red-breasted parakeet is one of the most attractive parakeets in Southeast Asia, with grey-green plumage, a salmon-pink breast, black chin stripe, and red upper bill. It inhabits forest, plantations, and increasingly urban areas. Males and females are distinguishable — females have a dull reddish lower mandible while males have red upper and black lower. Highly gregarious, it roosts and forages in noisy, fast-flying flocks and is a popular cage bird.",
+    "funFact": "The red-breasted parakeet can be reliably sexed by bill colour alone — males have a red upper mandible with black lower, while females have a fully dull reddish bill on both upper and lower.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Forest",
+      "Urban",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_014",
+    "name": "Banded Bay Cuckoo",
+    "species": "Cacomantis sonneratii",
+    "type": "Bird",
+    "rarity": "Uncommon",
+    "family": "Cuculidae",
+    "order": "Cuculiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Cuckoos",
+      "Chicks"
+    ],
+    "collectiveNoun": "A covert of cuckoos",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Tropical forest",
+      "Forest edges",
+      "Plantations",
+      "Gardens"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.022,
+      "max": 0.034
+    },
+    "lengthCm": {
+      "min": 22,
+      "max": 24
+    },
+    "description": "The banded bay cuckoo is a small, secretive cuckoo with rufous-brown upperparts and a finely barred white underside. A brood parasite like its relatives, it lays its eggs in the nests of babblers and other small birds, whose own chicks it displaces. Heard far more often than seen, its distinctive plaintive, descending four-note whistle is a characteristic sound of Southeast Asian forest edges during the breeding season.",
+    "funFact": "Cuckoo chicks hatch earlier than their hosts' own eggs and instinctively eject all other eggs from the nest within hours of hatching — blind, naked, and just hours old, they perform this behaviour with remarkable precision.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Forest",
+      "Diurnal",
+      "Brood parasite"
+    ]
+  },
+  {
+    "regionId": "SEA_B_015",
+    "name": "Greater Coucal",
+    "species": "Centropus sinensis",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Cuculidae",
+    "order": "Cuculiformes",
+    "young": "Chick",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Coucals",
+      "Chicks"
+    ],
+    "collectiveNoun": "A covert of coucals",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Forest edges",
+      "Scrubland",
+      "Gardens",
+      "Grassland",
+      "Wetland edges",
+      "Farmland"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.18,
+      "max": 0.24
+    },
+    "lengthCm": {
+      "min": 46,
+      "max": 52
+    },
+    "description": "The greater coucal is a large, crow-sized member of the cuckoo family with glossy blue-black plumage and rich chestnut-red wings. Unlike most cuckoos, it raises its own young rather than parasitising other birds. A slow, heavy bird that prefers to walk through dense undergrowth, it hunts lizards, large insects, eggs, and small rodents. Its deep, resonant 'boop-boop-boop' call is one of the most characteristic sounds of rural Southeast Asia.",
+    "funFact": "Unlike most of its cuckoo relatives, the greater coucal builds its own nest and raises its own young — making it one of the few members of the cuckoo family that is not a brood parasite.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Forest edge",
+      "Urban",
+      "Diurnal"
+    ]
+  },
+  {
+    "regionId": "SEA_B_016",
+    "name": "Spotted Dove",
+    "species": "Spilopelia chinensis",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Columbidae",
+    "order": "Columbiformes",
+    "young": "Squab",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Doves",
+      "Squabs"
+    ],
+    "collectiveNoun": "A flight of doves",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Farmland",
+      "Forest edges",
+      "Parks"
+    ],
+    "diet": "Herbivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.087,
+      "max": 0.14
+    },
+    "lengthCm": {
+      "min": 28,
+      "max": 32
+    },
+    "description": "The spotted dove is one of the most familiar and widespread birds of urban Southeast Asia, a pinkish-brown dove with a distinctive black-and-white spotted neck patch. It walks calmly on the ground foraging for seeds, completely untroubled by human presence. Its gentle, repetitive cooing — 'coo-coo-coo-coo' — is a constant background sound of tropical gardens and city parks. Introduced to Australia, Hawaii, and many other regions, it has become an established alien species.",
+    "funFact": "Spotted doves, like all pigeons and doves, produce 'crop milk' — a protein-rich secretion from the lining of the crop that both parents feed to newly hatched squabs before they can digest solid food.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "East Asia",
+      "Introduced widely"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal",
+      "Garden"
+    ]
+  },
+  {
+    "regionId": "SEA_B_017",
+    "name": "Zebra Dove",
+    "species": "Geopelia striata",
+    "type": "Bird",
+    "rarity": "Common",
+    "family": "Columbidae",
+    "order": "Columbiformes",
+    "young": "Squab",
+    "gender": {
+      "male": "Cock",
+      "female": "Hen"
+    },
+    "plurals": [
+      "Doves",
+      "Squabs"
+    ],
+    "collectiveNoun": "A flight of doves",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Farmland",
+      "Grassland",
+      "Coastal scrub"
+    ],
+    "diet": "Herbivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 15
+    },
+    "weightKg": {
+      "min": 0.05,
+      "max": 0.075
+    },
+    "lengthCm": {
+      "min": 20,
+      "max": 23
+    },
+    "description": "The zebra dove is a tiny, delicately barred dove with fine black-and-white streaking on its neck and breast that resembles a zebra's stripes — giving it its name. One of the most abundant birds in urban Southeast Asia, it walks along pavements, garden paths, and outdoor café tables with total confidence. Its soft, rapid cooing is one of the most soothing sounds of the tropical dawn. It is extremely popular as a caged songbird in Thailand and Malaysia.",
+    "funFact": "The zebra dove is so prized as a caged songbird in Thailand and Malaysia that competitive calling contests are held, with champion birds worth thousands of dollars — judges score their distinctive rapid cooing on duration, tone, and rhythm.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "Malay Peninsula",
+      "Java",
+      "Introduced widely"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Diurnal",
+      "Garden"
+    ]
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "regionId": "SEA_A_001",
+    "name": "Cane Toad",
+    "species": "Rhinella marina",
+    "type": "Amphibian",
+    "rarity": "Common",
+    "family": "Bufonidae",
+    "order": "Anura",
+    "young": "Tadpole",
+    "gender": {
+      "male": "Toad",
+      "female": "Toad"
+    },
+    "plurals": [
+      "Cane toads",
+      "Tadpoles"
+    ],
+    "collectiveNoun": "A knot of toads",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Caution",
+    "dangerNotes": "Skin and parotoid glands secrete bufotoxin — toxic if ingested by pets or humans. Do not let dogs mouth or eat them. Wash hands after handling. Not dangerous to touch briefly but avoid contact with eyes or mouth.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Farmland",
+      "Grassland",
+      "Gardens",
+      "Wetlands"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 10,
+      "max": 15
+    },
+    "weightKg": {
+      "min": 0.2,
+      "max": 1.2
+    },
+    "lengthCm": {
+      "min": 10,
+      "max": 24
+    },
+    "description": "The cane toad is the world's largest toad and one of the most successful invasive species on Earth, native to Central and South America but now established across Southeast Asia, Australia, the Pacific Islands, and parts of Africa. Introduced repeatedly to control agricultural pests — most famously to Queensland, Australia in 1935 — it has instead devastated native wildlife through competition and toxicity. A highly adaptable nocturnal predator, it eats almost anything that fits in its mouth.",
+    "funFact": "Australia's cane toad population, descended from just 102 individuals introduced in 1935, is now estimated at over 200 million — and they are still spreading westward at up to 60 kilometres per year.",
+    "nativeRegions": [
+      "Central America",
+      "South America",
+      "Introduced worldwide"
+    ],
+    "tags": [
+      "Wild",
+      "Invasive",
+      "Nocturnal",
+      "Urban",
+      "Toxic"
+    ]
+  },
+  {
+    "regionId": "SEA_A_002",
+    "name": "American Bullfrog",
+    "species": "Lithobates catesbeianus",
+    "type": "Amphibian",
+    "rarity": "Common",
+    "family": "Ranidae",
+    "order": "Anura",
+    "young": "Tadpole",
+    "gender": {
+      "male": "Bull",
+      "female": "Cow"
+    },
+    "plurals": [
+      "Bullfrogs",
+      "Tadpoles",
+      "Bulls",
+      "Cows"
+    ],
+    "collectiveNoun": "An army of frogs",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "No threat to humans. Carrier of chytrid fungus (Bd), a devastating amphibian disease. Do not move individuals between water bodies.",
+    "habitat": [
+      "Ponds",
+      "Lakes",
+      "Rivers",
+      "Rice paddies",
+      "Wetlands",
+      "Urban water features"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 7,
+      "max": 16
+    },
+    "weightKg": {
+      "min": 0.15,
+      "max": 0.8
+    },
+    "lengthCm": {
+      "min": 9,
+      "max": 20
+    },
+    "description": "The American bullfrog is the largest frog in North America and one of the most destructive invasive species globally, introduced to over 40 countries through the food and pet trades. It eats virtually anything it can overpower — fish, smaller frogs, rodents, small birds, and snakes — and outcompetes native amphibians for breeding sites. It is also a major carrier of the chytrid fungus responsible for catastrophic amphibian declines worldwide. Its deep resonant call — a long booming 'jug-o-rum' — is heard at night near water.",
+    "funFact": "The American bullfrog is implicated in the extinction of multiple amphibian species worldwide — it carries the deadly chytrid fungus without succumbing to it, acting as a disease reservoir that has devastated native frog populations wherever it has been introduced.",
+    "nativeRegions": [
+      "North America",
+      "Introduced worldwide"
+    ],
+    "tags": [
+      "Wild",
+      "Invasive",
+      "Aquatic",
+      "Nocturnal"
+    ]
+  },
+  {
+    "regionId": "SEA_A_003",
+    "name": "Asian Common Toad",
+    "species": "Duttaphrynus melanostictus",
+    "type": "Amphibian",
+    "rarity": "Common",
+    "family": "Bufonidae",
+    "order": "Anura",
+    "young": "Tadpole",
+    "plurals": [
+      "Toads",
+      "Tadpoles"
+    ],
+    "collectiveNoun": "A knot of toads",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Caution",
+    "dangerNotes": "Parotoid glands behind the head secrete mild toxic secretions — irritating to eyes and mouth. Wash hands after handling. Non-lethal to humans but can sicken small pets if mouthed.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Gardens",
+      "Farmland",
+      "Forest edges",
+      "Wetlands"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.02,
+      "max": 0.15
+    },
+    "lengthCm": {
+      "min": 5,
+      "max": 15
+    },
+    "description": "The Asian common toad is the most widespread and familiar toad across South and Southeast Asia — the region's equivalent of the European common toad. Found from Pakistan to Indonesia, it thrives in gardens, farmland, drains, and city parks, emerging after dark to hunt insects, worms, and small invertebrates. A welcome visitor to gardens, it consumes large numbers of pest insects each night. Its warty brown skin and prominent ridged skull give it a rugged, prehistoric look.",
+    "funFact": "A single Asian common toad can consume thousands of insects per night — making it one of the most effective natural pest controllers in tropical gardens, particularly valued by farmers for reducing mosquito and agricultural pest populations.",
+    "nativeRegions": [
+      "South Asia",
+      "Southeast Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Nocturnal",
+      "Urban",
+      "Commensal",
+      "Garden"
+    ]
+  }
+]

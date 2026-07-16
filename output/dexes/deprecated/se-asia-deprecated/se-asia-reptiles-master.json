@@ -1,0 +1,430 @@
+[
+  {
+    "regionId": "SEA_R_001",
+    "name": "Common House Gecko",
+    "species": "Hemidactylus frenatus",
+    "type": "Reptile",
+    "rarity": "Common",
+    "family": "Gekkonidae",
+    "order": "Squamata",
+    "young": "Hatchling",
+    "plurals": [
+      "Geckos",
+      "Hatchlings"
+    ],
+    "collectiveNoun": "A lounge of geckos",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Completely harmless. A welcome resident that eats mosquitoes and other insects.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Buildings",
+      "Forest edges",
+      "Gardens"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 3,
+      "max": 8
+    },
+    "weightKg": {
+      "min": 0.002,
+      "max": 0.007
+    },
+    "lengthCm": {
+      "min": 7,
+      "max": 15
+    },
+    "description": "The common house gecko is the most widespread and familiar gecko in Southeast Asia, found on the walls and ceilings of virtually every home, shop, and restaurant after dark. A supreme coloniser, it has spread across the tropics aboard cargo ships and now inhabits every continent except Antarctica. Its distinctive chirping call — 'chak chak chak' — is a defining sound of tropical nights across the region.",
+    "funFact": "The common house gecko produces a distinctive chirping call used for communication — in many Southeast Asian cultures, counting the number of calls is considered an omen for good or bad luck.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Introduced worldwide"
+    ],
+    "tags": [
+      "Wild",
+      "Nocturnal",
+      "Urban",
+      "Commensal"
+    ]
+  },
+  {
+    "regionId": "SEA_R_002",
+    "name": "Tokay Gecko",
+    "species": "Gekko gecko",
+    "type": "Reptile",
+    "rarity": "Common",
+    "family": "Gekkonidae",
+    "order": "Squamata",
+    "young": "Hatchling",
+    "plurals": [
+      "Tokays",
+      "Hatchlings"
+    ],
+    "collectiveNoun": "A lounge of geckos",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Caution",
+    "dangerNotes": "Will bite hard and hold on if handled. Bite is painful but not dangerous. Can draw blood. Do not handle.",
+    "habitat": [
+      "Urban",
+      "Suburban",
+      "Tropical forest",
+      "Buildings",
+      "Limestone cliffs"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 7,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.03,
+      "max": 0.08
+    },
+    "lengthCm": {
+      "min": 25,
+      "max": 35
+    },
+    "description": "The tokay gecko is the largest gecko in Southeast Asia and one of the most recognisable, with a stocky blue-grey body covered in vivid orange-red spots. Its loud, distinctive two-syllable call — 'to-KAY, to-KAY' — booms through tropical nights and is responsible for its common name. A powerful predator of insects, small lizards, and even young rodents, it is highly territorial and will bite aggressively if disturbed.",
+    "funFact": "The tokay gecko's bite force is extraordinary relative to its size — it can bite hard enough to draw blood and will clamp down and refuse to release, earning it a fearsome reputation among locals.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China",
+      "Pacific Islands"
+    ],
+    "tags": [
+      "Wild",
+      "Nocturnal",
+      "Urban",
+      "Forest"
+    ]
+  },
+  {
+    "regionId": "SEA_R_003",
+    "name": "Asian Water Monitor",
+    "species": "Varanus salvator",
+    "type": "Reptile",
+    "rarity": "Common",
+    "family": "Varanidae",
+    "order": "Squamata",
+    "young": "Hatchling",
+    "plurals": [
+      "Water monitors",
+      "Hatchlings"
+    ],
+    "collectiveNoun": "A bank of monitor lizards",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Caution",
+    "dangerNotes": "Can bite and whip with its powerful tail — both are painful and the bite carries bacteria. Large adults are formidable. Do not corner or approach.",
+    "habitat": [
+      "Rivers",
+      "Mangroves",
+      "Urban parks",
+      "Farmland",
+      "Coastal areas",
+      "Sewers"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 15,
+      "max": 25
+    },
+    "weightKg": {
+      "min": 1,
+      "max": 25
+    },
+    "lengthCm": {
+      "min": 100,
+      "max": 300
+    },
+    "description": "The Asian water monitor is the second heaviest lizard on Earth and one of the most adaptable reptiles in Southeast Asia, thriving in everything from pristine mangroves to city drains and rubbish dumps. A powerful swimmer, it hunts fish, crabs, carrion, eggs, and small mammals. Revered in some cultures and feared in others, it is an essential scavenger in both natural and urban ecosystems throughout the region.",
+    "funFact": "The Asian water monitor is one of the few lizards known to actively scavenge human waste in cities — Bangkok's Lumphini Park is famous for its population of large individuals that treat park visitors with total indifference.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Sri Lanka",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Aquatic",
+      "Urban",
+      "Forest",
+      "Carnivore"
+    ]
+  },
+  {
+    "regionId": "SEA_R_004",
+    "name": "Green Crested Lizard",
+    "species": "Bronchocela cristatella",
+    "type": "Reptile",
+    "rarity": "Common",
+    "family": "Agamidae",
+    "order": "Squamata",
+    "young": "Hatchling",
+    "plurals": [
+      "Lizards",
+      "Hatchlings"
+    ],
+    "collectiveNoun": "A lounge of lizards",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Completely harmless.",
+    "habitat": [
+      "Tropical forest",
+      "Forest edges",
+      "Gardens",
+      "Urban parks",
+      "Plantations"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 3,
+      "max": 8
+    },
+    "weightKg": {
+      "min": 0.02,
+      "max": 0.06
+    },
+    "lengthCm": {
+      "min": 25,
+      "max": 55
+    },
+    "description": "The green crested lizard is a slender, long-tailed agamid with vivid emerald-green colouring and a distinctive serrated crest along neck and back. An arboreal species, it perches motionless on branches and tree trunks where its colouring provides near-perfect camouflage. When stressed it can turn brown or dark — the basis of the widespread but false belief that it is a chameleon. A swift, agile hunter of insects and small invertebrates.",
+    "funFact": "The green crested lizard is often mistaken for a chameleon because it can shift from vivid green to dark brown when stressed — but unlike true chameleons, it has no special colour-change cells and does this through simple pigment redistribution.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "Malay Peninsula",
+      "Borneo",
+      "Sumatra"
+    ],
+    "tags": [
+      "Wild",
+      "Arboreal",
+      "Forest",
+      "Urban"
+    ]
+  },
+  {
+    "regionId": "SEA_R_005",
+    "name": "Sun Skink",
+    "species": "Eutropis multifasciata",
+    "type": "Reptile",
+    "rarity": "Common",
+    "family": "Scincidae",
+    "order": "Squamata",
+    "young": "Hatchling",
+    "plurals": [
+      "Skinks",
+      "Hatchlings"
+    ],
+    "collectiveNoun": "A group of skinks",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Completely harmless. Will flee if approached.",
+    "habitat": [
+      "Forest edges",
+      "Gardens",
+      "Grassland",
+      "Agricultural land",
+      "Urban parks"
+    ],
+    "diet": "Omnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 5,
+      "max": 10
+    },
+    "weightKg": {
+      "min": 0.02,
+      "max": 0.07
+    },
+    "lengthCm": {
+      "min": 15,
+      "max": 28
+    },
+    "description": "The many-lined sun skink is one of the most commonly seen lizards across Southeast Asia, a robust, glossy-scaled skink that loves to bask in sunny patches on logs, rocks, and footpaths. Named for its habit of sunbathing, it has a brown back with pale lateral stripes and a copper-orange flush to the flanks. A quick, alert predator of insects and small invertebrates, it retreats rapidly into leaf litter or undergrowth at the first sign of danger.",
+    "funFact": "Sun skinks are one of the few skink species in the region that give birth to live young rather than laying eggs — retaining developing embryos internally until they are fully formed.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China",
+      "Pacific Islands"
+    ],
+    "tags": [
+      "Wild",
+      "Urban",
+      "Forest edge",
+      "Grassland"
+    ]
+  },
+  {
+    "regionId": "SEA_R_006",
+    "name": "Monocled Cobra",
+    "species": "Naja kaouthia",
+    "type": "Reptile",
+    "rarity": "Uncommon",
+    "family": "Elapidae",
+    "order": "Squamata",
+    "young": "Snakelet",
+    "plurals": [
+      "Cobras",
+      "Snakelets"
+    ],
+    "collectiveNoun": "A quiver of cobras",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Deadly",
+    "dangerNotes": "Extremely dangerous. Potent neurotoxic and cytotoxic venom causes paralysis and tissue destruction — bites are frequently fatal without treatment. Spreads a broad hood when threatened. Seek emergency care immediately if bitten.",
+    "habitat": [
+      "Lowland forest",
+      "Agricultural land",
+      "Rice paddies",
+      "Scrubland",
+      "Urban fringes",
+      "Mangroves"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 15,
+      "max": 20
+    },
+    "weightKg": {
+      "min": 0.5,
+      "max": 2.5
+    },
+    "lengthCm": {
+      "min": 100,
+      "max": 180
+    },
+    "description": "The monocled cobra is one of the most medically significant snakes in Southeast Asia, responsible for a large proportion of serious snakebite cases across the region. Named for the distinctive O-shaped or monocle marking on the back of its hood, it inhabits agricultural land, forest edges, and is regularly found near villages. Unlike the spitting cobra, it does not spit venom, but its bite delivers a potent combination of neurotoxins and cytotoxins.",
+    "funFact": "The monocled cobra's distinctive hood marking — a single O-shaped 'eye' on the back — is thought to function as a false face to confuse and deter predators approaching from behind.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Venomous",
+      "Deadly",
+      "Nocturnal",
+      "Agricultural"
+    ]
+  },
+  {
+    "regionId": "SEA_R_007",
+    "name": "Reticulated Python",
+    "species": "Malayopython reticulatus",
+    "type": "Reptile",
+    "rarity": "Uncommon",
+    "family": "Pythonidae",
+    "order": "Squamata",
+    "young": "Snakelet",
+    "plurals": [
+      "Pythons",
+      "Snakelets"
+    ],
+    "collectiveNoun": "A den of pythons",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Keep Back",
+    "dangerNotes": "The world's longest snake — adults regularly exceed 5 metres and have killed humans by constriction. Never approach large individuals alone. Even mid-sized adults are capable of serious injury. Back away and do not provoke.",
+    "habitat": [
+      "Tropical rainforest",
+      "Mangroves",
+      "Rivers",
+      "Agricultural land",
+      "Urban areas"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Nocturnal",
+    "lifespanYears": {
+      "min": 20,
+      "max": 30
+    },
+    "weightKg": {
+      "min": 10,
+      "max": 110
+    },
+    "lengthCm": {
+      "min": 200,
+      "max": 800
+    },
+    "description": "The reticulated python is the world's longest snake, with verified individuals exceeding 6 metres and unverified records beyond 8. Its intricate golden, black, and white geometric patterning — the 'reticulation' — gives it its name. Supremely adaptable, it inhabits rainforest, mangroves, and urban drains alike, and is a regular visitor to suburban areas across Southeast Asia. A powerful ambush predator, it has on rare occasions killed and swallowed adult humans.",
+    "funFact": "The reticulated python holds the record for the world's longest snake — a specimen from Indonesia measured at 7.67 metres, and local accounts of individuals exceeding 8 metres are considered credible.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Malay Peninsula",
+      "Philippines",
+      "Indonesia"
+    ],
+    "tags": [
+      "Wild",
+      "Aquatic",
+      "Forest",
+      "Urban",
+      "Constrictor",
+      "Dangerous"
+    ]
+  },
+  {
+    "regionId": "SEA_R_008",
+    "name": "Oriental Whip Snake",
+    "species": "Ahaetulla prasina",
+    "type": "Reptile",
+    "rarity": "Common",
+    "family": "Colubridae",
+    "order": "Squamata",
+    "young": "Snakelet",
+    "plurals": [
+      "Whip snakes",
+      "Snakelets"
+    ],
+    "collectiveNoun": "A nest of snakes",
+    "conservationStatus": "Least Concern",
+    "dangerLevel": "Safe",
+    "dangerNotes": "Rear-fanged and mildly venomous but not medically significant to humans. Bites are very rare. Harmless in practice.",
+    "habitat": [
+      "Tropical forest",
+      "Forest edges",
+      "Gardens",
+      "Plantations",
+      "Urban trees"
+    ],
+    "diet": "Carnivore",
+    "activeTime": "Diurnal",
+    "lifespanYears": {
+      "min": 8,
+      "max": 15
+    },
+    "weightKg": {
+      "min": 0.05,
+      "max": 0.2
+    },
+    "lengthCm": {
+      "min": 80,
+      "max": 190
+    },
+    "description": "The oriental whip snake is an extraordinarily slender arboreal snake, so thin relative to its length that it resembles a green vine or tendril hanging among foliage. Vivid lime-green with a pointed snout, it moves slowly and deliberately through vegetation hunting lizards and frogs. It has horizontally keyhole-shaped pupils that give it excellent binocular vision — unusually precise for a snake — allowing it to judge distance when striking from a branch.",
+    "funFact": "The oriental whip snake has keyhole-shaped horizontal pupils that give it binocular depth perception — one of the very few snakes capable of genuinely judging distance, a crucial adaptation for striking at prey from branches.",
+    "nativeRegions": [
+      "Southeast Asia",
+      "South Asia",
+      "Southern China"
+    ],
+    "tags": [
+      "Wild",
+      "Arboreal",
+      "Forest",
+      "Diurnal"
+    ]
+  }
+]
