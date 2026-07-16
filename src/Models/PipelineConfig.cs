@@ -5,7 +5,7 @@ public record PipelineConfig
     public ColConfig? ColConfig { get; init; }
     public GbifConfig? GbifConfig { get; init; }
     public required DexConfig DexConfig { get; init; }
-    public required string PipelineRoot { get; init; }
+    public required string SolutionDirectory { get; init; }
     public required string MetadataFileName { get; init; }
     public required Folders Folders { get; init; }
 }

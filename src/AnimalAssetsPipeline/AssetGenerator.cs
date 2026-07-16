@@ -21,7 +21,7 @@ public class AssetGenerator
     public async Task ExecuteFlowAsync(string solutionDirectory, string[] args)
     {
         var resourcePathRoot = _config.DexConfig.ResourcePathRoot;
-        var outputPathRoot = Path.Combine(_config.PipelineRoot, _config.Folders.Output).Replace('\\', '/');
+        var outputPathRoot = Path.Combine(_config.SolutionDirectory, _config.Folders.Output).Replace('\\', '/');
         Directory.CreateDirectory(outputPathRoot);
 
         var dexResult = await HandleJsonDexFetching();

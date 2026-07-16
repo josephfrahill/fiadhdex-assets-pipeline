@@ -9,22 +9,26 @@
     {
       "dexId": "GL001",
       "name": "Domestic Dog",
+      "young": "Puppy",
+      "gender": {
+        "male": "Dog",
+        "female": "Bitch"
+      },
+      "plurals": [
+        "Dogs",
+        "Puppies"
+      ],
+      "otherNames": [
+        "Feral Dog",
+        "Wild Dog"
+      ],
       "scientificName": "Canis familiaris",
       "rank": "Species",
       "genus": "Canis",
       "family": "Canidae",
       "order": "Carnivora",
-      "type": "mammalia",
+      "type": "Mammalia",
       "rarity": "Common",
-      "gender": {
-        "male": "Dog",
-        "female": "Bitch"
-      },
-      "young": "Puppy",
-      "plurals": [
-        "Dogs",
-        "Puppies"
-      ],
       "collectiveNoun": "A pack of dogs",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -63,24 +67,45 @@
     {
       "dexId": "GL002",
       "name": "Domestic Cat",
-      "scientificName": "Felis catus",
-      "rank": "Species",
-      "genus": "Felis",
-      "family": "Felidae",
-      "order": "Carnivora",
-      "type": "mammalia",
-      "rarity": "Common",
+      "young": "Kitten",
       "gender": {
         "male": "Tom",
         "female": "Queen"
       },
-      "young": "Kitten",
       "plurals": [
         "Cats",
         "Kittens",
         "Toms",
         "Queens"
       ],
+      "otherNames": [
+        "Alley Cat",
+        "Calico Cat",
+        "Cat",
+        "Domestic Cat",
+        "Domestic long hair",
+        "Domestic short hair",
+        "Feral Cat",
+        "House Cat",
+        "Kitty",
+        "Kitty-Cat",
+        "Moggie",
+        "Puss",
+        "Pussy",
+        "Pussycat",
+        "Serengeti Cat",
+        "Stray Cat",
+        "Tabby",
+        "Tortoiseshell Cat",
+        "Tuxedo Cat"
+      ],
+      "scientificName": "Felis catus",
+      "rank": "Species",
+      "genus": "Felis",
+      "family": "Felidae",
+      "order": "Carnivora",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A clowder of cats",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -118,24 +143,32 @@
     {
       "dexId": "GL003",
       "name": "Domestic Rabbit",
-      "scientificName": "Oryctolagus cuniculus",
-      "rank": "Species",
-      "genus": "Oryctolagus",
-      "family": "Leporidae",
-      "order": "Lagomorpha",
-      "type": "mammalia",
-      "rarity": "Common",
+      "young": "Kitten",
       "gender": {
         "male": "Buck",
         "female": "Doe"
       },
-      "young": "Kitten",
       "plurals": [
         "Rabbits",
         "Kittens",
         "Bucks",
         "Does"
       ],
+      "otherNames": [
+        "Common Rabit",
+        "Coney",
+        "Cony",
+        "English Rabbit",
+        "European Rabbit",
+        "Wild Rabbit"
+      ],
+      "scientificName": "Oryctolagus cuniculus",
+      "rank": "Species",
+      "genus": "Oryctolagus",
+      "family": "Leporidae",
+      "order": "Lagomorpha",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A colony of rabbits",
       "conservationStatus": "Domesticated (wild ancestor: Least Concern)",
       "dangerLevel": "Safe",
@@ -174,19 +207,12 @@
     {
       "dexId": "GL004",
       "name": "Domestic Cow",
-      "scientificName": "Bos taurus",
-      "rank": "Species",
-      "genus": "Bos",
-      "family": "Bovidae",
-      "order": "Artiodactyla",
-      "type": "mammalia",
-      "rarity": "Common",
+      "young": "Calf",
       "gender": {
         "male": "Bull",
         "female": "Cow",
         "maleCastrated": "Steer"
       },
-      "young": "Calf",
       "plurals": [
         "Cattle",
         "Cows",
@@ -194,6 +220,30 @@
         "Bulls",
         "Steers"
       ],
+      "otherNames": [
+        "Beef Cattle",
+        "Bullock",
+        "Dairy Cow",
+        "European Cattle",
+        "Feral Cattle",
+        "Heck Cattle",
+        "Heifer",
+        "Hereford",
+        "Highland",
+        "Long Horn",
+        "Ox",
+        "Park Cattle",
+        "Scottish Cattle",
+        "Taurine Cattle",
+        "Wild Cattle"
+      ],
+      "scientificName": "Bos taurus",
+      "rank": "Species",
+      "genus": "Bos",
+      "family": "Bovidae",
+      "order": "Artiodactyla",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A herd of cattle",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -231,19 +281,12 @@
     {
       "dexId": "GL005",
       "name": "Domestic Pig",
-      "scientificName": "Sus domesticus",
-      "rank": "Species",
-      "genus": "Sus",
-      "family": "Suidae",
-      "order": "Artiodactyla",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Piglet",
       "gender": {
         "male": "Boar",
         "female": "Sow",
         "maleCastrated": "Barrow"
       },
-      "young": "Piglet",
       "plurals": [
         "Pigs",
         "Piglets",
@@ -251,6 +294,16 @@
         "Sows",
         "Barrows"
       ],
+      "otherNames": [
+        "Feral Pig"
+      ],
+      "scientificName": "Sus domesticus",
+      "rank": "Species",
+      "genus": "Sus",
+      "family": "Suidae",
+      "order": "Artiodactyla",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A sounder of pigs",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -287,13 +340,7 @@
     {
       "dexId": "GL006",
       "name": "Domestic Horse",
-      "scientificName": "Equus caballus",
-      "rank": "Species",
-      "genus": "Equus",
-      "family": "Equidae",
-      "order": "Perissodactyla",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Foal",
       "gender": {
         "male": "Stallion",
         "female": "Mare",
@@ -301,7 +348,6 @@
         "femaleYoung": "Filly",
         "maleCastrated": "Gelding"
       },
-      "young": "Foal",
       "plurals": [
         "Horses",
         "Foals",
@@ -311,6 +357,39 @@
         "Colts",
         "Fillies"
       ],
+      "otherNames": [
+        "Alberta Nountain Horse",
+        "American Mustang",
+        "Assateague Horse",
+        "Banker Horse",
+        "Brumby",
+        "Camargue Horse",
+        "Chincoteague Pony",
+        "Draft Horse",
+        "Exmoor Pony",
+        "Feral Horse",
+        "Jicarilla Wild Horse",
+        "Kaapsehoop Horse",
+        "Kaapsehoop Wild Horse",
+        "Kefalonian Horse",
+        "Misaki",
+        "Mudder",
+        "Mustang",
+        "Pony",
+        "Primitive Polish Horse",
+        "Shetland Pony",
+        "Wild Horse",
+        "Wild Mustang",
+        "Wild Pony",
+        "Wildie"
+      ],
+      "scientificName": "Equus caballus",
+      "rank": "Species",
+      "genus": "Equus",
+      "family": "Equidae",
+      "order": "Perissodactyla",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A herd of horses",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -349,24 +428,27 @@
     {
       "dexId": "GL007",
       "name": "Domestic Goat",
-      "scientificName": "Capra hircus",
-      "rank": "Species",
-      "genus": "Capra",
-      "family": "Bovidae",
-      "order": "Artiodactyla",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Kid",
       "gender": {
         "male": "Billy",
         "female": "Nanny"
       },
-      "young": "Kid",
       "plurals": [
         "Goats",
         "Kids",
         "Billies",
         "Nannies"
       ],
+      "otherNames": [
+        "Feral Goat"
+      ],
+      "scientificName": "Capra hircus",
+      "rank": "Species",
+      "genus": "Capra",
+      "family": "Bovidae",
+      "order": "Artiodactyla",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A herd of goats",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -405,19 +487,12 @@
     {
       "dexId": "GL008",
       "name": "Domestic Sheep",
-      "scientificName": "Ovis aries",
-      "rank": "Species",
-      "genus": "Ovis",
-      "family": "Bovidae",
-      "order": "Artiodactyla",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Lamb",
       "gender": {
         "male": "Ram",
         "female": "Ewe",
         "maleCastrated": "Wether"
       },
-      "young": "Lamb",
       "plurals": [
         "Sheep",
         "Lambs",
@@ -425,6 +500,18 @@
         "Ewes",
         "Wethers"
       ],
+      "otherNames": [
+        "Feral Sheep",
+        "Mouflon",
+        "Red Sheep"
+      ],
+      "scientificName": "Ovis aries",
+      "rank": "Species",
+      "genus": "Ovis",
+      "family": "Bovidae",
+      "order": "Artiodactyla",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A flock of sheep",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -463,24 +550,27 @@
     {
       "dexId": "GL009",
       "name": "House Mouse",
-      "scientificName": "Mus (Mus) musculus",
-      "rank": "Species",
-      "genus": "Mus",
-      "family": "Muridae",
-      "order": "Rodentia",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Pinky",
       "gender": {
         "male": "Buck",
         "female": "Doe"
       },
-      "young": "Pinky",
       "plurals": [
         "Mice",
         "Pinkies",
         "Bucks",
         "Does"
       ],
+      "otherNames": [
+        "Ratón casero"
+      ],
+      "scientificName": "Mus (Mus) musculus",
+      "rank": "Species",
+      "genus": "Mus",
+      "family": "Muridae",
+      "order": "Rodentia",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A mischief of mice",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
@@ -520,24 +610,43 @@
     {
       "dexId": "GL010",
       "name": "Brown Rat",
-      "scientificName": "Rattus norvegicus",
-      "rank": "Species",
-      "genus": "Rattus",
-      "family": "Muridae",
-      "order": "Rodentia",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Pup",
       "gender": {
         "male": "Buck",
         "female": "Doe"
       },
-      "young": "Pup",
       "plurals": [
         "Rats",
         "Pups",
         "Bucks",
         "Does"
       ],
+      "otherNames": [
+        "Common Brown Rat",
+        "Common Rat",
+        "Domestic Rat",
+        "Dumbo Rat",
+        "Fancy Rat",
+        "Hanover Rat",
+        "Lab Rat",
+        "Laboratory Rat",
+        "Norway Rat",
+        "Norwegian Rat",
+        "Pet Rat",
+        "Rata parda",
+        "Sewer Rat",
+        "Street Rat",
+        "Water Rat",
+        "Wharf Rat",
+        "Wanderratte"
+      ],
+      "scientificName": "Rattus norvegicus",
+      "rank": "Species",
+      "genus": "Rattus",
+      "family": "Muridae",
+      "order": "Rodentia",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A mischief of rats",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
@@ -577,24 +686,30 @@
     {
       "dexId": "GL011",
       "name": "Black Rat",
-      "scientificName": "Rattus rattus",
-      "rank": "Species",
-      "genus": "Rattus",
-      "family": "Muridae",
-      "order": "Rodentia",
-      "type": "Mammal",
-      "rarity": "Common",
+      "young": "Pup",
       "gender": {
         "male": "Buck",
         "female": "Doe"
       },
-      "young": "Pup",
       "plurals": [
         "Rats",
         "Pups",
         "Bucks",
         "Does"
       ],
+      "otherNames": [
+        "Common House Rat",
+        "House Rat",
+        "Roof Rat",
+        "Ship Rat"
+      ],
+      "scientificName": "Rattus rattus",
+      "rank": "Species",
+      "genus": "Rattus",
+      "family": "Muridae",
+      "order": "Rodentia",
+      "type": "Mammalia",
+      "rarity": "Common",
       "collectiveNoun": "A mischief of rats",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
@@ -634,25 +749,30 @@
     },
     {
       "dexId": "GL012",
-      "name": "Rock Pigeon",
-      "scientificName": "Columba livia",
-      "rank": "Species",
-      "genus": "Columba",
-      "family": "Columbidae",
-      "order": "Columbiformes",
-      "type": "aves",
-      "rarity": "Common",
+      "name": "Common Pigeon",
+      "young": "Squab",
       "gender": {
         "male": "Cock",
         "female": "Hen"
       },
-      "young": "Squab",
       "plurals": [
         "Pigeons",
         "Squabs",
         "Cocks",
         "Hens"
       ],
+      "otherNames": [
+        "Feral Pigeon",
+        "Rock Dove",
+        "Rock Pigeon"
+      ],
+      "scientificName": "Columba livia",
+      "rank": "Species",
+      "genus": "Columba",
+      "family": "Columbidae",
+      "order": "Columbiformes",
+      "type": "Aves",
+      "rarity": "Common",
       "collectiveNoun": "A flock of pigeons",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
@@ -691,24 +811,30 @@
     {
       "dexId": "GL013",
       "name": "House Sparrow",
-      "scientificName": "Passer domesticus",
-      "rank": "Species",
-      "genus": "Passer",
-      "family": "Passeridae",
-      "order": "Passeriformes",
-      "type": "aves",
-      "rarity": "Common",
+      "young": "Chick",
       "gender": {
         "male": "Cock",
         "female": "Hen"
       },
-      "young": "Chick",
       "plurals": [
         "Sparrows",
         "Chicks",
         "Cocks",
         "Hens"
       ],
+      "otherNames": [
+        "Domestic Sparrow",
+        "English Sparrow",
+        "European Sparrow",
+        "Gutter Bird"
+      ],
+      "scientificName": "Passer domesticus",
+      "rank": "Species",
+      "genus": "Passer",
+      "family": "Passeridae",
+      "order": "Passeriformes",
+      "type": "Aves",
+      "rarity": "Common",
       "collectiveNoun": "A quarrel of sparrows",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
@@ -747,20 +873,13 @@
     {
       "dexId": "GL014",
       "name": "Domestic Chicken",
-      "scientificName": "Gallus gallus domesticus",
-      "rank": "Subspecies",
-      "genus": "Gallus",
-      "family": "Phasianidae",
-      "order": "Galliformes",
-      "type": "aves",
-      "rarity": "Common",
+      "young": "Chick",
       "gender": {
         "male": "Rooster",
         "female": "Hen",
         "maleYoung": "Cockerel",
         "femaleYoung": "Pullet"
       },
-      "young": "Chick",
       "plurals": [
         "Chickens",
         "Chicks",
@@ -769,6 +888,18 @@
         "Cockerels",
         "Pullets"
       ],
+      "otherNames": [
+        "Jungle Fowl",
+        "Red Jungle-fowl",
+        "Red Junglefowl"
+      ],
+      "scientificName": "Gallus gallus",
+      "rank": "Species",
+      "genus": "Gallus",
+      "family": "Phasianidae",
+      "order": "Galliformes",
+      "type": "Aves",
+      "rarity": "Common",
       "collectiveNoun": "A flock of chickens",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -807,23 +938,30 @@
     {
       "dexId": "GL015",
       "name": "Domestic Duck",
-      "scientificName": "Anas platyrhynchos domesticus",
-      "rank": "Subspecies",
-      "genus": "Anas",
-      "family": "Anatidae",
-      "order": "Anseriformes",
-      "type": "aves",
-      "rarity": "Common",
+      "young": "Duckling",
       "gender": {
         "male": "Drake",
         "female": "Duck"
       },
-      "young": "Duckling",
       "plurals": [
         "Ducks",
         "Ducklings",
-        "Drakes"
+        "Drakes",
+        "Mallards"
       ],
+      "otherNames": [
+        "Common Mallard",
+        "Mallard",
+        "Mallard Duck",
+        "Northern Mallard"
+      ],
+      "scientificName": "Anas platyrhynchos",
+      "rank": "Species",
+      "genus": "Anas",
+      "family": "Anatidae",
+      "order": "Anseriformes",
+      "type": "Aves",
+      "rarity": "Common",
       "collectiveNoun": "A paddling of ducks",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",

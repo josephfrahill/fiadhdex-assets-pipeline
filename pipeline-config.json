@@ -15,7 +15,7 @@
     "workingDexName": "global-dex.json",
     "resourcePathRoot": "resources/global-dex" // should reflect dir structure in R2
   },
-  "pipelineRoot": "C:/code/lifedex/pipeline", //sln dir
+  "solutionDirectory": "C:/code/lifedex/pipeline", //sln dir
   "metadataFileName": "animal-metadata.json",
   "folders": {
     "output": "output",

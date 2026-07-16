@@ -2,7 +2,6 @@
 
 public record Animal : AnimalBaseData
 {
-    //  public required string Species { get; init; }
     public Gender? Gender { get; init; }
     public required string Young { get; init; }
     public required string[] Plurals { get; init; }

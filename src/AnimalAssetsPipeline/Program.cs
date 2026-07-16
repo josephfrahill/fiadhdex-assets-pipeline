@@ -22,7 +22,6 @@ if (args.Length < 1)
 
 var solutionDirectory = Utils.GetSolutionDirectory();
 var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
-//var executingRoot = Path.Combine(solutionDirectory, "src", "AnimalAssetsPipeline").Replace('\\', '/');
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
@@ -104,8 +103,6 @@ switch (argAsInt)
             Console.WriteLine("No second arg for this flow.");
             return;
         }
-
-        //var creator = host.Services.GetRequiredService<DexCreator>();
 
         using var scope = host.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<LifeDexDbContext>();

@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
+    <File Path="output/dexes/global-dex.json" />
     <File Path="pipeline-config.json" />
     <File Path="python_scripts/rank-images.py" />
     <File Path="python_scripts/remove_backgrounds.py" />

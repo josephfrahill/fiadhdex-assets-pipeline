@@ -20,14 +20,10 @@ public class DexCreator
         _dbContext = context;
         _config = options.Value;
 
-        _dexesOutputPath = Path.Combine(_config.PipelineRoot, _config.Folders.Output, _config.Folders.Dexes);
+        _dexesOutputPath = Path.Combine(_config.SolutionDirectory, _config.Folders.Output, _config.Folders.Dexes);
         Directory.CreateDirectory(_dexesOutputPath);
     }
 
-
-    /// <summary>
-    /// var creator = await DexCreator.CreateAsync(dbContext, options);
-    /// </summary>
     public static async Task<DexCreator> InitialiseAsync(LifeDexDbContext context, IOptions<PipelineConfig> options)
     {
         var creator = new DexCreator(context, options);
@@ -80,7 +76,7 @@ public class DexCreator
 
         var countrySpecies = allSpecies.IntersectBy(countryOccurrencesIds, x => x.ColId).ToList();
 
-        var globalScientificNames = _globalDex.Animals.Select(x => x.ScientificName);
+        var globalScientificNames = _globalDex.Animals.Select(x => x.ScientificName).ToArray();
 
         var countrySpeciesWithoutGlobals = countrySpecies
             .Where(x => !globalScientificNames.Contains(x.ScientificName, StringComparer.OrdinalIgnoreCase)).ToArray();
@@ -120,7 +116,7 @@ public class DexCreator
             Animals = animals
         };
 
-        var differenceCount = animals.Count - countrySpeciesWithoutGlobals.Length;
+        var differenceCount = countrySpecies.Count - countrySpeciesWithoutGlobals.Length;
         Console.WriteLine($"Stripped {differenceCount} global entries from new dex of total {animals.Count} count.");
 
         var dexPath = Path.Combine(_dexesOutputPath, $"{countryData.Name.ToLower()}-dex.json.");

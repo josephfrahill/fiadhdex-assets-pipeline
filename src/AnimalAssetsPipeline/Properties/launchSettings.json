@@ -6,7 +6,7 @@
     },
     "AnimalAssetsPipeline": {
       "commandName": "Project",
-      "commandLineArgs": "2 AU"
+      "commandLineArgs": "1 AU"
     }
   }
 }
