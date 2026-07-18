@@ -17,7 +17,7 @@ public class AssetGenerator
         _dexFetcher = lifeDexDataFetcher;
         _imageFetcher = imageFetcher;
 
-        var outputPathRoot = Path.Combine(_config.SolutionDirectory, _config.Folders.Output).Replace('\\', '/');
+        var outputPathRoot = Path.Combine(_config.SolutionRoot, _config.Folders.Output).Replace('\\', '/');
         Directory.CreateDirectory(outputPathRoot);
     }
 

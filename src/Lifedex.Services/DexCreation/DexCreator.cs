@@ -21,7 +21,7 @@ public class DexCreator
         _dbContext = context;
         _config = options.Value;
 
-        _dexesOutputPath = Path.Combine(_config.SolutionDirectory, _config.Folders.Output, _config.Folders.Dexes);
+        _dexesOutputPath = Path.Combine(_config.SolutionRoot, _config.Folders.Output, _config.Folders.Dexes);
         Directory.CreateDirectory(_dexesOutputPath);
     }
 
@@ -69,21 +69,23 @@ public class DexCreator
         /*
         var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
             x.Area.Contains(countryData.Name) == true).Select(x => x.ColId).ToList();
-
-        if (countryDistributionIds.Count == 0)
-            return new ActionResult(false, $"No matching countries found for {countryData.Name}.");
         */
 
         var countryOccurrencesIds = _dbContext.GbifAnnualOccurrences.Where(x =>
             x.CountryCode.Equals(countryData.Code)).Select(x => x.ColId);
 
         if (!countryOccurrencesIds.Any())
+        {
             return new ActionResult(false)
             {
                 ErrorMessage = $"No matching countries found for {countryData.Name}."
             };
+        }
 
-        var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals("species")).Include(taxon => taxon.VernacularNames)
+        // will need to be smarter for v2 as birds are all species
+        var rank = _config.DexConfig.IgnoreSubspecies ? "species" : "subspecies";
+
+        var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals(rank)).Include(taxon => taxon.VernacularNames)
             .ToList();
 
         var countrySpecies = allSpecies.IntersectBy(countryOccurrencesIds, x => x.ColId).ToList();

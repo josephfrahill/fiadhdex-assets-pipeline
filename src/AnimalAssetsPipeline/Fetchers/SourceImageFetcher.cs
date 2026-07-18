@@ -26,7 +26,7 @@ public class SourceImageFetcher
         _downloader = downloader;
         _config = options.Value;
 
-        _workingDexOutputFolderPath = Path.Combine(_config.SolutionDirectory, _config.Folders.Output,
+        _workingDexOutputFolderPath = Path.Combine(_config.SolutionRoot, _config.Folders.Output,
             _config.Folders.Assets, _config.AssetsConfig.WorkingDexOutputFolder).Replace('\\', '/');
         Directory.CreateDirectory(_workingDexOutputFolderPath);
     }

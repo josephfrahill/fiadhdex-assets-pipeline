@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path=".github/workflows/validate-json.yml" />
     <File Path=".gitignore" />
     <File Path="output/dexes/global-dex.json" />
     <File Path="pipeline-config.json" />

@@ -6,7 +6,7 @@ public record PipelineConfig
     public GbifConfig? GbifConfig { get; init; }
     public required DexConfig DexConfig { get; init; }
     public required AssetsConfig AssetsConfig { get; init; }
-    public required string SolutionDirectory { get; init; }
+    public required string SolutionRoot { get; init; }
     public required string MetadataFileName { get; init; }
     public required Folders Folders { get; init; }
 }
@@ -29,6 +29,7 @@ public record GbifConfig
 public record DexConfig
 {
     public required string GlobalDexName { get; init; }
+    public required bool IgnoreSubspecies { get; init; }
 }
 
 public record AssetsConfig

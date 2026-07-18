@@ -4,24 +4,29 @@ import os
 import argparse
 import json
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--speciesIdFolder", required=True)
+
+#parser = argparse.ArgumentParser()
+# parser.add_argument("--speciesIdFolder", required=True)
 # parser.add_argument("--output", required=True)
 
-args = parser.parse_args()
-speces_id_dir = args.speciesIdFolder
+#args = parser.parse_args()
+#speces_id_dir = args.speciesIdFolder
 ##output_path = args.output
 
-with open("../../pipeline-config.json", "r") as f:
+with open("../pipeline-config.json", "r") as f:
     config = json.load(f)
 
-pipeline_root = config["pipelineRoot"]
+solution_root = config["solutionRoot"]
 output_dir = config["folders"]["output"]
-dex_path_root = config["dexConfig"]["dexPathRoot"]
+assets_folder = config["folders"]["assets"]
+working_dex_output_folder = config["assetsConfig"]["workingDexOutputFolder"]
+species_id_output_folder = config["assetsConfig"]["speciesIdFolder"]
+
 downloaded_dir = config["folders"]["downloaded"]
 processed_dir = config["folders"]["processed"]
 
-executing_root = pipeline_root + "/" + output_dir +  "/" + dex_path_root +  "/" + speces_id_dir
+#C:\code\lifedex\pipeline\          output\         assets              \global-dex
+executing_root = solution_root + "/" + output_dir +  "/" + assets_folder + "/" + working_dex_output_folder + "/" + species_id_output_folder
 input_path = executing_root +  "/" + downloaded_dir
 output_path = executing_root +  "/" + processed_dir
 os.makedirs(output_path, exist_ok=True)

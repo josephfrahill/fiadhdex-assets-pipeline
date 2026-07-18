@@ -11,13 +11,15 @@
     "isSubSpecies": false
   },
   "dexConfig": {
-    "globalDexName": "global-dex.json"
+    "globalDexName": "global-dex.json",
+    "ignoreSubSpecies": true
   },
   "assetsConfig": {
     "workingDexName": "global-dex.json",
-    "workingDexOutputFolder": "global-dex" // should also reflect dir structure in R2
+    "workingDexOutputFolder": "global-dex",
+    "speciesIdFolder": "GL006-domestic-horse"
   },
-  "solutionDirectory": "C:/code/lifedex/pipeline",
+  "solutionRoot": "C:/code/lifedex/pipeline",
   "metadataFileName": "animal-metadata.json",
   "folders": {
     "output": "output",

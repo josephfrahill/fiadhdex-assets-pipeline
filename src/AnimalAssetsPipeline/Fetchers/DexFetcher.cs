@@ -16,7 +16,7 @@ public class DexFetcher
         _http = http;
         var config = options.Value;
 
-        var outputPathRoot = Path.Combine(config.SolutionDirectory, config.Folders.Output).Replace('\\', '/');
+        var outputPathRoot = Path.Combine(config.SolutionRoot, config.Folders.Output).Replace('\\', '/');
 
         _dexDirPathLocal = Path.Combine(outputPathRoot, "dexes");
         Directory.CreateDirectory(_dexDirPathLocal);
