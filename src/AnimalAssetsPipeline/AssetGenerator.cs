@@ -7,54 +7,39 @@ namespace AnimalAssetsPipeline;
 public class AssetGenerator
 {
     private readonly PipelineConfig _config;
-    private readonly LifeDexDataFetcher _lifeDexDataFetcher;
+    private readonly DexFetcher _dexFetcher;
     private readonly SourceImageFetcher _imageFetcher;
 
-    public AssetGenerator(IOptions<PipelineConfig> options, LifeDexDataFetcher lifeDexDataFetcher,
+    public AssetGenerator(IOptions<PipelineConfig> options, DexFetcher lifeDexDataFetcher,
         SourceImageFetcher imageFetcher)
     {
         _config = options.Value;
-        _lifeDexDataFetcher = lifeDexDataFetcher;
+        _dexFetcher = lifeDexDataFetcher;
         _imageFetcher = imageFetcher;
-    }
 
-    public async Task ExecuteFlowAsync(string solutionDirectory, string[] args)
-    {
-        var resourcePathRoot = _config.DexConfig.ResourcePathRoot;
         var outputPathRoot = Path.Combine(_config.SolutionDirectory, _config.Folders.Output).Replace('\\', '/');
         Directory.CreateDirectory(outputPathRoot);
+    }
 
-        var dexResult = await HandleJsonDexFetching();
-        Console.WriteLine(dexResult.Message);
+    public async Task ExecuteFlowAsync(string[] args)
+    {
+        var workingDexName = _config.AssetsConfig.WorkingDexName;
 
-        var animals = dexResult.Animals;
+        var dexResult =
+            await _dexFetcher.FetchDexAsync(workingDexName);
+
+        if (!dexResult.Successful)
+        {
+            Console.WriteLine(dexResult.ErrorMessage);
+        }
+
+        var animals = dexResult.CountryDex?.Animals ?? [];
+
         switch (args[0])
         {
             case "2":
-                var outputPathDexPath = Path.Combine(outputPathRoot, resourcePathRoot).Replace('\\', '/');
-                await _imageFetcher.FetchImagesAsync(animals, outputPathDexPath);
+                await _imageFetcher.FetchImagesAsync(animals);
                 break;
-        }
-
-        return;
-
-        async Task<ActionResult> HandleJsonDexFetching()
-        {
-            //lifedex-data/
-            var dexName = _config.DexConfig.WorkingDexName;
-
-            var dexPathCloudFull = Path.Combine("dexes", dexName).Replace('\\', '/');
-            var dexPathLocalRoot = Path.Combine(outputPathRoot, "dexes");
-            Directory.CreateDirectory(dexPathLocalRoot);
-            var dexPathLocalFull = Path.Combine(dexPathLocalRoot, dexName);
-
-            var countryDex =
-                await _lifeDexDataFetcher.FetchDataAsync(dexName, dexPathCloudFull, dexPathLocalFull);
-
-            return new ActionResult(true, $"`{dexName}` successfully fetched.")
-            {
-                CountryDex = countryDex
-            };
         }
     }
 }

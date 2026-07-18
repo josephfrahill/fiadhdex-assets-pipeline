@@ -1,22 +1,31 @@
-﻿using System.Net.Http.Json;
-using System.Text.Json;
-using Lifedex.Concrete.Json;
+﻿using Lifedex.Concrete.Json;
 using Lifedex.Models;
+using Microsoft.Extensions.Options;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace AnimalAssetsPipeline.Fetchers;
 
-public class LifeDexDataFetcher
+public class DexFetcher
 {
     private readonly HttpClient _http;
+    private readonly string _dexDirPathLocal;
 
-    public LifeDexDataFetcher(HttpClient http)
+    public DexFetcher(HttpClient http, IOptions<PipelineConfig> options)
     {
         _http = http;
+        var config = options.Value;
+
+        var outputPathRoot = Path.Combine(config.SolutionDirectory, config.Folders.Output).Replace('\\', '/');
+
+        _dexDirPathLocal = Path.Combine(outputPathRoot, "dexes");
+        Directory.CreateDirectory(_dexDirPathLocal);
     }
 
-    public async Task<CountryDex> FetchDataAsync(string dexName, string dexPathCloudFull, string dexPathLocalFull)
+    public async Task<ActionResult> FetchDexAsync(string dexName)
     {
-        //var localDexPath = Path.Combine(localDexesPath, dexName);
+        var dexPathLocalFull = Path.Combine(_dexDirPathLocal, dexName).Replace('\\', '/');
+        var dexPathCloudFull = Path.Combine("dexes", dexName).Replace('\\', '/');
 
         CountryDex countryDex;
         if (File.Exists(dexPathLocalFull))
@@ -27,12 +36,14 @@ public class LifeDexDataFetcher
         else
         {
             countryDex = await GetFromCloudAsync(dexPathCloudFull);
-            //Directory.CreateDirectory(dexPathLocalFull);
             SaveJsonLocally(countryDex, dexPathLocalFull);
             Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
         }
 
-        return countryDex;
+        return new ActionResult(true)
+        {
+            CountryDex = countryDex
+        };
     }
 
     private async Task<CountryDex> GetFromCloudAsync(string dexPath)

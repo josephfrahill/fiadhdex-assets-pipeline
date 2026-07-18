@@ -5,6 +5,7 @@ public record PipelineConfig
     public ColConfig? ColConfig { get; init; }
     public GbifConfig? GbifConfig { get; init; }
     public required DexConfig DexConfig { get; init; }
+    public required AssetsConfig AssetsConfig { get; init; }
     public required string SolutionDirectory { get; init; }
     public required string MetadataFileName { get; init; }
     public required Folders Folders { get; init; }
@@ -28,14 +29,19 @@ public record GbifConfig
 public record DexConfig
 {
     public required string GlobalDexName { get; init; }
+}
+
+public record AssetsConfig
+{
     public required string WorkingDexName { get; init; }
-    public required string ResourcePathRoot { get; init; }
+    public required string WorkingDexOutputFolder { get; init; }
 }
 
 public record Folders
 {
     public required string Output { get; init; }
     public required string Dexes { get; init; }
+    public required string Assets { get; init; }
     public required string Downloaded { get; init; }
     public required string Processed { get; init; }
     public required string Results { get; init; }

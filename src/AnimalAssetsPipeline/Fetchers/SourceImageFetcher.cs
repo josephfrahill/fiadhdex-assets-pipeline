@@ -7,6 +7,7 @@ using Lifedex.Concrete.Api;
 using Lifedex.Concrete.IconPipeline;
 using Lifedex.Concrete.Json;
 using Lifedex.Models;
+using Lifedex.Models.AnimalData;
 using Lifedex.Models.Images;
 
 namespace AnimalAssetsPipeline.Fetchers;
@@ -16,6 +17,7 @@ public class SourceImageFetcher
     private readonly WikimediaImageQuerrier _wikiApi;
     private readonly WikimediaImageDownloader _downloader;
     private readonly PipelineConfig _config;
+    private readonly string _workingDexOutputFolderPath;
 
     public SourceImageFetcher(WikimediaImageQuerrier wikiApi, WikimediaImageDownloader downloader,
         IOptions<PipelineConfig> options)
@@ -23,14 +25,18 @@ public class SourceImageFetcher
         _wikiApi = wikiApi;
         _downloader = downloader;
         _config = options.Value;
+
+        _workingDexOutputFolderPath = Path.Combine(_config.SolutionDirectory, _config.Folders.Output,
+            _config.Folders.Assets, _config.AssetsConfig.WorkingDexOutputFolder).Replace('\\', '/');
+        Directory.CreateDirectory(_workingDexOutputFolderPath);
     }
 
-    public async Task FetchImagesAsync(List<Animal> animals, string outputPathDexPath)
+    public async Task FetchImagesAsync(List<Animal> animals)
     {
         foreach (var species in animals)
         {
             var speciesNameFormatted = species.Name.ToLowerInvariant().Replace(" ", "-");
-            var outputPathSpeciesPath = Path.Combine(outputPathDexPath,
+            var outputPathSpeciesPath = Path.Combine(_workingDexOutputFolderPath,
                 string.Concat(species.DexId, "-", speciesNameFormatted)).Replace('\\', '/');
             Directory.CreateDirectory(outputPathSpeciesPath);
             var metadataPath = Path.Combine(outputPathSpeciesPath, _config.MetadataFileName).Replace('\\', '/');

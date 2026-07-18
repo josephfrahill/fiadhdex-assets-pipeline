@@ -11,15 +11,18 @@
     "isSubSpecies": false
   },
   "dexConfig": {
-    "globalDexName": "global-dex.json",
-    "workingDexName": "global-dex.json",
-    "resourcePathRoot": "resources/global-dex" // should reflect dir structure in R2
+    "globalDexName": "global-dex.json"
   },
-  "solutionDirectory": "C:/code/lifedex/pipeline", //sln dir
+  "assetsConfig": {
+    "workingDexName": "global-dex.json",
+    "workingDexOutputFolder": "global-dex" // should also reflect dir structure in R2
+  },
+  "solutionDirectory": "C:/code/lifedex/pipeline",
   "metadataFileName": "animal-metadata.json",
   "folders": {
     "output": "output",
     "dexes": "dexes",
+    "assets": "assets",
     "downloaded": "downloaded",
     "processed": "processed",
     "results": "results"

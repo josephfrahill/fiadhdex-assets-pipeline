@@ -1,4 +1,7 @@
-﻿namespace Lifedex.Models;
+﻿using Lifedex.Models.Abstract;
+using Lifedex.Models.Dto;
+
+namespace Lifedex.Models.AnimalData;
 
 public record Animal : AnimalAiDto, IAnimalBaseData
 {

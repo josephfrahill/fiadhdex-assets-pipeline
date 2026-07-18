@@ -1,4 +1,4 @@
-﻿namespace Lifedex.Models;
+﻿namespace Lifedex.Models.Abstract;
 
 public interface IAnimalBaseData
 {
@@ -11,5 +11,4 @@ public interface IAnimalBaseData
     string Family { get; init; }
     string Order { get; init; }
     string Type { get; init; }
-    string Rarity { get; init; }
 }

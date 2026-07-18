@@ -50,10 +50,10 @@ var host = Host.CreateDefaultBuilder(args)
         );
         */
         services.AddSingleton<AssetGenerator>();
-        services.AddSingleton<LifeDexDataFetcher>();
+        services.AddSingleton<DexFetcher>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
-        services.AddHttpClient<LifeDexDataFetcher>(client =>
+        services.AddHttpClient<DexFetcher>(client =>
         {
             client.BaseAddress = new Uri("https://muddy-dust-f74c.lifedex.workers.dev/");
         });
@@ -109,17 +109,17 @@ switch (argAsInt)
         var pipelineOptions = scope.ServiceProvider.GetRequiredService<IOptions<PipelineConfig>>();
 
         var creator = await DexCreator.InitialiseAsync(dbContext, pipelineOptions);
-        var dexCreationResult = await creator.CreateDex(args[1]);
+        var dexCreationResult = await creator.CreateCountryDexBase(args[1]);
 
         if (!dexCreationResult.Successful)
-            Console.WriteLine(dexCreationResult.Message);
+            Console.WriteLine(dexCreationResult.ErrorMessage);
         break;
     }
     case >= 2:
     {
         Console.WriteLine($"Processing input: `{args[0]}`: Image downloading.");
         var generator = host.Services.GetRequiredService<AssetGenerator>();
-        await generator.ExecuteFlowAsync(solutionDirectory, args);
+        await generator.ExecuteFlowAsync(args);
         break;
     }
 }

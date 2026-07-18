@@ -1,4 +1,6 @@
-﻿namespace Lifedex.Models;
+﻿using Lifedex.Models.Abstract;
+
+namespace Lifedex.Models.AnimalData;
 
 public record AnimalBaseData : IAnimalBaseData
 {
@@ -11,5 +13,4 @@ public record AnimalBaseData : IAnimalBaseData
     public required string Family { get; init; }
     public required string Order { get; init; }
     public required string Type { get; init; }
-    public required string Rarity { get; init; }
 }

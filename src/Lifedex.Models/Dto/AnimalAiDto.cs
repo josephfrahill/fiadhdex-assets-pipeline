@@ -1,4 +1,7 @@
-﻿namespace Lifedex.Models;
+﻿using Lifedex.Models.AnimalData;
+using Lifedex.Models.Range;
+
+namespace Lifedex.Models.Dto;
 
 public record AnimalAiDto
 {
@@ -11,6 +14,7 @@ public record AnimalAiDto
     public int Detectability { get; init; }
     public required string[] Habitats { get; init; }
     public required string[] NativeRegions { get; init; }
+    public string[]? EndemicTo { get; init; }
     public required string Diet { get; init; }
     public required string DangerLevel { get; init; }
     public bool? Venomous { get; init; }
@@ -21,17 +25,31 @@ public record AnimalAiDto
     public required DoubleRange LengthCm { get; init; }
     public required string Description { get; init; }
     public required string FunFact { get; init; }
-    public string? Notes { get; init; }
     public required string[] Tags { get; init; }
+    public string[]? AiWarnings { get; init; }
 }
 
-public record Gender
+//This describes the physical environment/ecosystem the animal lives in:
+public enum Habitat
 {
-    public required string Male { get; init; }
-    public required string Female { get; init; }
-    public string? MaleYoung { get; init; }
-    public string? FemaleYoung { get; init; }
-    public string? MaleCastrated { get; init; }
+    Forest,
+    TropicalRainforest,
+    Desert,
+    Grassland,
+    Wetland,
+    Freshwater,
+    Mangrove,
+    FreshwaterWetlands,
+    Marine,
+    Coastal,
+    Urban,
+    Suburban,
+    Agricultural,
+    Caves,
+    Mountainous,
 }
 
-public record DoubleRange(double Min, double Max);
+//This describes the physical environment/ecosystem the animal lives in:
+public enum NativeRegions
+{
+}

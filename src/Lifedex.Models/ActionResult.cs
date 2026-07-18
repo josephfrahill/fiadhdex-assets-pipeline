@@ -1,7 +1,11 @@
-﻿namespace Lifedex.Models;
+﻿using Lifedex.Models.AnimalData;
 
-public record ActionResult(bool Successful, string? Message = null)
+namespace Lifedex.Models;
+
+public record ActionResult(bool Successful)
 {
+    public string? ErrorMessage { get; init; }
     public CountryDex? CountryDex { get; init; }
-    public List<Animal> Animals { get; init; } = [];
+    public CountryDexBase? CountryDexBase { get; init; }
+    public List<Animal>? Animals { get; init; } = [];
 }

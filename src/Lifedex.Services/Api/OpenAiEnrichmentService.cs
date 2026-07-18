@@ -1,15 +1,16 @@
 ﻿using Lifedex.Abstraction.Api;
 using Lifedex.Models;
+using Lifedex.Models.Dto;
 using Microsoft.Extensions.Options;
 using OpenAI;
 
 namespace Lifedex.Concrete.Api;
 
-public sealed class OpenAiAnimalService : IAnimalAiService
+public sealed class OpenAiEnrichmentService : IAnimalAiService
 {
     private readonly OpenAIClient _client;
 
-    public OpenAiAnimalService(IOptions<OpenAiOptions> options)
+    public OpenAiEnrichmentService(IOptions<OpenAiOptions> options)
     {
         _client = new OpenAIClient(options.Value.ApiKey);
     }
@@ -26,6 +27,8 @@ public sealed class OpenAiAnimalService : IAnimalAiService
         // Deserialize JSON
         // Validate
         // Return AnimalAiData
+
+        //var apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
 
         throw new NotImplementedException();
     }

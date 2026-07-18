@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Text.Json;
 using Lifedex.Concrete.Json;
 using Lifedex.Models;
+using Lifedex.Models.AnimalData;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lifedex.Concrete.DexCreation;
@@ -13,7 +14,7 @@ public class DexCreator
     private readonly LifeDexDbContext _dbContext;
     private readonly PipelineConfig _config;
     private readonly string _dexesOutputPath;
-    private CountryDex _globalDex = null!;
+    private CountryDexBase _globalDex = null!;
 
     private DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options)
     {
@@ -37,16 +38,21 @@ public class DexCreator
 
         var json = await File.ReadAllTextAsync(globalDexPath);
 
-        _globalDex = JsonSerializer.Deserialize<CountryDex>(json, JsonConfigSettings.Options) ??
+        _globalDex = JsonSerializer.Deserialize<CountryDexBase>(json, JsonConfigSettings.Options) ??
                      throw new JsonException($"Error deserialising global-dex.json at path: `{globalDexPath}`.");
     }
 
-    public async Task<ActionResult> CreateDex(string givenCountry)
+    public async Task<ActionResult> CreateCountryDexBase(string givenCountry)
     {
         var countryValidated = givenCountry.ToLower().Trim();
 
         if (string.IsNullOrEmpty(countryValidated))
-            return new ActionResult(false, $"Expected input country is empty: {givenCountry}.");
+        {
+            return new ActionResult(false)
+            {
+                ErrorMessage = $"Expected input country is empty: {givenCountry}."
+            };
+        }
 
         if (CountryLookup.TryParse(givenCountry, out var countryData))
         {
@@ -54,7 +60,10 @@ public class DexCreator
         }
         else
         {
-            return new ActionResult(false, $"No country found for: `{givenCountry}`.");
+            return new ActionResult(false)
+            {
+                ErrorMessage = $"No country found for: `{givenCountry}`."
+            };
         }
 
         /*
@@ -69,7 +78,10 @@ public class DexCreator
             x.CountryCode.Equals(countryData.Code)).Select(x => x.ColId);
 
         if (!countryOccurrencesIds.Any())
-            return new ActionResult(false, $"No matching countries found for {countryData.Name}.");
+            return new ActionResult(false)
+            {
+                ErrorMessage = $"No matching countries found for {countryData.Name}."
+            };
 
         var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals("species")).Include(taxon => taxon.VernacularNames)
             .ToList();
@@ -98,14 +110,13 @@ public class DexCreator
                     Family = x.Family,
                     Order = x.Order,
                     Type = x.Type,
-                    Rarity = ""
                 };
 
                 return animal;
             })
             .ToList();
 
-        var countryDex = new CountryDex
+        var countryDex = new CountryDexBase
         {
             TotalCount = animals.Count,
             AmphibiaCount = animals.Count(x => x.Type.Equals("Amphibia")),
