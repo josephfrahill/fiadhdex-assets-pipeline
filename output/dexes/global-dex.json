@@ -1,7 +1,7 @@
 {
   "totalCount": 15,
   "amphibiaCount": 0,
-  "avesCount": 4,  
+  "avesCount": 4,
   "mammaliaCount": 11,
   "reptiliaCount": 0,
   "dateGenerated": "2026-07-15T05:15:45.0008344Z",
@@ -28,7 +28,6 @@
       "family": "Canidae",
       "order": "Carnivora",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A pack of dogs",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -39,8 +38,18 @@
         "Rural",
         "Farms"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
       "activeTime": "Diurnal",
+      "detectability": 100,
+      "photographability": 100,
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 2,
+        "max": 5
+      },
       "lifeSpanCaptiveYears": {
         "min": 10,
         "max": 13
@@ -55,13 +64,13 @@
       },
       "description": "The domestic dog is a descendant of the grey wolf and is the world's most widely kept domestic animal. Bred over thousands of years into hundreds of distinct breeds, dogs serve as companions, working animals, and livestock guardians. Highly social and intelligent, they communicate through vocalisation, body language, and scent.",
       "funFact": "Dogs have an extraordinary sense of smell estimated to be 10,000-100,000 times more acute than that of humans.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Pet",
         "Domestic",
         "Working animal"
+      ],
+      "aiWarnings": [
+        "LifeSpanWildYears is a feral/stray-population estimate, not a verified source figure."
       ]
     },
     {
@@ -105,7 +114,6 @@
       "family": "Felidae",
       "order": "Carnivora",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A clowder of cats",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -116,8 +124,18 @@
         "Rural",
         "Indoors"
       ],
-      "diet": "Carnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
       "activeTime": "Crepuscular",
+      "detectability": 95,
+      "photographability": 100,
+      "rarity": "Common",
+      "diet": "Carnivore",
+      "lifeSpanWildYears": {
+        "min": 2,
+        "max": 5
+      },
       "lifeSpanCaptiveYears": {
         "min": 12,
         "max": 18
@@ -132,12 +150,12 @@
       },
       "description": "The domestic cat is a small, agile carnivore and one of the most popular pets worldwide. Descended from the North African wildcat, cats were first domesticated around 10,000 years ago in the Near East. They are skilled hunters with retractable claws, excellent night vision, and a highly flexible body.",
       "funFact": "Cats spend approximately 70% of their lives sleeping - around 13-16 hours per day.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Pet",
         "Domestic"
+      ],
+      "aiWarnings": [
+        "LifeSpanWildYears reflects feral colony averages (predation, disease, traffic), not owned pets."
       ]
     },
     {
@@ -168,7 +186,6 @@
       "family": "Leporidae",
       "order": "Lagomorpha",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A colony of rabbits",
       "conservationStatus": "Domesticated (wild ancestor: Least Concern)",
       "dangerLevel": "Safe",
@@ -179,8 +196,18 @@
         "Indoors",
         "Gardens"
       ],
-      "diet": "Herbivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
       "activeTime": "Crepuscular",
+      "detectability": 85,
+      "photographability": 95,
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 1,
+        "max": 2
+      },
       "lifeSpanCaptiveYears": {
         "min": 8,
         "max": 12
@@ -195,9 +222,6 @@
       },
       "description": "The domestic rabbit is descended from the European wild rabbit and has been selectively bred into over 300 recognised breeds. Rabbits are popular as both pets and livestock, valued for their meat, fur, and companionable nature. They are social animals that communicate through ear position, body posture, and thumping.",
       "funFact": "Rabbits cannot vomit - their digestive system is a one-way street, making a high-fibre diet essential.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Pet",
         "Domestic",
@@ -243,7 +267,6 @@
       "family": "Bovidae",
       "order": "Artiodactyla",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A herd of cattle",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -253,8 +276,18 @@
         "Grasslands",
         "Pastures"
       ],
-      "diet": "Herbivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 100,
+      "photographability": 100,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 12,
+        "max": 20
+      },
       "lifeSpanCaptiveYears": {
         "min": 15,
         "max": 25
@@ -269,13 +302,13 @@
       },
       "description": "Domestic cattle are large ruminant mammals descended from the now-extinct aurochs, domesticated approximately 10,000 years ago. They are among the most economically important livestock in the world, raised for beef, milk, leather, and as draught animals. Cattle are highly social, living in herds with clear social hierarchies.",
       "funFact": "Cows have a near-360-degree field of vision and can detect odours from up to 10 kilometres away.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
         "Farm animal"
+      ],
+      "aiWarnings": [
+        "LifeSpanWildYears based on feral/free-ranging herds (e.g. Chillingham-type); domestic herd lifespan is usually shorter due to culling, not longevity."
       ]
     },
     {
@@ -303,7 +336,6 @@
       "family": "Suidae",
       "order": "Artiodactyla",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A sounder of pigs",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -312,8 +344,18 @@
         "Farms",
         "Rural"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 95,
+      "photographability": 95,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 4,
+        "max": 8
+      },
       "lifeSpanCaptiveYears": {
         "min": 6,
         "max": 10
@@ -328,9 +370,6 @@
       },
       "description": "The domestic pig is descended from the Eurasian wild boar and is one of the most numerous large mammals on Earth. Pigs are highly intelligent, ranking among the top five cognitively complex animals. They are raised extensively for pork and other products. Despite their reputation, pigs are naturally clean animals and prefer to cool themselves with water rather than mud.",
       "funFact": "Pigs are considered to have the intelligence of a three-year-old human child and can learn to play video games using a joystick.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
@@ -389,7 +428,6 @@
       "family": "Equidae",
       "order": "Perissodactyla",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A herd of horses",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
@@ -400,8 +438,18 @@
         "Stables",
         "Pastures"
       ],
-      "diet": "Herbivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 95,
+      "photographability": 100,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 15,
+        "max": 20
+      },
       "lifeSpanCaptiveYears": {
         "min": 25,
         "max": 35
@@ -416,9 +464,6 @@
       },
       "description": "The domestic horse has been one of humanity's most important working partners for over 5,000 years. Descended from wild Eurasian horses, they were first domesticated on the Pontic steppes and rapidly transformed human civilisation through transport, agriculture, and warfare. Today horses are kept for riding, sport, and companionship.",
       "funFact": "Horses can sleep both standing up and lying down, and they need only around three hours of deep sleep per night.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
@@ -448,7 +493,6 @@
       "family": "Bovidae",
       "order": "Artiodactyla",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A herd of goats",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -459,8 +503,18 @@
         "Mountains",
         "Scrubland"
       ],
-      "diet": "Herbivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 95,
+      "photographability": 100,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 8,
+        "max": 12
+      },
       "lifeSpanCaptiveYears": {
         "min": 10,
         "max": 18
@@ -475,9 +529,6 @@
       },
       "description": "Domestic goats were among the first animals to be domesticated, roughly 10,000 years ago in the Zagros Mountains of Iran. Exceptionally adaptable, they thrive in environments from deserts to mountains. Goats are raised for milk, meat, fibre (cashmere and mohair), and skins. Their curious and independent nature makes them skilled escape artists.",
       "funFact": "Goats have rectangular pupils that give them a 320-340 degree field of vision, helping them spot predators without moving their heads.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
@@ -511,7 +562,6 @@
       "family": "Bovidae",
       "order": "Artiodactyla",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A flock of sheep",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -522,8 +572,18 @@
         "Pastures",
         "Mountains"
       ],
-      "diet": "Herbivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 95,
+      "photographability": 100,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 7,
+        "max": 10
+      },
       "lifeSpanCaptiveYears": {
         "min": 10,
         "max": 15
@@ -538,9 +598,6 @@
       },
       "description": "Domestic sheep are among the earliest animals to be domesticated, with evidence dating back 10,000 years in Mesopotamia. There are over one billion sheep on Earth, making them one of the most numerous large mammals. Raised for wool, meat, and milk, sheep are highly social herd animals with a strong flocking instinct as a predator defence.",
       "funFact": "Sheep can recognise and remember up to 50 individual sheep faces for over two years, and also remember human faces.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
@@ -570,7 +627,6 @@
       "family": "Muridae",
       "order": "Rodentia",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A mischief of mice",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
@@ -582,8 +638,18 @@
         "Indoors",
         "Grasslands"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 55,
+      "photographability": 35,
       "activeTime": "Nocturnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 0.5,
+        "max": 1
+      },
       "lifeSpanCaptiveYears": {
         "min": 1,
         "max": 3
@@ -598,13 +664,13 @@
       },
       "description": "The house mouse is one of the most widely distributed mammals on Earth, found on every continent except Antarctica. Originally from Central Asia, it has spread globally by living in close association with humans. A highly adaptable commensal rodent, it thrives in buildings, farms, and urban environments. It is also the world's most commonly used laboratory animal.",
       "funFact": "A female mouse can produce up to 10 litters of 5-6 pups per year, meaning a single pair can theoretically produce thousands of descendants annually.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Commensal",
         "Pest",
         "Wild"
+      ],
+      "aiWarnings": [
+        "Disease-vector content (hantavirus/salmonella) — keep any generated copy factual, avoid alarmist phrasing."
       ]
     },
     {
@@ -646,7 +712,6 @@
       "family": "Muridae",
       "order": "Rodentia",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A mischief of rats",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
@@ -658,8 +723,18 @@
         "Farms",
         "Riverbanks"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 65,
+      "photographability": 50,
       "activeTime": "Nocturnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 0.5,
+        "max": 1.5
+      },
       "lifeSpanCaptiveYears": {
         "min": 1,
         "max": 3
@@ -674,13 +749,13 @@
       },
       "description": "The brown rat is the largest and most widespread of the commensal rats, originally from northern China and now found on every continent except Antarctica. An exceptional burrower and swimmer, it colonises sewers, rubbish dumps, warehouses, and farmland. Brown rats are highly intelligent, demonstrating problem-solving ability and even showing empathy-like behaviour in laboratory studies.",
       "funFact": "Brown rats communicate using ultrasonic vocalisations beyond human hearing range, and studies suggest they emit high-frequency 'laughter' when tickled or playing.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Commensal",
         "Pest",
         "Wild"
+      ],
+      "aiWarnings": [
+        "Disease-vector content (leptospirosis/hantavirus) — keep any generated copy factual, avoid alarmist phrasing."
       ]
     },
     {
@@ -709,7 +784,6 @@
       "family": "Muridae",
       "order": "Rodentia",
       "type": "Mammalia",
-      "rarity": "Common",
       "collectiveNoun": "A mischief of rats",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
@@ -721,8 +795,18 @@
         "Tropical forests",
         "Farms"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 45,
+      "photographability": 50,
       "activeTime": "Nocturnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 0.5,
+        "max": 1
+      },
       "lifeSpanCaptiveYears": {
         "min": 1,
         "max": 2
@@ -737,14 +821,14 @@
       },
       "description": "The black rat, also known as the ship rat or roof rat, is one of the world's most notorious invasive species. Originating in South and Southeast Asia, it spread globally via sailing ships and is considered a significant driver of island bird and reptile extinctions. Slender and agile, it prefers elevated locations - roof spaces, trees, and dense vegetation - in contrast to the burrowing brown rat.",
       "funFact": "The black rat is believed to be the primary host responsible for spreading the bubonic plague pandemic ('Black Death') that killed a third of Europe's population in the 14th century.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Commensal",
         "Pest",
         "Invasive",
         "Wild"
+      ],
+      "aiWarnings": [
+        "References the Black Death / bubonic plague — historically sensitive content, keep factual and cited-style, no dramatization."
       ]
     },
     {
@@ -772,7 +856,6 @@
       "family": "Columbidae",
       "order": "Columbiformes",
       "type": "Aves",
-      "rarity": "Common",
       "collectiveNoun": "A flock of pigeons",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
@@ -783,8 +866,18 @@
         "Farmland",
         "Open country"
       ],
-      "diet": "Herbivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 100,
+      "photographability": 90,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 3,
+        "max": 5
+      },
       "lifeSpanCaptiveYears": {
         "min": 3,
         "max": 6
@@ -799,13 +892,13 @@
       },
       "description": "The rock pigeon is the wild ancestor of all domestic and feral pigeons, originally native to sea cliffs and rocky outcrops across Europe, North Africa, and South Asia. Today it thrives in cities worldwide, where buildings mimic its ancestral cliff habitat. Pigeons have an extraordinary homing ability and were historically used to carry messages in wartime.",
       "funFact": "Rock pigeons can navigate home from over 1,800 km away, detecting Earth's magnetic field and using the sun as a compass.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Wild",
         "Urban",
         "Commensal"
+      ],
+      "aiWarnings": [
+        "Source lifeSpanCaptiveYears (3-6) is really a general/free-living average for this species, not zoo-captive data — flag for SME review if that distinction matters downstream."
       ]
     },
     {
@@ -834,7 +927,6 @@
       "family": "Passeridae",
       "order": "Passeriformes",
       "type": "Aves",
-      "rarity": "Common",
       "collectiveNoun": "A quarrel of sparrows",
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
@@ -845,8 +937,18 @@
         "Farms",
         "Gardens"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 90,
+      "photographability":  50,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 1,
+        "max": 3
+      },
       "lifeSpanCaptiveYears": {
         "min": 2,
         "max": 5
@@ -861,9 +963,6 @@
       },
       "description": "The house sparrow is one of the most familiar and widespread birds in the world, having spread across every inhabited continent alongside human settlement. A small, sociable seed-eater, it nests in building crevices and dense shrubs close to human habitation. Despite its ubiquity, house sparrow populations have declined sharply in many European cities over recent decades.",
       "funFact": "The house sparrow takes dust baths - vigorously flicking dry soil through its feathers - to help control parasites and maintain plumage condition.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Wild",
         "Urban",
@@ -899,7 +998,6 @@
       "family": "Phasianidae",
       "order": "Galliformes",
       "type": "Aves",
-      "rarity": "Common",
       "collectiveNoun": "A flock of chickens",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -910,8 +1008,18 @@
         "Suburban",
         "Free-range paddocks"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 100,
+      "photographability":  100,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 3,
+        "max": 5
+      },
       "lifeSpanCaptiveYears": {
         "min": 5,
         "max": 10
@@ -926,9 +1034,6 @@
       },
       "description": "The domestic chicken is the most numerous bird on Earth, with over 30 billion individuals worldwide. Descended from the red junglefowl of South and Southeast Asia, chickens were domesticated at least 8,000 years ago. They are raised globally for eggs and meat and display surprisingly complex social behaviour, including a pecking order hierarchy, tool use, and basic problem-solving.",
       "funFact": "Chickens can remember and recognise over 100 individual faces of both chickens and humans.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
@@ -961,7 +1066,6 @@
       "family": "Anatidae",
       "order": "Anseriformes",
       "type": "Aves",
-      "rarity": "Common",
       "collectiveNoun": "A paddling of ducks",
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
@@ -972,8 +1076,18 @@
         "Wetlands",
         "Rural"
       ],
-      "diet": "Omnivore",
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 90,
+      "photographability":  90,
       "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Omnivore",
+      "lifeSpanWildYears": {
+        "min": 3,
+        "max": 5
+      },
       "lifeSpanCaptiveYears": {
         "min": 8,
         "max": 12
@@ -988,9 +1102,6 @@
       },
       "description": "The domestic duck is descended from the mallard and has been kept by humans for at least 2,500 years, primarily for eggs, meat, and down feathers. Domestic ducks retain many of the behaviours of their wild ancestors, including dabbling for food in shallow water, preening, and strong waterproofing thanks to oil produced by the uropygial gland. They are sociable and do best kept in groups.",
       "funFact": "A duck's quack does not echo - or rather, it does, but the quack naturally fades in and out in a way that makes the echo imperceptible to human ears.",
-      "nativeRegions": [
-        "Worldwide"
-      ],
       "tags": [
         "Livestock",
         "Domestic",
@@ -999,4 +1110,3 @@
     }
   ]
 }
-

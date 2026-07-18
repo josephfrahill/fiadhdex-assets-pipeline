@@ -3,6 +3,7 @@ using Lifedex.Database;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
 using Lifedex.Concrete.Json;
+using Lifedex.Constants.Exclusions;
 using Lifedex.Models;
 using Lifedex.Models.AnimalData;
 using Microsoft.EntityFrameworkCore;
@@ -95,7 +96,13 @@ public class DexCreator
         var countrySpeciesWithoutGlobals = countrySpecies
             .Where(x => !globalScientificNames.Contains(x.ScientificName, StringComparer.OrdinalIgnoreCase)).ToArray();
 
-        var animals = countrySpeciesWithoutGlobals
+        var countryAnimalsFilteredOrders = countrySpeciesWithoutGlobals
+            .Where(x => !DexExclusions.ExcludedOrders.Contains(x.Order, StringComparer.OrdinalIgnoreCase));
+
+        var countryAnimalsFilteredFamilies = countryAnimalsFilteredOrders
+            .Where(x => !DexExclusions.ExcludedFamilies.Contains(x.Order, StringComparer.OrdinalIgnoreCase));
+
+        var animals = countryAnimalsFilteredFamilies
             .Select((x, index) =>
             {
                 var name = x.VernacularNames.FirstOrDefault()?.Name ?? string.Empty;

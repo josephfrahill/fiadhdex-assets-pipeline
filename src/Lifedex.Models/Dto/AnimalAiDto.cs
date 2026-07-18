@@ -10,15 +10,16 @@ public record AnimalAiDto
     public required string[] Plurals { get; init; }
     public string? CollectiveNoun { get; init; }
     public required string ConservationStatus { get; init; }
-    public required string ActiveTime { get; init; }
-    public int Detectability { get; init; }
+    public required string DangerLevel { get; init; }
+    public required string DangerNotes { get; init; }
+    public bool? IsVenomous { get; init; }
     public required string[] Habitats { get; init; }
     public required string[] NativeRegions { get; init; }
     public string[]? EndemicTo { get; init; }
+    public required int Detectability { get; init; }
+    public required int Photographability { get; init; }
+    public required string ActiveTime { get; init; }
     public required string Diet { get; init; }
-    public required string DangerLevel { get; init; }
-    public bool? Venomous { get; init; }
-    public required string DangerNotes { get; init; }
     public required DoubleRange? LifeSpanWildYears { get; init; }
     public required DoubleRange? LifeSpanCaptiveYears { get; init; }
     public required DoubleRange WeightKg { get; init; }
