@@ -1,7 +1,7 @@
-﻿using Models;
-using Services.Json;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using System.Text.Json;
+using Lifedex.Concrete.Json;
+using Lifedex.Models;
 
 namespace AnimalAssetsPipeline.Fetchers;
 

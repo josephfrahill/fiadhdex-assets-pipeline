@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Options;
-using Models;
-using Models.Images;
-using Services;
-using Services.Api;
-using Services.IconPipeline;
-using Services.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using Lifedex.Concrete;
+using Lifedex.Concrete.Api;
+using Lifedex.Concrete.IconPipeline;
+using Lifedex.Concrete.Json;
+using Lifedex.Models;
+using Lifedex.Models.Images;
 
 namespace AnimalAssetsPipeline.Fetchers;
 

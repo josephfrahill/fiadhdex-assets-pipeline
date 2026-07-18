@@ -9,9 +9,9 @@
     <File Path="run.ps1" />
   </Folder>
   <Project Path="src/AnimalAssetsPipeline/AnimalAssetsPipeline.csproj" />
-  <Project Path="src/Constants/Constants.csproj" Id="fcb36c47-4545-4f7b-8cb7-2d720ef81d79" />
-  <Project Path="src/Database/Database.csproj" Id="bc8408e7-da50-4b24-90dd-4c56bce3bb33" />
+  <Project Path="src/Lifedex.Constants/Lifedex.Constants.csproj" Id="fcb36c47-4545-4f7b-8cb7-2d720ef81d79" />
+  <Project Path="src/Lifedex.Database/Lifedex.Database.csproj" Id="bc8408e7-da50-4b24-90dd-4c56bce3bb33" />
   <Project Path="src/Lifedex.Abstraction/Lifedex.Abstraction.csproj" Id="088385b9-3da8-4099-bdf2-dfa26b24ed29" />
-  <Project Path="src/Models/Models.csproj" />
-  <Project Path="src/Services/Services.csproj" />
+  <Project Path="src/Lifedex.Models/Lifedex.Models.csproj" />
+  <Project Path="src/Lifedex.Services/Lifedex.Concrete.csproj" />
 </Solution>

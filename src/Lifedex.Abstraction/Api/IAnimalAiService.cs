@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using Lifedex.Models;
 
 namespace Lifedex.Abstraction.Api;
 

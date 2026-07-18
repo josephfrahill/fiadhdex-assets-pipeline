@@ -1,6 +1,6 @@
 ﻿using AnimalAssetsPipeline.Fetchers;
+using Lifedex.Models;
 using Microsoft.Extensions.Options;
-using Models;
 
 namespace AnimalAssetsPipeline;
 

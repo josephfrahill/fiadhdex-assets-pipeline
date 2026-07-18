@@ -1,18 +1,18 @@
 ﻿using AnimalAssetsPipeline;
 using AnimalAssetsPipeline.Fetchers;
-using Database;
+using Lifedex.Concrete;
+using Lifedex.Concrete.Api;
+using Lifedex.Concrete.DexCreation;
+using Lifedex.Concrete.Importers.Col;
+using Lifedex.Concrete.Importers.Gbif;
+using Lifedex.Database;
+using Lifedex.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Models;
-using Services;
-using Services.Api;
-using Services.DexCreation;
-using Services.Importers.Col;
-using Services.Importers.Gbif;
 
 if (args.Length < 1)
 {
