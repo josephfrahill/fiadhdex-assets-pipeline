@@ -12,7 +12,7 @@ Write-Host "4. Download source images for icon gen"
 Write-Host "5. Remove backgrounds from downloaded images"
 Write-Host "6. Rank images using VisionAI"
 Write-Host "7. Generate icons using GenAI"
-Write-Host "8. Run full pipeline"
+Write-Host "8. Run full pipeline based on values set in config.json"
 Write-Host ""
 
 $choice = Read-Host "Select an option"

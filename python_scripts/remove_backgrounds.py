@@ -1,68 +1,77 @@
-from rembg import remove
-from PIL import Image
-import os
-import argparse
 import json
+import os
+from pathlib import Path
+from PIL import Image
+from rembg import remove
 
+def process_files_in_directory(animal_folder: Path, downloaded_dir: str, processed_dir: str):
+    input_path = animal_folder / downloaded_dir
+    output_path = animal_folder / processed_dir
+    
+    output_path.mkdir(parents=True, exist_ok=True)
+    
+    image_extensions = (".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff", ".webp")
+    
+    print(f"Starting background removal using images in: {input_path}")
+    
+    # Use enumerate() for clean counting without a manual counter variable
+    for counter, filename in enumerate(os.listdir(input_path), start=1):
+        if not filename.lower().endswith(image_extensions):
+            continue
+            
+        input_full_path = input_path / filename
+        if not input_full_path.is_file():
+            continue
 
-#parser = argparse.ArgumentParser()
-# parser.add_argument("--speciesIdFolder", required=True)
-# parser.add_argument("--output", required=True)
+        # Force output to always be a PNG
+        output_file = f"{Path(filename).stem}.png"
+        output_full_path = output_path / output_file
 
-#args = parser.parse_args()
-#speces_id_dir = args.speciesIdFolder
-##output_path = args.output
+        if output_full_path.is_file():
+            print(f"Skipping: {filename}")
+            continue
 
-with open("../pipeline-config.json", "r") as f:
-    config = json.load(f)
+        print(f"{counter}: Processing {filename}...")
 
-solution_root = config["solutionRoot"]
-output_dir = config["folders"]["output"]
-assets_folder = config["folders"]["assets"]
-working_dex_output_folder = config["assetsConfig"]["workingDexOutputFolder"]
-species_id_output_folder = config["assetsConfig"]["speciesIdFolder"]
+        try:
+            with Image.open(input_full_path) as img:
+                result = remove(img)
+                result.save(output_full_path)
+        except Exception as e:
+            print(f"Error processing {filename}: {e}")
 
-downloaded_dir = config["folders"]["downloaded"]
-processed_dir = config["folders"]["processed"]
+    print("Done!")
 
-#C:\code\lifedex\pipeline\          output\         assets              \global-dex
-executing_root = solution_root + "/" + output_dir +  "/" + assets_folder + "/" + working_dex_output_folder + "/" + species_id_output_folder
-input_path = executing_root +  "/" + downloaded_dir
-output_path = executing_root +  "/" + processed_dir
-os.makedirs(output_path, exist_ok=True)
-# is webp better to than png?
-image_extensions = (".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff", ".webp")
+def main():
+    print("Starting background-removal process..")
 
-counter = 1
-print("Starting background removal using images in: " + input_path)
-for filename in os.listdir(input_path):
-    print(f"{counter}: " + filename)
-    counter += 1
-    input_full_path = input_path + "/" + filename; #//os.path.join(input_path, filename)    
+    # Load configuration
+    with open("../pipeline-config.json", "r") as f:
+        config = json.load(f)
 
-    base_name = os.path.splitext(filename)[0]
-    output_file = base_name + ".png"
-    output_full_path = os.path.join(output_path, output_file)
+    # Use Path objects instead of string concatenation
+    solution_root = Path(config["solutionRoot"])
+    output_dir = config["folders"]["output"]
+    assets_folder = config["folders"]["assets"]
+    working_dex_output_folder = config["assetsConfig"]["workingDexOutputFolder"]
 
-    if not os.path.isfile(input_full_path):
-        continue
+    downloaded_dir = config["folders"]["downloaded"]
+    processed_dir = config["folders"]["processed"]
 
-    if not filename.lower().endswith(image_extensions):
-        continue
+    # Clean path construction using the / operator
+    executing_root = solution_root / output_dir / assets_folder / working_dex_output_folder
+    print(f"Executing root is: {executing_root}")
 
-    if os.path.isfile(output_full_path):
-        print("Skipping: " + filename)
-        continue
+    if not executing_root.exists():
+        print(f"Error: The directory {executing_root} does not exist.")
+        return
 
-    print("Processing " + filename + "...")
+    # Loop through directories and process
+    for filename in os.listdir(executing_root):    
+        species_folder = executing_root / filename
+        if species_folder.is_dir():
+            print(f"Looking in species folder: {species_folder}")
+            process_files_in_directory(species_folder, downloaded_dir, processed_dir)
 
-    with Image.open(input_full_path) as img:
-        result = remove(img)
-        if output_full_path.lower().endswith(".jpg") or output_full_path.lower().endswith(".jpeg"):
-            output_full_path = output_full_path.rsplit(".", 1)[0] + ".png"
-
-        result.save(output_full_path)
-
-print("Done!")
-
-
+if __name__ == "__main__":
+    main()

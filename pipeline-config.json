@@ -16,8 +16,7 @@
   },
   "assetsConfig": {
     "workingDexName": "global-dex.json",
-    "workingDexOutputFolder": "global-dex",
-    "speciesIdFolder": "GL006-domestic-horse"
+    "workingDexOutputFolder": "global-dex"
   },
   "solutionRoot": "C:/code/lifedex/pipeline",
   "metadataFileName": "animal-metadata.json",
