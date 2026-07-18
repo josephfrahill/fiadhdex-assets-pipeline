@@ -33,7 +33,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Generally friendly but can bite if threatened or provoked. Stray dogs may be aggressive.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Suburban",
         "Rural",
@@ -41,7 +41,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 10,
         "max": 13
       },
@@ -110,7 +110,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "Scratches and bites can cause infection. Feral cats may act defensively.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Suburban",
         "Rural",
@@ -118,7 +118,7 @@
       ],
       "diet": "Carnivore",
       "activeTime": "Crepuscular",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 12,
         "max": 18
       },
@@ -173,7 +173,7 @@
       "conservationStatus": "Domesticated (wild ancestor: Least Concern)",
       "dangerLevel": "Safe",
       "dangerNotes": "Can scratch or bite when handled roughly. No significant threat to humans.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Suburban",
         "Indoors",
@@ -181,7 +181,7 @@
       ],
       "diet": "Herbivore",
       "activeTime": "Crepuscular",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 8,
         "max": 12
       },
@@ -248,14 +248,14 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Cows with calves can be protective and charge. Bulls are unpredictable and dangerous.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Grasslands",
         "Pastures"
       ],
       "diet": "Herbivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 15,
         "max": 25
       },
@@ -308,13 +308,13 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Sows with piglets can be aggressive. Large boars may charge and bite.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Rural"
       ],
       "diet": "Omnivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 6,
         "max": 10
       },
@@ -394,7 +394,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Can kick or bite powerfully. Startled horses may rear or bolt. Requires experienced handling.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Grasslands",
         "Stables",
@@ -402,7 +402,7 @@
       ],
       "diet": "Herbivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 25,
         "max": 35
       },
@@ -453,7 +453,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "May headbutt. Horned individuals can cause minor injuries. Generally manageable.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Rural",
         "Mountains",
@@ -461,7 +461,7 @@
       ],
       "diet": "Herbivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 10,
         "max": 18
       },
@@ -516,7 +516,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "Rams can headbutt forcefully during mating season. Generally docile.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Grasslands",
         "Pastures",
@@ -524,7 +524,7 @@
       ],
       "diet": "Herbivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 10,
         "max": 15
       },
@@ -575,7 +575,7 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
       "dangerNotes": "Can carry diseases such as hantavirus and salmonella. Bites are rare but possible.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Suburban",
         "Farms",
@@ -584,7 +584,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Nocturnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 1,
         "max": 3
       },
@@ -651,7 +651,7 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
       "dangerNotes": "Can carry leptospirosis, hantavirus, and other pathogens. May bite if cornered.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Suburban",
         "Sewers",
@@ -660,7 +660,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Nocturnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 1,
         "max": 3
       },
@@ -714,7 +714,7 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
       "dangerNotes": "Historically a vector for bubonic plague via its fleas. Can carry salmonella and other pathogens.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Coastal",
         "Ports",
@@ -723,7 +723,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Nocturnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 1,
         "max": 2
       },
@@ -777,7 +777,7 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
       "dangerNotes": "No direct threat to humans. Droppings can be slippery and carry fungal spores (e.g. Cryptococcus) if accumulated in large quantities.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Coastal cliffs",
         "Farmland",
@@ -785,7 +785,7 @@
       ],
       "diet": "Herbivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 3,
         "max": 6
       },
@@ -839,7 +839,7 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
       "dangerNotes": "No threat to humans.",
-      "habitat": [
+      "habitats": [
         "Urban",
         "Suburban",
         "Farms",
@@ -847,7 +847,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 2,
         "max": 5
       },
@@ -904,7 +904,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "Roosters may peck or spur if provoked. Chickens can carry Salmonella.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Rural",
         "Suburban",
@@ -912,7 +912,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 5,
         "max": 10
       },
@@ -966,7 +966,7 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "May nip if approached while nesting. Can carry Salmonella. Generally harmless.",
-      "habitat": [
+      "habitats": [
         "Farms",
         "Ponds",
         "Wetlands",
@@ -974,7 +974,7 @@
       ],
       "diet": "Omnivore",
       "activeTime": "Diurnal",
-      "lifeSpanYears": {
+      "lifeSpanCaptiveYears": {
         "min": 8,
         "max": 12
       },

@@ -1,6 +1,6 @@
 ﻿namespace Models;
 
-public record AnimalBaseData
+public record AnimalBaseData : IAnimalBaseData
 {
     public required string DexId { get; init; }
     public required string Name { get; init; }
