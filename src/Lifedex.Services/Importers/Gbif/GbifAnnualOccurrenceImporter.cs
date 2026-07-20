@@ -21,6 +21,12 @@ public sealed class GbifAnnualOccurrenceImporter
     public async Task<int> ImportAsync()
     {
         List<string> existingDataIds = [];
+        if (_config.GbifConfig?.IsAppendRequired == false)
+        {
+            Console.WriteLine("Skipping appending to Gbif table as per instruction in config.");
+            return 0;
+        }
+
         if (await _dbContext.GbifAnnualOccurrences.AnyAsync())
         {
             existingDataIds = _dbContext.GbifAnnualOccurrences.Select(x => x.ColId).ToList();

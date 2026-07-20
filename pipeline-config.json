@@ -6,6 +6,7 @@
     "distribution": "Distribution.tsv"
   },
   "gbifConfig": {
+    "isAppendRequired":  false,
     "directoryPath": "C:/code/lifedex/pipeline/data-gbif",
     "occurenceDataFileName": "gbif-aves-1990.csv",
     "isSubSpecies": false

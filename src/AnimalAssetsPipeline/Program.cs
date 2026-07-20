@@ -1,4 +1,5 @@
-﻿using AnimalAssetsPipeline;
+﻿using Amazon.S3;
+using AnimalAssetsPipeline;
 using AnimalAssetsPipeline.Fetchers;
 using Lifedex.Concrete;
 using Lifedex.Concrete.Api;
@@ -22,7 +23,7 @@ if (args.Length < 1)
 
 var solutionDirectory = Utils.GetSolutionDirectory();
 var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
-
+var dbPath = string.Empty;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
     .ConfigureLogging(logging =>
@@ -36,23 +37,82 @@ var host = Host.CreateDefaultBuilder(args)
         {
             var dbDirectory = Path.Combine(solutionDirectory, "db");
             Directory.CreateDirectory(dbDirectory);
-            var dbPath = Path.Combine(dbDirectory, "lifedex.db");
-            options.UseSqlite($"Data Source={dbPath}");
+            dbPath = Path.Combine(dbDirectory, "lifedex.db");
+            options.UseSqlite(
+                $"Data Source={dbPath};Pooling=False");
         });
 
         services.AddScoped<NameUsageImporter>();
         services.AddScoped<VernacularNameImporter>();
         services.AddScoped<ColDistributionImporter>();
         services.AddScoped<GbifAnnualOccurrenceImporter>();
+        services.AddSingleton<IAmazonS3>(provider =>
+        {
+            var configuration =
+                provider.GetRequiredService<IConfiguration>();
+
+            var accountId =
+                configuration["R2_ACCOUNT_ID"]
+                ?? throw new InvalidOperationException(
+                    "R2 account ID is missing.");
+
+            var accessKey =
+                configuration["R2_ACCESS_KEY_ID"]
+                ?? throw new InvalidOperationException(
+                    "R2 access key is missing.");
+
+            var secretKey =
+                configuration["R2_SECRET_ACCESS_KEY"]
+                ?? throw new InvalidOperationException(
+                    "R2 secret key is missing.");
+
+            /*
+            var s3Config = new AmazonS3Config
+            {
+                ServiceURL =
+                    $"https://{accountId}.r2.cloudflarestorage.com",
+
+                // Important for Cloudflare R2
+                ForcePathStyle = true
+            };
+            */
+
+            var s3Config = new AmazonS3Config
+            {
+                ServiceURL =
+                    $"https://{accountId}.r2.cloudflarestorage.com",
+
+                //UseChunkEncoding = false,
+
+
+                Timeout = TimeSpan.FromMinutes(5),
+                //ReadWriteTimeout =
+
+                ConnectTimeout = TimeSpan.FromMinutes(5)
+            };
+
+            return new AmazonS3Client(
+                accessKey,
+                secretKey,
+                s3Config);
+        });
+
         /*
         services.AddScoped<DexCreator>(provider =>
             ActivatorUtilities.CreateInstance<DexCreator>(provider)
         );
         */
         services.AddSingleton<AssetGenerator>();
-        services.AddSingleton<DexFetcher>();
+        //services.AddSingleton<DexFetcher>();
+        services.AddSingleton<DbCloudBackupService>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
+        /*
+        services.AddHttpClient<DbCloudBackupService>(client =>
+        {
+            client.BaseAddress = new Uri("https://push-db-backup.lifedex.workers.dev/");
+        });
+        */
         services.AddHttpClient<DexFetcher>(client =>
         {
             client.BaseAddress = new Uri("https://muddy-dust-f74c.lifedex.workers.dev/");
@@ -71,25 +131,51 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
+Console.WriteLine(
+    host.Services
+        .GetRequiredService<IHostEnvironment>()
+        .EnvironmentName);
+
 var argAsInt = int.Parse(args[0]);
 switch (argAsInt)
 {
     case 0:
     {
         Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
-        using var scope = host.Services.CreateScope();
 
-        var usageImporter = scope.ServiceProvider.GetRequiredService<NameUsageImporter>();
-        await usageImporter.ImportAsync();
+        {
+            using var scope = host.Services.CreateScope();
 
-        var vernacularImporter = scope.ServiceProvider.GetRequiredService<VernacularNameImporter>();
-        await vernacularImporter.ImportAsync();
+            var usageImporter =
+                scope.ServiceProvider
+                    .GetRequiredService<NameUsageImporter>();
 
-        var distributionImporter = scope.ServiceProvider.GetRequiredService<ColDistributionImporter>();
-        await distributionImporter.ImportAsync();
+            await usageImporter.ImportAsync();
 
-        var gbifOccurrenceImporter = scope.ServiceProvider.GetRequiredService<GbifAnnualOccurrenceImporter>();
-        await gbifOccurrenceImporter.ImportAsync();
+            var vernacularImporter =
+                scope.ServiceProvider
+                    .GetRequiredService<VernacularNameImporter>();
+
+            await vernacularImporter.ImportAsync();
+
+            var distributionImporter =
+                scope.ServiceProvider
+                    .GetRequiredService<ColDistributionImporter>();
+
+            await distributionImporter.ImportAsync();
+
+            var gbifOccurrenceImporter =
+                scope.ServiceProvider
+                    .GetRequiredService<GbifAnnualOccurrenceImporter>();
+
+            await gbifOccurrenceImporter.ImportAsync();
+        } // DbContext and other scoped services disposed here
+
+        var dbBackupService =
+            host.Services
+                .GetRequiredService<DbCloudBackupService>();
+
+        await dbBackupService.PushToCloudAsync(dbPath);
 
         Console.WriteLine("Db Generation complete.");
         break;
@@ -105,7 +191,7 @@ switch (argAsInt)
         }
 
         using var scope = host.Services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<LifeDexDbContext>();
+        await using var dbContext = scope.ServiceProvider.GetRequiredService<LifeDexDbContext>();
         var pipelineOptions = scope.ServiceProvider.GetRequiredService<IOptions<PipelineConfig>>();
         var dexFetcher = scope.ServiceProvider.GetRequiredService<DexFetcher>();
 

@@ -17,6 +17,7 @@ public class AnimalAiEnrichment
     public required string ConservationStatus { get; init; }
     public required string ActiveTime { get; init; }
     public int Detectability { get; init; }
+    public int Photographability { get; init; }
     public required string[] Habitats { get; init; }
     public required string[] NativeRegions { get; init; }
     public string[]? EndemicTo { get; init; }

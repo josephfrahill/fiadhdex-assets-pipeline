@@ -21,6 +21,7 @@ public record ColConfig
 
 public record GbifConfig
 {
+    public required bool IsAppendRequired { get; init; }
     public required string DirectoryPath { get; init; }
     public required string OccurenceDataFileName { get; init; }
     public required bool IsSubSpecies { get; init; }
