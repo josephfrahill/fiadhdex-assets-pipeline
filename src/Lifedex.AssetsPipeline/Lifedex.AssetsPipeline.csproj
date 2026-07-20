@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lifedex.Database\Lifedex.Database.csproj" />
-    <ProjectReference Include="..\Lifedex.Services\Lifedex.Concrete.csproj" />
+    <ProjectReference Include="..\Lifedex.Concrete\Lifedex.Concrete.csproj" />
   </ItemGroup>
 
   <ItemGroup>

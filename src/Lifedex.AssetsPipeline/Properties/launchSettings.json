@@ -11,18 +11,5 @@
       "commandName": "WSL2",
       "distributionName": ""
     }
-{
-  "profiles": {
-    "AnimalAssetsPipeline": {
-      "commandName": "Project",
-      "commandLineArgs": "0 AU",
-      "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
-      }
-    },
-    "WSL": {
-      "commandName": "WSL2",
-      "distributionName": ""
-    }
   }
 }
