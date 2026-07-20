@@ -1,4 +1,5 @@
 ﻿using AnimalAssetsPipeline.Fetchers;
+using Lifedex.Concrete.Dex;
 using Lifedex.Models;
 using Microsoft.Extensions.Options;
 

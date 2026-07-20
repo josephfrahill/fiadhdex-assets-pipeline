@@ -41,9 +41,9 @@
       "nativeRegions": [
         "Worldwide"
       ],
-      "activeTime": "Diurnal",
       "detectability": 100,
       "photographability": 100,
+      "activeTime": "Diurnal",
       "rarity": "Common",
       "diet": "Omnivore",
       "lifeSpanWildYears": {
@@ -127,9 +127,9 @@
       "nativeRegions": [
         "Worldwide"
       ],
-      "activeTime": "Crepuscular",
       "detectability": 95,
       "photographability": 100,
+      "activeTime": "Crepuscular",
       "rarity": "Common",
       "diet": "Carnivore",
       "lifeSpanWildYears": {
@@ -199,9 +199,9 @@
       "nativeRegions": [
         "Worldwide"
       ],
-      "activeTime": "Crepuscular",
       "detectability": 85,
       "photographability": 95,
+      "activeTime": "Crepuscular",
       "rarity": "Common",
       "diet": "Herbivore",
       "lifeSpanWildYears": {
@@ -941,7 +941,7 @@
         "Worldwide"
       ],
       "detectability": 90,
-      "photographability":  50,
+      "photographability": 50,
       "activeTime": "Diurnal",
       "rarity": "Common",
       "diet": "Omnivore",
@@ -1012,7 +1012,7 @@
         "Worldwide"
       ],
       "detectability": 100,
-      "photographability":  100,
+      "photographability": 100,
       "activeTime": "Diurnal",
       "rarity": "Common",
       "diet": "Omnivore",
@@ -1080,7 +1080,7 @@
         "Worldwide"
       ],
       "detectability": 90,
-      "photographability":  90,
+      "photographability": 90,
       "activeTime": "Diurnal",
       "rarity": "Common",
       "diet": "Omnivore",

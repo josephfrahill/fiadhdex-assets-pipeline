@@ -1,14 +1,24 @@
-﻿namespace Lifedex.Models.Abstract;
+﻿using System.Text.Json.Serialization;
+
+namespace Lifedex.Models.Abstract;
 
 public interface IAnimalBaseData
 {
-    string DexId { get; init; }
-    string Name { get; init; }
-    List<string>? OtherNames { get; init; }
-    string ScientificName { get; init; }
-    string Rank { get; init; }
-    string Genus { get; init; }
-    string Family { get; init; }
-    string Order { get; init; }
-    string Type { get; init; }
+    [property: JsonPropertyOrder(1)] string DexId { get; init; }
+
+    [property: JsonPropertyOrder(2)] string Name { get; init; }
+
+    [property: JsonPropertyOrder(6)] List<string>? OtherNames { get; init; }
+
+    [property: JsonPropertyOrder(7)] string ScientificName { get; init; }
+
+    [property: JsonPropertyOrder(8)] string Rank { get; init; }
+
+    [property: JsonPropertyOrder(9)] string Genus { get; init; }
+
+    [property: JsonPropertyOrder(10)] string Family { get; init; }
+
+    [property: JsonPropertyOrder(11)] string Order { get; init; }
+
+    [property: JsonPropertyOrder(12)] string Type { get; init; }
 }

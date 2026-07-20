@@ -1,10 +1,10 @@
-﻿using Lifedex.Concrete.Json;
+﻿using System.Net.Http.Json;
+using System.Text.Json;
+using Lifedex.Concrete.Json;
 using Lifedex.Models;
 using Microsoft.Extensions.Options;
-using System.Net.Http.Json;
-using System.Text.Json;
 
-namespace AnimalAssetsPipeline.Fetchers;
+namespace Lifedex.Concrete.Dex;
 
 public class DexFetcher
 {
@@ -35,9 +35,10 @@ public class DexFetcher
         }
         else
         {
+            Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
             countryDex = await GetFromCloudAsync(dexPathCloudFull);
             SaveJsonLocally(countryDex, dexPathLocalFull);
-            Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
+            Console.WriteLine($"Successfully fetched dex: `{dexName}` from cloud.");
         }
 
         return new ActionResult(true)

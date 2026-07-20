@@ -2,7 +2,7 @@
 using AnimalAssetsPipeline.Fetchers;
 using Lifedex.Concrete;
 using Lifedex.Concrete.Api;
-using Lifedex.Concrete.DexCreation;
+using Lifedex.Concrete.Dex;
 using Lifedex.Concrete.Importers.Col;
 using Lifedex.Concrete.Importers.Gbif;
 using Lifedex.Database;
@@ -107,8 +107,9 @@ switch (argAsInt)
         using var scope = host.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<LifeDexDbContext>();
         var pipelineOptions = scope.ServiceProvider.GetRequiredService<IOptions<PipelineConfig>>();
+        var dexFetcher = scope.ServiceProvider.GetRequiredService<DexFetcher>();
 
-        var creator = await DexCreator.InitialiseAsync(dbContext, pipelineOptions);
+        var creator = await DexCreator.InitialiseAsync(dbContext, pipelineOptions, dexFetcher);
         var dexCreationResult = await creator.CreateCountryDexBase(args[1]);
 
         if (!dexCreationResult.Successful)

@@ -1,46 +1,51 @@
-﻿using Lifedex.Constants.Countries;
-using Lifedex.Database;
-using Microsoft.Extensions.Options;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Lifedex.Concrete.Json;
+using Lifedex.Constants.Countries;
 using Lifedex.Constants.Exclusions;
+using Lifedex.Database;
 using Lifedex.Models;
 using Lifedex.Models.AnimalData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
-namespace Lifedex.Concrete.DexCreation;
+namespace Lifedex.Concrete.Dex;
 
 public class DexCreator
 {
     private readonly LifeDexDbContext _dbContext;
     private readonly PipelineConfig _config;
+    private readonly DexFetcher _dexFetcher;
     private readonly string _dexesOutputPath;
-    private CountryDexBase _globalDex = null!;
+    private CountryDex _globalDex = null!;
 
-    private DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options)
+    private DexCreator(LifeDexDbContext context, IOptions<PipelineConfig> options, DexFetcher dexFetcher)
     {
         _dbContext = context;
         _config = options.Value;
+        _dexFetcher = dexFetcher;
 
         _dexesOutputPath = Path.Combine(_config.SolutionRoot, _config.Folders.Output, _config.Folders.Dexes);
         Directory.CreateDirectory(_dexesOutputPath);
     }
 
-    public static async Task<DexCreator> InitialiseAsync(LifeDexDbContext context, IOptions<PipelineConfig> options)
+    public static async Task<DexCreator> InitialiseAsync(LifeDexDbContext context, IOptions<PipelineConfig> options,
+        DexFetcher dexFetcher)
     {
-        var creator = new DexCreator(context, options);
+        var creator = new DexCreator(context, options, dexFetcher);
         await creator.LoadGlobalDexAsync();
         return creator;
     }
 
     private async Task LoadGlobalDexAsync()
     {
-        var globalDexPath = Path.Combine(_dexesOutputPath, _config.DexConfig.GlobalDexName);
+        var fetchResult = await
+            _dexFetcher.FetchDexAsync(_config.DexConfig
+                .GlobalDexName);
 
-        var json = await File.ReadAllTextAsync(globalDexPath);
+        if (!fetchResult.Successful || fetchResult.CountryDex is null)
+            throw new JsonException(fetchResult.ErrorMessage);
 
-        _globalDex = JsonSerializer.Deserialize<CountryDexBase>(json, JsonConfigSettings.Options) ??
-                     throw new JsonException($"Error deserialising global-dex.json at path: `{globalDexPath}`.");
+        _globalDex = fetchResult.CountryDex;
     }
 
     public async Task<ActionResult> CreateCountryDexBase(string givenCountry)

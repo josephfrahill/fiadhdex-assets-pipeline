@@ -1,11 +1,16 @@
 <Solution>
-  <Folder Name="/Solution Items/">
+  <Folder Name="/Github Workers/">
+    <File Path=".github/workflows/publish.yml" />
     <File Path=".github/workflows/validate-json.yml" />
+  </Folder>
+  <Folder Name="/Python/">
+    <File Path="python_scripts/rank_images.py" />
+    <File Path="python_scripts/remove_backgrounds.py" />
+  </Folder>
+  <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
     <File Path="output/dexes/global-dex.json" />
     <File Path="pipeline-config.json" />
-    <File Path="python_scripts/rank-images.py" />
-    <File Path="python_scripts/remove_backgrounds.py" />
     <File Path="ReadMe.md" />
     <File Path="run.ps1" />
   </Folder>
