@@ -1,9 +1,9 @@
-﻿using AnimalAssetsPipeline.Fetchers;
+﻿using Lifedex.AssetsPipeline.Fetchers;
 using Lifedex.Concrete.Dex;
 using Lifedex.Models;
 using Microsoft.Extensions.Options;
 
-namespace AnimalAssetsPipeline;
+namespace Lifedex.AssetsPipeline;
 
 public class AssetGenerator
 {

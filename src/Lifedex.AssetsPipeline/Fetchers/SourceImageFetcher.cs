@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using Lifedex.Concrete;
@@ -9,8 +8,9 @@ using Lifedex.Concrete.Json;
 using Lifedex.Models;
 using Lifedex.Models.AnimalData;
 using Lifedex.Models.Images;
+using Microsoft.Extensions.Options;
 
-namespace AnimalAssetsPipeline.Fetchers;
+namespace Lifedex.AssetsPipeline.Fetchers;
 
 public class SourceImageFetcher
 {

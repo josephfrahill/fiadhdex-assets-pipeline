@@ -21,6 +21,7 @@
     <File Path=".gitignore" />
     <File Path="output/dexes/global-dex.json" />
     <File Path="pipeline-config.json" />
+    <File Path="powershell_scripts/create-d1-dump.ps1" />
     <File Path="ReadMe.md" />
     <File Path="run.ps1" />
   </Folder>

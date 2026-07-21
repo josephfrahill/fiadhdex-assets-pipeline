@@ -2,12 +2,13 @@
 
 data-col/
 data-gbif/
-db/
 output/assets
 
 .vs/
 bin/
 obj/
+*.sql
+*.db
 *.user
 *.suo
 *.userosscache

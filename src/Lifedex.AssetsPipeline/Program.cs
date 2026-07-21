@@ -1,6 +1,6 @@
 ﻿using Amazon.S3;
-using AnimalAssetsPipeline;
-using AnimalAssetsPipeline.Fetchers;
+using Lifedex.AssetsPipeline;
+using Lifedex.AssetsPipeline.Fetchers;
 using Lifedex.Concrete;
 using Lifedex.Concrete.Api;
 using Lifedex.Concrete.Dex;

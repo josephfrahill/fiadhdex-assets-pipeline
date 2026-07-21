@@ -1,8 +1,8 @@
 {
-  "totalCount": 15,
+  "totalCount": 19,
   "amphibiaCount": 0,
-  "avesCount": 4,
-  "mammaliaCount": 11,
+  "avesCount": 6,
+  "mammaliaCount": 13,
   "reptiliaCount": 0,
   "dateGenerated": "2026-07-15T05:15:45.0008344Z",
   "animals": [
@@ -619,7 +619,7 @@
         "Does"
       ],
       "otherNames": [
-        "Ratón casero"
+        "Rat\u00f3n casero"
       ],
       "scientificName": "Mus (Mus) musculus",
       "rank": "Species",
@@ -670,7 +670,7 @@
         "Wild"
       ],
       "aiWarnings": [
-        "Disease-vector content (hantavirus/salmonella) — keep any generated copy factual, avoid alarmist phrasing."
+        "Disease-vector content (hantavirus/salmonella) \u2014 keep any generated copy factual, avoid alarmist phrasing."
       ]
     },
     {
@@ -755,7 +755,7 @@
         "Wild"
       ],
       "aiWarnings": [
-        "Disease-vector content (leptospirosis/hantavirus) — keep any generated copy factual, avoid alarmist phrasing."
+        "Disease-vector content (leptospirosis/hantavirus) \u2014 keep any generated copy factual, avoid alarmist phrasing."
       ]
     },
     {
@@ -828,7 +828,7 @@
         "Wild"
       ],
       "aiWarnings": [
-        "References the Black Death / bubonic plague — historically sensitive content, keep factual and cited-style, no dramatization."
+        "References the Black Death / bubonic plague \u2014 historically sensitive content, keep factual and cited-style, no dramatization."
       ]
     },
     {
@@ -898,7 +898,7 @@
         "Commensal"
       ],
       "aiWarnings": [
-        "Source lifeSpanCaptiveYears (3-6) is really a general/free-living average for this species, not zoo-captive data — flag for SME review if that distinction matters downstream."
+        "Source lifeSpanCaptiveYears (3-6) is really a general/free-living average for this species, not zoo-captive data \u2014 flag for SME review if that distinction matters downstream."
       ]
     },
     {
@@ -1106,6 +1106,278 @@
         "Livestock",
         "Domestic",
         "Farm animal"
+      ]
+    },
+    {
+      "dexId": "GL016",
+      "name": "Donkey",
+      "young": "Foal",
+      "gender": {
+        "male": "Jack",
+        "female": "Jenny"
+      },
+      "plurals": [
+        "Donkeys",
+        "Foals",
+        "Jacks",
+        "Jennies"
+      ],
+      "otherNames": [
+        "Ass",
+        "Burro",
+        "Feral Donkey",
+        "Wild Ass"
+      ],
+      "scientificName": "Equus africanus asinus",
+      "rank": "Subspecies",
+      "genus": "Equus",
+      "family": "Equidae",
+      "order": "Perissodactyla",
+      "type": "Mammalia",
+      "collectiveNoun": "A drove of donkeys",
+      "conservationStatus": "Domesticated (wild ancestor: Critically Endangered)",
+      "dangerLevel": "Safe",
+      "dangerNotes": "May kick or bite if startled or mistreated. Generally docile and cautious rather than aggressive.",
+      "habitats": [
+        "Farms",
+        "Rural",
+        "Arid regions",
+        "Mountains"
+      ],
+      "nativeRegions": [
+        "Worldwide"
+      ],
+      "detectability": 90,
+      "photographability": 95,
+      "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 25,
+        "max": 30
+      },
+      "lifeSpanCaptiveYears": {
+        "min": 30,
+        "max": 50
+      },
+      "weightKg": {
+        "min": 80,
+        "max": 480
+      },
+      "lengthCm": {
+        "min": 90,
+        "max": 160
+      },
+      "description": "The donkey is a domesticated member of the horse family descended from the African wild ass, first tamed in Africa or the Middle East around 5,000-7,000 years ago. Renowned for endurance and surefootedness on rough terrain, donkeys have long served as pack and draught animals in agriculture and trade. They are highly intelligent and cautious, often pausing to assess a situation rather than fleeing, a trait sometimes mistaken for stubbornness.",
+      "funFact": "A donkey's oversized ears help radiate heat to keep it cool and give it exceptional hearing, able to detect other donkeys from up to 3 kilometres away.",
+      "tags": [
+        "Livestock",
+        "Domestic",
+        "Working animal"
+      ],
+      "aiWarnings": [
+        "LifeSpanWildYears reflects feral/free-ranging populations, not truly wild ancestral populations (which are Critically Endangered and rare in the wild)."
+      ]
+    },
+    {
+      "dexId": "GL017",
+      "name": "Budgerigar",
+      "young": "Chick",
+      "gender": {
+        "male": "Cock",
+        "female": "Hen"
+      },
+      "plurals": [
+        "Budgerigars",
+        "Chicks",
+        "Cocks",
+        "Hens"
+      ],
+      "otherNames": [
+        "Budgie",
+        "Common Parakeet",
+        "Shell Parakeet",
+        "Parakeet"
+      ],
+      "scientificName": "Melopsittacus undulatus",
+      "rank": "Species",
+      "genus": "Melopsittacus",
+      "family": "Psittaculidae",
+      "order": "Psittaciformes",
+      "type": "Aves",
+      "collectiveNoun": "A flock of budgerigars",
+      "conservationStatus": "Least Concern",
+      "dangerLevel": "Safe",
+      "dangerNotes": "No threat to humans. May nip lightly if frightened while handled.",
+      "habitats": [
+        "Grasslands",
+        "Scrubland",
+        "Urban",
+        "Indoors"
+      ],
+      "nativeRegions": [
+        "Australia",
+        "Worldwide (as a pet)"
+      ],
+      "detectability": 80,
+      "photographability": 90,
+      "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 4,
+        "max": 6
+      },
+      "lifeSpanCaptiveYears": {
+        "min": 5,
+        "max": 10
+      },
+      "weightKg": {
+        "min": 0.03,
+        "max": 0.04
+      },
+      "lengthCm": {
+        "min": 16,
+        "max": 23
+      },
+      "description": "The budgerigar is a small, nomadic parrot native to the dry interior of Australia, where wild flocks follow rainfall in search of seeding grasses. Widely kept as a pet since the 19th century, it is now one of the most popular cage birds in the world, bred into a huge range of colour mutations. Budgerigars are highly social and vocal, capable of mimicking sounds and human speech.",
+      "funFact": "In the wild, budgerigar flocks can number in the thousands and travel long distances, moving nomadically across the Australian outback in response to rain and food availability.",
+      "tags": [
+        "Pet",
+        "Domestic",
+        "Wild"
+      ]
+    },
+    {
+      "dexId": "GL018",
+      "name": "Guinea Pig",
+      "young": "Pup",
+      "gender": {
+        "male": "Boar",
+        "female": "Sow"
+      },
+      "plurals": [
+        "Guinea Pigs",
+        "Pups",
+        "Boars",
+        "Sows"
+      ],
+      "otherNames": [
+        "Cavy",
+        "Domestic Cavy"
+      ],
+      "scientificName": "Cavia porcellus",
+      "rank": "Species",
+      "genus": "Cavia",
+      "family": "Caviidae",
+      "order": "Rodentia",
+      "type": "Mammalia",
+      "collectiveNoun": "A herd of guinea pigs",
+      "conservationStatus": "Domesticated",
+      "dangerLevel": "Safe",
+      "dangerNotes": "No threat to humans. May nip lightly if startled or mishandled.",
+      "habitats": [
+        "Indoors",
+        "Farms",
+        "Suburban"
+      ],
+      "nativeRegions": [
+        "Worldwide (as a pet)"
+      ],
+      "detectability": 90,
+      "photographability": 95,
+      "activeTime": "Crepuscular",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 1,
+        "max": 4
+      },
+      "lifeSpanCaptiveYears": {
+        "min": 4,
+        "max": 8
+      },
+      "weightKg": {
+        "min": 0.7,
+        "max": 1.2
+      },
+      "lengthCm": {
+        "min": 20,
+        "max": 25
+      },
+      "description": "The guinea pig is a domesticated rodent descended from wild cavies of the South American Andes, first tamed by indigenous peoples over 3,000 years ago for food and, later, companionship. Despite the name, it is neither a pig nor from Guinea. Today it is one of the most popular small pets worldwide, known for its sociable nature, wide variety of coat types, and distinctive range of vocalisations.",
+      "funFact": "Guinea pigs cannot synthesise their own vitamin C, much like humans, and require it from their diet to avoid scurvy.",
+      "tags": [
+        "Pet",
+        "Domestic"
+      ],
+      "aiWarnings": [
+        "LifeSpanWildYears reflects related wild cavy species, since true wild guinea pig populations are effectively extinct/undocumented."
+      ]
+    },
+    {
+      "dexId": "GL019",
+      "name": "Domestic Canary",
+      "young": "Chick",
+      "gender": {
+        "male": "Cock",
+        "female": "Hen"
+      },
+      "plurals": [
+        "Canaries",
+        "Chicks",
+        "Cocks",
+        "Hens"
+      ],
+      "otherNames": [
+        "Canary",
+        "Island Canary",
+        "Wild Canary"
+      ],
+      "scientificName": "Serinus canaria domestica",
+      "rank": "Subspecies",
+      "genus": "Serinus",
+      "family": "Fringillidae",
+      "order": "Passeriformes",
+      "type": "Aves",
+      "collectiveNoun": "A choir of canaries",
+      "conservationStatus": "Domesticated (wild ancestor: Least Concern)",
+      "dangerLevel": "Safe",
+      "dangerNotes": "No threat to humans.",
+      "habitats": [
+        "Indoors",
+        "Urban",
+        "Suburban"
+      ],
+      "nativeRegions": [
+        "Worldwide (as a pet)"
+      ],
+      "detectability": 75,
+      "photographability": 85,
+      "activeTime": "Diurnal",
+      "rarity": "Common",
+      "diet": "Herbivore",
+      "lifeSpanWildYears": {
+        "min": 3,
+        "max": 6
+      },
+      "lifeSpanCaptiveYears": {
+        "min": 8,
+        "max": 12
+      },
+      "weightKg": {
+        "min": 0.015,
+        "max": 0.03
+      },
+      "lengthCm": {
+        "min": 12,
+        "max": 14
+      },
+      "description": "The domestic canary is descended from the wild canary of the Canary Islands, Azores, and Madeira, first bred in captivity by Spanish sailors in the 15th century. Prized for its melodic, sustained song, it was selectively bred over centuries into numerous colour and song varieties. Canaries were historically used in coal mines to detect toxic gases, owing to their sensitivity to airborne toxins.",
+      "funFact": "Canaries were used as living gas detectors in coal mines well into the 20th century, as their fast metabolism and small lungs made them collapse from carbon monoxide or methane long before it became dangerous to humans.",
+      "tags": [
+        "Pet",
+        "Domestic"
       ]
     }
   ]
