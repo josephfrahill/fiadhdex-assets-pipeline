@@ -66,28 +66,11 @@ var host = Host.CreateDefaultBuilder(args)
                 ?? throw new InvalidOperationException(
                     "R2 secret key is missing.");
 
-            /*
             var s3Config = new AmazonS3Config
             {
                 ServiceURL =
                     $"https://{accountId}.r2.cloudflarestorage.com",
-
-                // Important for Cloudflare R2
-                ForcePathStyle = true
-            };
-            */
-
-            var s3Config = new AmazonS3Config
-            {
-                ServiceURL =
-                    $"https://{accountId}.r2.cloudflarestorage.com",
-
-                //UseChunkEncoding = false,
-
-
                 Timeout = TimeSpan.FromMinutes(5),
-                //ReadWriteTimeout =
-
                 ConnectTimeout = TimeSpan.FromMinutes(5)
             };
 
@@ -115,7 +98,7 @@ var host = Host.CreateDefaultBuilder(args)
         */
         services.AddHttpClient<DexFetcher>(client =>
         {
-            client.BaseAddress = new Uri("https://muddy-dust-f74c.lifedex.workers.dev/");
+            client.BaseAddress = new Uri("https://fetch-dex.lifedex.workers.dev/");
         });
         services.AddHttpClient<WikimediaImageQuerrier>(client =>
         {

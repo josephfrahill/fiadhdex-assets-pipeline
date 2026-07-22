@@ -46,6 +46,8 @@ switch ($choice)
     {
         cd ./powershell_scripts/
         .\create-d1-dump.ps1
+        cd ../
+        npx wrangler d1 create lifedex
     }
 
     "5"

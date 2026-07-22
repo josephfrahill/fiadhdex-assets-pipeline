@@ -9,10 +9,20 @@ if (-not (Test-Path -Path $DatabaseFile)) {
 
 Write-Host "Generating D1 SQL dump..."
 
+$OriginalCount = 0
+$RemovedCount = 0
+
 sqlite3 $DatabaseFile ".dump" |
-    Where-Object {
-        $_ -notmatch "^\s*BEGIN TRANSACTION;\s*$" -and
-        $_ -notmatch "^\s*COMMIT;\s*$"
+    ForEach-Object {
+        $OriginalCount++
+
+        if ($_ -match "^\s*BEGIN TRANSACTION;\s*$" -or
+            $_ -match "^\s*COMMIT;\s*$") {
+            $RemovedCount++
+        }
+        else {
+            $_
+        }
     } |
     Set-Content $OutputFile -Encoding utf8
 
@@ -20,18 +30,9 @@ if ($LASTEXITCODE -ne 0) {
     throw "SQLite dump failed."
 }
 
-Write-Host "Output file created, verifying stripped lines are correct..."
-
-$OriginalCount = (sqlite3 $DatabaseFile ".dump" | Measure-Object -Line).Lines
-$OutputCount = (Get-Content $OutputFile | Measure-Object -Line).Lines
-
-$RemovedLines = $OriginalCount - $OutputCount
-
-if ($RemovedLines -ne 2) {
-    throw "Expected to remove exactly 2 lines, but removed $RemovedLines."
+if ($RemovedCount -ne 2) {
+    throw "Expected to remove exactly 2 lines, but removed $RemovedCount."
 }
 
-Write-Host "Validated: exactly 2 transaction wrapper lines were removed."
+Write-Host "Validated: $OriginalCount input lines, $RemovedCount removed."
 Write-Host "D1 SQL dump created successfully."
-
-

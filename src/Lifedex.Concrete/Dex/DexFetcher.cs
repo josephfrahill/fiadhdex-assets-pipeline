@@ -25,7 +25,7 @@ public class DexFetcher
     public async Task<ActionResult> FetchDexAsync(string dexName)
     {
         var dexPathLocalFull = Path.Combine(_dexDirPathLocal, dexName).Replace('\\', '/');
-        var dexPathCloudFull = Path.Combine("dexes", dexName).Replace('\\', '/');
+        //var dexPathCloudFull = Path.Combine(dexName).Replace('\\', '/');
 
         CountryDex countryDex;
         if (File.Exists(dexPathLocalFull))
@@ -36,7 +36,7 @@ public class DexFetcher
         else
         {
             Console.WriteLine($"Requested dex: `{dexName}` not found, fetching from cloud...");
-            countryDex = await GetFromCloudAsync(dexPathCloudFull);
+            countryDex = await GetFromCloudAsync(dexName);
             SaveJsonLocally(countryDex, dexPathLocalFull);
             Console.WriteLine($"Successfully fetched dex: `{dexName}` from cloud.");
         }
@@ -47,12 +47,12 @@ public class DexFetcher
         };
     }
 
-    private async Task<CountryDex> GetFromCloudAsync(string dexPath)
+    private async Task<CountryDex> GetFromCloudAsync(string dexName)
     {
-        var result = await _http.GetFromJsonAsync<CountryDex>(dexPath,
+        var result = await _http.GetFromJsonAsync<CountryDex>(dexName,
             JsonConfigSettings.Options);
 
-        return result ?? throw new JsonException($"No data returned for '{dexPath}'.");
+        return result ?? throw new JsonException($"No data returned for '{dexName}'.");
     }
 
     private static void SaveJsonLocally(CountryDex countryDex, string localDexPath)

@@ -1,10 +1,11 @@
 {
+  "version":  1,
+  "dateGenerated": "2026-07-15T05:15:45.0008344Z",
   "totalCount": 19,
   "amphibiaCount": 0,
   "avesCount": 6,
   "mammaliaCount": 13,
   "reptiliaCount": 0,
-  "dateGenerated": "2026-07-15T05:15:45.0008344Z",
   "animals": [
     {
       "dexId": "GL001",

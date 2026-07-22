@@ -3,7 +3,7 @@
 //dependencies:
 - sqlite3
 - - maybe chocolately
-
+- wrangler
 
 
 
