@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/Application/">
+    <Project Path="src/FiadhDex.AssetsPipeline/FiadhDex.AssetsPipeline.csproj" />
+  </Folder>
+  <Folder Name="/Architecture/">
+    <Project Path="src/FiadhDex.Static.Constants/FiadhDex.Static.Constants.csproj" Id="fcb36c47-4545-4f7b-8cb7-2d720ef81d79" />
+    <Project Path="src/FiadhDex.Core.Abstraction/FiadhDex.Core.Abstraction.csproj" Id="088385b9-3da8-4099-bdf2-dfa26b24ed29" />
+    <Project Path="src/FiadhDex.Core.Concrete/FiadhDex.Core.Concrete.csproj" />
+    <Project Path="src/FiadhDex.Database/FiadhDex.Database.csproj" Id="bc8408e7-da50-4b24-90dd-4c56bce3bb33" />
+    <Project Path="src/FiadhDex.Models/FiadhDex.Models.csproj" />
+  </Folder>
+  <Folder Name="/Github Workers/">
+    <File Path=".github/workflows/dexes-publish.yml" />
+    <File Path=".github/workflows/validate-json.yml" />
+  </Folder>
+  <Folder Name="/Python Scripts/">
+    <File Path="python_scripts/rank_images.py" />
+    <File Path="python_scripts/remove_backgrounds.py" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="FiadhDexAssetsPipeline.sln.DotSettings.user" />
+    <File Path="output/dexes/global-dex.json" />
+    <File Path="pipeline-config.json" />
+    <File Path="powershell_scripts/create-d1-dump.ps1" />
+    <File Path="ReadMe.md" />
+    <File Path="run.ps1" />
+  </Folder>
+</Solution>
