@@ -1,7 +1,7 @@
 param()
 
 Write-Host ""
-Write-Host "=== Animal Asset Pipeline ==="
+Write-Host "=== FiadhDex Asset Pipeline ==="
 Write-Host ""
 
 Write-Host "0. Initial DB Generation"
@@ -24,22 +24,22 @@ switch ($choice)
 {
     "0"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- "0"
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "0"
     }
     
     "1"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- "1"
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "1"
     }
 
     "2"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- "2"
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "2"
     }
 
     "3"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- "3"
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "3"
     }
 
     "4"
@@ -52,7 +52,7 @@ switch ($choice)
 
     "5"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- "4"
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "4"
     }
 
     "6"
@@ -76,7 +76,7 @@ switch ($choice)
 
     "9"
     {
-        dotnet run --project ./src/AnimalAssetsPipeline -- fetch
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- fetch
 
         if ($LASTEXITCODE -ne 0) { exit }
 

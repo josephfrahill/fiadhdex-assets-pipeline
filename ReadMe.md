@@ -1,95 +1,90 @@
-﻿## remember to store rare / legendary images on a separate server
+﻿# FiadhDex Asset Pipeline
 
-//dependencies:
-- sqlite3
-- - maybe chocolately
-- wrangler
+A .NET-based pipeline for generating FiadhDex's country-level animal encyclopaedia data and species icon assets.
 
+## Overview
 
+The pipeline has two core functions:
 
-    ps1 plan
+1. **Country Dex Generation** — builds a full species dex for a given country (Mammalia, Aves, Amphibia, Reptilia), sourced from Catalogue of Life (COL) and the Global Biodiversity Information Facility (GBIF), parsed into a local SQLite database. AI enrichment of species data (via OpenAI) is a planned/in-progress step in this flow.
 
-    
-On start, load config-json & display props there like dexName & dexCloudPath.
+2. **Icon Generation** — generates species icon assets for a given dex. Source images are pulled via the Wikimedia API, backgrounds are removed using a Python-based background removal step, and (planned) images are ranked using Gemini Vision before final icon generation via a Flux-based image model.
 
-find executing directory, should be "C:/code/pipeline", + append "pipeline". or get this from configFile
+## Architecture
 
-Display list of options to user, including 
-"1. Download images for dex animals", 
-"2. process images by removing bacgrounds"
-"3. Rank processed images and discard both downloaded & processed versions that don't meet certain criteria"
-"4. Icon gen"
+- **`src/FiadhDex.AssetsPipeline`** — .NET project handling DB generation, dex building, and enrichment. Invoked with numeric stage arguments (e.g. `-- "1"`) or a `fetch` mode for the full pipeline run.
+- **`python_scripts/`** — background removal (`remove_backgrounds.py`), run inside a local `.venv`.
+- **`vision/`** — image ranking via Gemini AI (`rank_images.py`) *(planned)*.
+- **`icons/`** — final icon generation via GenAI/Flux (`generate_icons.py`) *(planned)*.
+- **`powershell_scripts/`** — Cloudflare D1 dump/upload helpers (`create-d1-dump.ps1`).
+- **`run.ps1`** — interactive entry point exposing all pipeline stages as a menu, plus a full end-to-end run (option 9).
 
-Step 0; Not priority. It fetches sthe source json from the cloud if not existing locally. 
-It would be good to include metadata in that source dex json so we can see when it was last updated
-and auto-pull the latets everytime. Need to update cli app to have an option to do only this
+Data flows: **GBIF / COL → SQLite → CountryDexBase → (AI enrichment) → full CountryDex JSON → D1/R2**, with icon generation as a parallel asset track keyed off a generated dex.
 
-Step 1> Mostly done. Needs to pull dexName, dexPathRoot, downlaodedDir from config file. 
-We write a maifest in animalId/downloaded dir that is just for the wikimedia api and prvenets re-downloading junk images
+## Usage
 
-Step 2> Mostly done. Needs to pull dexPathRoot, downlaodedDir, processedDir from config file. 
-DexPathRoot is the important bit.
-Ask the user whether they want to process all animals in this dir or just an individual. Wait for user input
+Run the interactive menu:
 
-- 0 or All -> It needs to find all the folders in that dir, iterate through them, open the downloadedDir, process each image to the outputPath
--1 or individual -> user can provide animal folder name as arg, can just use that to process individually
+```powershell
+.\run.ps1
+```
 
-Step 3> .net app again most likely. Needs to get dexPathRoot, processedDir from config file.
-Ask the user whether they want to process all animals in this dir or just an individual. Wait for user input
+### Pipeline stages
 
-- 0 or All -> It needs to find all the folders in that dir, iterate through them, open the downloadedDir, process each image to the outputPath
--1 or individual -> user can provide animal folder name as arg, can just use that to process individually
+| Option | Stage | Description | Status |
+|--------|-------|-------------|--------|
+| 0 | Initial DB Generation | Parses COL/GBIF source downloads into local SQLite DB | ✅ |
+| 1 | Generate CountryDexBase | Builds a base dex for a selected country from the DB | ✅ |
+| 2 | Enrich CountryDexBase | Enriches base dex data using OpenAI | 🔜 |
+| 3 | Generate full CountryDex | Produces the final enriched CountryDex from DB data | 🔜 |
+| 4 | Cloud DB Generation | Dumps/pushes DB data to Cloudflare D1 | 🟡 Partial |
+| 5 | Download source images | Fetches source images via Wikimedia API for icon generation | ✅ |
+| 6 | Remove backgrounds | Runs Python background removal on downloaded images | ✅ |
+| 7 | Rank images (planned) | Ranks images using Gemini Vision | 🔜 |
+| 8 | Generate icons (planned) | Generates final icons using a GenAI/Flux model | 🔜 |
+| 9 | Full pipeline | Runs fetch → background removal → ranking → icon generation end-to-end, per `config.json` | 🔜 |
 
-We might be rate limited here when doing all, so maybe better to just build this stage as individual first
+### Direct invocation
 
-This stage also has to do a lot of clean up. After it ranks each image in the animalId/processed dir, 
-it should create a metadata.json in that dir for the animal. The background-removal stage doesn't do this.
-It should also delete any images here below a certain ranking, which is easy. It should also update the
-wikimeida manifest in animalId/downloaded to prevent re-downloading junk images. 
+Stages 0–3 and 5 can also be run directly via the .NET project:
 
-Step 4> Icon gen. Tbd
+```powershell
+dotnet run --project ./src/AnimalAssetsPipeline -- "<stage>"
+```
 
+Python stages require the local virtual environment:
 
-python background/remove_backgrounds.py `
-    --input $Downloads `
-    --output $Processed
+```powershell
+cd ./python_scripts/
+.venv\Scripts\activate
+python ./remove_backgrounds.py
+deactivate
+```
 
+## Configuration
 
+Pipeline behaviour for the full run (option 9) is driven by `config.json` *(location/schema TBD — document once finalised)*.
 
-----------------------------------------
+## Tech Stack
 
-Dex getter
+**.NET 10** console application (`src/AnimalAssetsPipeline`)
 
-Manual process to get download for now. Future automation
-- Apiclient to ChecklistBank, can you captured api as template + gbif account. Queues download
-- Need to check when download is available? In emails?
+- `AWSSDK.S3` — asset storage
+- `Microsoft.EntityFrameworkCore` (+ `.Sqlite`, `.Relational`, `.Design`, `.Tools`) — SQLite data layer
+- `SQLitePCLRaw.lib.e_sqlite3` — SQLite native provider
+- `Microsoft.Extensions.Hosting` / `.DependencyInjection` / `.Http` / `.Options` — app host, DI, HTTP client, config binding
+- `OpenAI` — species data enrichment
 
-Once have acquired dex:
-- write parser in pipeline app
-- need to parse all animal classes we support - mammals, reptiles, birds, amphibians, arachnids
-- // fish, insects, mollusks, crustaceans, cnidarians, echinoderms, annelids, flatworms, roundworms, sponges
-- should produce 5 files, preferably as json, one for each class. These are the master lists.
-- Each file should contain a list of animals with their metadata, including:
-  - cotId
-  - scientificName
-  - commonName
-  - distribution
+**Python 3.14.3** for image processing stages (background removal, planned vision ranking, planned icon generation)
 
-  - Dependency on what the distribution data looks like, we should be able to parse it into a list of countries
-  - //, or a list of regions, or a list of continents.
-  - Then we run some code to extrapolate each entry from each list where the distribution data matches each country
-  - This gives us base country dexes
-  - We'll likely need AI review / manual cleanup /addition to each dex
+**Wrangler CLI** for Cloudflare D1 operations
 
+> Package list will keep growing as enrichment, vision ranking, and icon generation stages are built out.
 
+## Requirements
 
-
-Domain (The biggest group, separating things like plants, animals, and bacteria)
-Kingdom (Example: Animalia)
-Phylum (Example: Chordata or Arthropoda)
-Class (Example: Mammalia or Insecta)
-Order (Example: Carnivora—meat eaters)
-Family (Example: Felidae—all cats)
-Genus (Example: Panthera—roaring big cats)
-Species (The final specific animal, like Panthera leo—the lion)
- 
+- .NET 10 SDK
+- Python 3.14.3 with a local `.venv` for background removal / vision / icon stages
+- Cloudflare `wrangler` CLI for D1 operations
+- AWS S3 credentials configured for asset storage
+- OpenAI API key for enrichment stage

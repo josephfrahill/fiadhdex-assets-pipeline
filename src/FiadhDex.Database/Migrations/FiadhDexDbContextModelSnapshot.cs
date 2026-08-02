@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(FiadhDexDbContext))]
-    partial class LifeDexDbContextModelSnapshot : ModelSnapshot
+    partial class FiadhDexDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -94,10 +94,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddSingleton<DbCloudBackupService>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
-        services.AddHttpClient<DexFetcher>(client =>
-        {
-            client.BaseAddress = new Uri("https://fetch-dex.lifedex.workers.dev/");
-        });
+        services.AddHttpClient<DexFetcher>(client => client.BaseAddress = new Uri("https://fetch-dex.fiadhdex.workers.dev/"));
         services.AddHttpClient<WikimediaImageQuerrier>(client =>
         {
             ConfigureGlobalUserAgent(client, personalEmail);
