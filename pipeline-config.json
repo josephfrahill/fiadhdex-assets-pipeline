@@ -1,13 +1,13 @@
 {
   "colConfig": {
-    "directoryPath": "C:/code/lifedex/pipeline/data-col/col-data-unioned",
+    "directoryPath": "C:/code/fiadhdex/pipeline/data-col/col-data-unioned",
     "nameUsage": "NameUsage.tsv",
     "vernacularName": "VernacularName.tsv",
     "distribution": "Distribution.tsv"
   },
   "gbifConfig": {
     "isAppendRequired":  false,
-    "directoryPath": "C:/code/lifedex/pipeline/data-gbif",
+    "directoryPath": "C:/code/fiadhdex/pipeline/data-gbif",
     "occurenceDataFileName": "gbif-aves-1990.csv",
     "isSubSpecies": false
   },
@@ -19,7 +19,7 @@
     "workingDexName": "global-dex.json",
     "workingDexOutputFolder": "global-dex"
   },
-  "solutionRoot": "C:/code/lifedex/pipeline",
+  "solutionRoot": "C:/code/fiadhdex/pipeline",
   "metadataFileName": "animal-metadata.json",
   "folders": {
     "output": "output",

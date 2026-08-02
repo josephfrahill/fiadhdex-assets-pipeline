@@ -23,7 +23,10 @@ if (args.Length < 1)
 
 var solutionDirectory = Utils.GetSolutionDirectory();
 var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
+
+var personalEmail = string.Empty;
 var dbPath = string.Empty;
+const string dbFileName = "fiadhdex.db";
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
     .ConfigureLogging(logging => logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None))
@@ -34,7 +37,7 @@ var host = Host.CreateDefaultBuilder(args)
         {
             var dbDirectory = Path.Combine(solutionDirectory, "db");
             Directory.CreateDirectory(dbDirectory);
-            dbPath = Path.Combine(dbDirectory, "lifedex.db");
+            dbPath = Path.Combine(dbDirectory, dbFileName);
             options.UseSqlite(
                 $"Data Source={dbPath};Pooling=False");
         });
@@ -47,6 +50,11 @@ var host = Host.CreateDefaultBuilder(args)
         {
             var configuration =
                 provider.GetRequiredService<IConfiguration>();
+
+            personalEmail =
+                configuration["PERSONAL_EMAIL"]
+                ?? throw new InvalidOperationException(
+                    "Personal email is missing.");
 
             var accountId =
                 configuration["R2_ACCOUNT_ID"]
@@ -83,29 +91,22 @@ var host = Host.CreateDefaultBuilder(args)
         );
         */
         services.AddSingleton<AssetGenerator>();
-        //services.AddSingleton<DexFetcher>();
         services.AddSingleton<DbCloudBackupService>();
         services.AddSingleton<SourceImageFetcher>();
         services.AddHttpClient();
-        /*
-        services.AddHttpClient<DbCloudBackupService>(client =>
-        {
-            client.BaseAddress = new Uri("https://push-db-backup.lifedex.workers.dev/");
-        });
-        */
         services.AddHttpClient<DexFetcher>(client =>
         {
             client.BaseAddress = new Uri("https://fetch-dex.lifedex.workers.dev/");
         });
         services.AddHttpClient<WikimediaImageQuerrier>(client =>
         {
-            ConfigureGlobalUserAgent(client);
+            ConfigureGlobalUserAgent(client, personalEmail);
 
             client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
         });
         services.AddHttpClient<WikimediaImageDownloader>(client =>
         {
-            ConfigureGlobalUserAgent(client);
+            ConfigureGlobalUserAgent(client, personalEmail);
             client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
         });
     })
@@ -155,7 +156,7 @@ switch (argAsInt)
             host.Services
                 .GetRequiredService<DbCloudBackupService>();
 
-        await dbBackupService.PushToCloudAsync(dbPath);
+        await dbBackupService.PushToCloudAsync(dbPath, dbFileName);
 
         Console.WriteLine("Db Generation complete.");
         break;
@@ -194,6 +195,6 @@ switch (argAsInt)
 Console.WriteLine("Application finished.");
 return;
 
-static void ConfigureGlobalUserAgent(HttpClient client) =>
+static void ConfigureGlobalUserAgent(HttpClient client, string personalEmail) =>
     client.DefaultRequestHeaders.UserAgent.ParseAdd(
-        "LifeDex-AssetPipeline/1.0 (contact: frahill.joseph@gmail.com)");
+        $"FiadhDex-AssetPipeline/1.0 (contact: {personalEmail})");

@@ -4,6 +4,7 @@ data-col/
 data-gbif/
 output/assets
 
+.wrangler/
 .vs/
 bin/
 obj/

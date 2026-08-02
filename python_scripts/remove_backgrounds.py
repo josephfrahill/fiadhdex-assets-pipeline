@@ -23,7 +23,7 @@ def process_files_in_directory(animal_folder: Path, downloaded_dir: str, process
         if not input_full_path.is_file():
             continue
 
-        # Force output to always be a PNG
+        # Force output to always be a PNG (.webp might also be good)
         output_file = f"{Path(filename).stem}.png"
         output_full_path = output_path / output_file
 

@@ -22,15 +22,6 @@ public sealed class VernacularNameImporter
     {
         if (await _dbContext.VernacularNames.AnyAsync())
         {
-            /*
-            var allNameIds = _dbContext.VernacularNames.Select(y => y.ColId);
-            var existingTaxaWithoutNames = _dbContext.Taxa.Where(x => !allNameIds.Contains(x.ColId));
-
-            var serialised = JsonSerializer.Serialize(existingTaxaWithoutNames, JsonConfigSettings.Options);
-            var serialisedPath = Path.Combine(Utils.GetSolutionDirectory(), "db", "no-name-taxa.json");
-            await File.WriteAllTextAsync(serialisedPath, serialised);
-            */
-
             Console.WriteLine("Existing data in VernacularNames table, skipping.");
             return 0;
         }

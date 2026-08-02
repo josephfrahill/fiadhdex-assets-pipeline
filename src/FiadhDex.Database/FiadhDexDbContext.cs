@@ -25,7 +25,7 @@ public class FiadhDexDbContext(DbContextOptions<FiadhDexDbContext> options) : Db
             .HasOne<Taxon>()
             .WithMany(t => t.VernacularNames)
             .HasForeignKey(x => x.ColId)
-            .OnDelete(DeleteBehavior.Cascade); // Automatically clean up orphans
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<ColDistribution>()
             .HasKey(x => x.Id);

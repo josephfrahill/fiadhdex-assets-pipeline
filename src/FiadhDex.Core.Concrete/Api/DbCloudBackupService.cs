@@ -22,7 +22,7 @@ public class DbCloudBackupService
     }
 
     public async Task PushToCloudAsync(
-        string databasePath,
+        string databasePath, string dbFileName,
         CancellationToken cancellationToken = default)
     {
         Console.WriteLine($"Starting upload: {databasePath}");
@@ -35,7 +35,7 @@ public class DbCloudBackupService
         var request = new PutObjectRequest
         {
             BucketName = _bucketName,
-            Key = "db-backup/lifedex.db",
+            Key = $"db-backup/{dbFileName}",
             FilePath = databasePath,
             ContentType = "application/x-sqlite3",
             DisablePayloadSigning = true

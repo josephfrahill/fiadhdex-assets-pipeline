@@ -51,7 +51,6 @@ public class SourceImageFetcher
             foreach (var img in candidates)
             {
                 var metadata = await ReturnOrCreateAnimalMetadata(metadataPath, metadataList);
-                //var fileName = Path.GetFileName(new Uri(img.Url).LocalPath);
                 var fileName = Utils.SanitiseFileName(img.Title);
                 var result = ImageFilterService.IsValid(img, fileName, species.Name, species.Plurals,
                     metadata.ManualBlackList,

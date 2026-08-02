@@ -25,7 +25,6 @@ public class DexFetcher
     public async Task<ActionResult> FetchDexAsync(string dexName)
     {
         var dexPathLocalFull = Path.Combine(_dexDirPathLocal, dexName).Replace('\\', '/');
-        //var dexPathCloudFull = Path.Combine(dexName).Replace('\\', '/');
 
         CountryDex countryDex;
         if (File.Exists(dexPathLocalFull))

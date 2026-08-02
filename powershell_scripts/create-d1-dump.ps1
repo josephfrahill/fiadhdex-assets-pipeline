@@ -1,6 +1,6 @@
 param(
-    [string]$DatabaseFile = "$PSScriptRoot\..\db\lifedex.db",
-    [string]$OutputFile = "$PSScriptRoot\..\db\lifedex-d1.sql"
+    [string]$DatabaseFile = "$PSScriptRoot\..\db\fiadhdex.db",
+    [string]$OutputFile = "$PSScriptRoot\..\db\fiadhdex-d1.sql"
 )
 
 if (-not (Test-Path -Path $DatabaseFile)) {

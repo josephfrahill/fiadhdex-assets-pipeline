@@ -17,15 +17,15 @@ public class PromptBuilder : IPromptBuilder
 
         /*
          * Native to Australia
-Australia
-New Guinea
-Indonesia
-Endemic to Australia
-Australia
+            Australia
+            New Guinea
+            Indonesia
+            Endemic to Australia
+            Australia
 
-The second means the species naturally occurs nowhere else.
+            The second means the species naturally occurs nowhere else.
 
-        dectability = How easy it is for a person actively searching in the appropriate habitat to physically find and observe this animal.
+             dectability = How easy it is for a person actively searching in the appropriate habitat to physically find and observe this animal.
 
          */
         var test = "You are an expert zoologist." +

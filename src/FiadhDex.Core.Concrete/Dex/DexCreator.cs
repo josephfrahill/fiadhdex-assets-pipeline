@@ -50,6 +50,7 @@ public class DexCreator
 
     public async Task<ActionResult> CreateCountryDexBase(string givenCountry)
     {
+        // Todo: add the country flag to the generated json
         var countryValidated = givenCountry.ToLower().Trim();
 
         if (string.IsNullOrEmpty(countryValidated))
@@ -73,7 +74,8 @@ public class DexCreator
         }
 
         /*
-        var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
+         Ignoring COL distribution data for now
+         var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
             x.Area.Contains(countryData.Name) == true).Select(x => x.ColId).ToList();
         */
 

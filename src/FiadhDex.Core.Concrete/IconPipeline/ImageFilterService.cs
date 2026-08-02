@@ -21,7 +21,6 @@ public static class ImageFilterService
     public static FilterResult IsValid(CandidateImage img, string fileName, string species, string[] plurals,
         string[] manualBlackList, string outputDirectory)
     {
-        //var text = img.Title.ToLowerInvariant();
         var text = Utils.SanitiseFileName(img.Title).ToLowerInvariant();
 
         if (Blacklist.Any(x => text.Contains(x, StringComparison.OrdinalIgnoreCase)) ||

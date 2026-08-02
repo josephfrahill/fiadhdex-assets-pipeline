@@ -1,6 +1,6 @@
 ﻿namespace FiadhDex.Core.Concrete;
 
-public class Utils
+public static class Utils
 {
     public static string SanitiseFileName(string title)
     {

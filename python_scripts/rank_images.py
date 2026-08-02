@@ -27,8 +27,7 @@ class AnimalEvaluation(BaseModel):
     )
 
 # 2. Load the animal image
-# Make sure to provide the path to your actual image file
-image_path = "path/to/your/animal_image.jpg"
+image_path = "path/to/animal_image.jpg"
 try:
     img = Image.open(image_path)
 except FileNotFoundError:

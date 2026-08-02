@@ -11,7 +11,7 @@ Write-Host "3. Generate full CountryDex from DB with enriched data"
 Write-Host "4. Cloud DB Generation"
 Write-Host "5. Download source images for icon gen"
 Write-Host "6. Remove backgrounds from downloaded images"
-Write-Host "7. Rank images using VisionAI"
+Write-Host "7. Rank images using GeminiAI"
 Write-Host "8. Generate icons using GenAI"
 Write-Host "9. Run full pipeline based on values set in config.json"
 Write-Host ""
@@ -47,7 +47,7 @@ switch ($choice)
         cd ./powershell_scripts/
         .\create-d1-dump.ps1
         cd ../
-        npx wrangler d1 create lifedex
+        # npx wrangler d1 create lifedex     - DB too large
     }
 
     "5"
