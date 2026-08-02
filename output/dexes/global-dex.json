@@ -1,6 +1,6 @@
 {
-  "version":  1,
-  "dateGenerated": "2026-07-15T05:15:45.0008344Z",
+  "version": 2,
+  "dateGenerated": "2026-08-03T00:00:00.0000000Z",
   "totalCount": 19,
   "amphibiaCount": 0,
   "avesCount": 6,
@@ -15,14 +15,8 @@
         "male": "Dog",
         "female": "Bitch"
       },
-      "plurals": [
-        "Dogs",
-        "Puppies"
-      ],
-      "otherNames": [
-        "Feral Dog",
-        "Wild Dog"
-      ],
+      "plurals": [ "Dogs", "Puppies" ],
+      "otherNames": [ "Feral Dog", "Wild Dog" ],
       "scientificName": "Canis familiaris",
       "rank": "Species",
       "genus": "Canis",
@@ -33,15 +27,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Generally friendly but can bite if threatened or provoked. Stray dogs may be aggressive.",
-      "habitats": [
-        "Urban",
-        "Suburban",
-        "Rural",
-        "Farms"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Suburban", "Rural", "Farms" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 100,
       "photographability": 100,
       "activeTime": "Diurnal",
@@ -65,14 +52,8 @@
       },
       "description": "The domestic dog is a descendant of the grey wolf and is the world's most widely kept domestic animal. Bred over thousands of years into hundreds of distinct breeds, dogs serve as companions, working animals, and livestock guardians. Highly social and intelligent, they communicate through vocalisation, body language, and scent.",
       "funFact": "Dogs have an extraordinary sense of smell estimated to be 10,000-100,000 times more acute than that of humans.",
-      "tags": [
-        "Pet",
-        "Domestic",
-        "Working animal"
-      ],
-      "aiWarnings": [
-        "LifeSpanWildYears is a feral/stray-population estimate, not a verified source figure."
-      ]
+      "tags": [ "Pet", "Domestic", "Working animal" ],
+      "aiWarnings": [ "LifeSpanWildYears is a feral/stray-population estimate, not a verified source figure." ]
     },
     {
       "dexId": "GL002",
@@ -82,33 +63,8 @@
         "male": "Tom",
         "female": "Queen"
       },
-      "plurals": [
-        "Cats",
-        "Kittens",
-        "Toms",
-        "Queens"
-      ],
-      "otherNames": [
-        "Alley Cat",
-        "Calico Cat",
-        "Cat",
-        "Domestic Cat",
-        "Domestic long hair",
-        "Domestic short hair",
-        "Feral Cat",
-        "House Cat",
-        "Kitty",
-        "Kitty-Cat",
-        "Moggie",
-        "Puss",
-        "Pussy",
-        "Pussycat",
-        "Serengeti Cat",
-        "Stray Cat",
-        "Tabby",
-        "Tortoiseshell Cat",
-        "Tuxedo Cat"
-      ],
+      "plurals": [ "Cats", "Kittens", "Toms", "Queens" ],
+      "otherNames": [ "Alley Cat", "Calico Cat", "Cat", "Domestic Cat", "Domestic long hair", "Domestic short hair", "Feral Cat", "House Cat", "Kitty", "Kitty-Cat", "Moggie", "Puss", "Pussy", "Pussycat", "Serengeti Cat", "Stray Cat", "Tabby", "Tortoiseshell Cat", "Tuxedo Cat" ],
       "scientificName": "Felis catus",
       "rank": "Species",
       "genus": "Felis",
@@ -119,15 +75,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "Scratches and bites can cause infection. Feral cats may act defensively.",
-      "habitats": [
-        "Urban",
-        "Suburban",
-        "Rural",
-        "Indoors"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Suburban", "Rural", "Indoors" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 95,
       "photographability": 100,
       "activeTime": "Crepuscular",
@@ -151,13 +100,8 @@
       },
       "description": "The domestic cat is a small, agile carnivore and one of the most popular pets worldwide. Descended from the North African wildcat, cats were first domesticated around 10,000 years ago in the Near East. They are skilled hunters with retractable claws, excellent night vision, and a highly flexible body.",
       "funFact": "Cats spend approximately 70% of their lives sleeping - around 13-16 hours per day.",
-      "tags": [
-        "Pet",
-        "Domestic"
-      ],
-      "aiWarnings": [
-        "LifeSpanWildYears reflects feral colony averages (predation, disease, traffic), not owned pets."
-      ]
+      "tags": [ "Pet", "Domestic" ],
+      "aiWarnings": [ "LifeSpanWildYears reflects feral colony averages (predation, disease, traffic), not owned pets." ]
     },
     {
       "dexId": "GL003",
@@ -167,20 +111,8 @@
         "male": "Buck",
         "female": "Doe"
       },
-      "plurals": [
-        "Rabbits",
-        "Kittens",
-        "Bucks",
-        "Does"
-      ],
-      "otherNames": [
-        "Common Rabit",
-        "Coney",
-        "Cony",
-        "English Rabbit",
-        "European Rabbit",
-        "Wild Rabbit"
-      ],
+      "plurals": [ "Rabbits", "Kittens", "Bucks", "Does" ],
+      "otherNames": [ "Common Rabit", "Coney", "Cony", "English Rabbit", "European Rabbit", "Wild Rabbit" ],
       "scientificName": "Oryctolagus cuniculus",
       "rank": "Species",
       "genus": "Oryctolagus",
@@ -191,15 +123,8 @@
       "conservationStatus": "Domesticated (wild ancestor: Least Concern)",
       "dangerLevel": "Safe",
       "dangerNotes": "Can scratch or bite when handled roughly. No significant threat to humans.",
-      "habitats": [
-        "Farms",
-        "Suburban",
-        "Indoors",
-        "Gardens"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Suburban", "Indoors", "Gardens" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 85,
       "photographability": 95,
       "activeTime": "Crepuscular",
@@ -223,11 +148,7 @@
       },
       "description": "The domestic rabbit is descended from the European wild rabbit and has been selectively bred into over 300 recognised breeds. Rabbits are popular as both pets and livestock, valued for their meat, fur, and companionable nature. They are social animals that communicate through ear position, body posture, and thumping.",
       "funFact": "Rabbits cannot vomit - their digestive system is a one-way street, making a high-fibre diet essential.",
-      "tags": [
-        "Pet",
-        "Domestic",
-        "Livestock"
-      ]
+      "tags": [ "Pet", "Domestic", "Livestock" ]
     },
     {
       "dexId": "GL004",
@@ -238,30 +159,8 @@
         "female": "Cow",
         "maleCastrated": "Steer"
       },
-      "plurals": [
-        "Cattle",
-        "Cows",
-        "Calves",
-        "Bulls",
-        "Steers"
-      ],
-      "otherNames": [
-        "Beef Cattle",
-        "Bullock",
-        "Dairy Cow",
-        "European Cattle",
-        "Feral Cattle",
-        "Heck Cattle",
-        "Heifer",
-        "Hereford",
-        "Highland",
-        "Long Horn",
-        "Ox",
-        "Park Cattle",
-        "Scottish Cattle",
-        "Taurine Cattle",
-        "Wild Cattle"
-      ],
+      "plurals": [ "Cattle", "Cows", "Calves", "Bulls", "Steers" ],
+      "otherNames": [ "Beef Cattle", "Bullock", "Dairy Cow", "European Cattle", "Feral Cattle", "Heck Cattle", "Heifer", "Hereford", "Highland", "Long Horn", "Ox", "Park Cattle", "Scottish Cattle", "Taurine Cattle", "Wild Cattle" ],
       "scientificName": "Bos taurus",
       "rank": "Species",
       "genus": "Bos",
@@ -272,14 +171,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Cows with calves can be protective and charge. Bulls are unpredictable and dangerous.",
-      "habitats": [
-        "Farms",
-        "Grasslands",
-        "Pastures"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Grasslands", "Pastures" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 100,
       "photographability": 100,
       "activeTime": "Diurnal",
@@ -303,14 +196,8 @@
       },
       "description": "Domestic cattle are large ruminant mammals descended from the now-extinct aurochs, domesticated approximately 10,000 years ago. They are among the most economically important livestock in the world, raised for beef, milk, leather, and as draught animals. Cattle are highly social, living in herds with clear social hierarchies.",
       "funFact": "Cows have a near-360-degree field of vision and can detect odours from up to 10 kilometres away.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Farm animal"
-      ],
-      "aiWarnings": [
-        "LifeSpanWildYears based on feral/free-ranging herds (e.g. Chillingham-type); domestic herd lifespan is usually shorter due to culling, not longevity."
-      ]
+      "tags": [ "Livestock", "Domestic", "Farm animal" ],
+      "aiWarnings": [ "LifeSpanWildYears based on feral/free-ranging herds (e.g. Chillingham-type); domestic herd lifespan is usually shorter due to culling, not longevity." ]
     },
     {
       "dexId": "GL005",
@@ -321,16 +208,8 @@
         "female": "Sow",
         "maleCastrated": "Barrow"
       },
-      "plurals": [
-        "Pigs",
-        "Piglets",
-        "Boars",
-        "Sows",
-        "Barrows"
-      ],
-      "otherNames": [
-        "Feral Pig"
-      ],
+      "plurals": [ "Pigs", "Piglets", "Boars", "Sows", "Barrows" ],
+      "otherNames": [ "Feral Pig" ],
       "scientificName": "Sus domesticus",
       "rank": "Species",
       "genus": "Sus",
@@ -341,13 +220,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Sows with piglets can be aggressive. Large boars may charge and bite.",
-      "habitats": [
-        "Farms",
-        "Rural"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Rural" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 95,
       "photographability": 95,
       "activeTime": "Diurnal",
@@ -371,11 +245,7 @@
       },
       "description": "The domestic pig is descended from the Eurasian wild boar and is one of the most numerous large mammals on Earth. Pigs are highly intelligent, ranking among the top five cognitively complex animals. They are raised extensively for pork and other products. Despite their reputation, pigs are naturally clean animals and prefer to cool themselves with water rather than mud.",
       "funFact": "Pigs are considered to have the intelligence of a three-year-old human child and can learn to play video games using a joystick.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Farm animal"
-      ]
+      "tags": [ "Livestock", "Domestic", "Farm animal" ]
     },
     {
       "dexId": "GL006",
@@ -388,41 +258,8 @@
         "femaleYoung": "Filly",
         "maleCastrated": "Gelding"
       },
-      "plurals": [
-        "Horses",
-        "Foals",
-        "Stallions",
-        "Mares",
-        "Geldings",
-        "Colts",
-        "Fillies"
-      ],
-      "otherNames": [
-        "Alberta Nountain Horse",
-        "American Mustang",
-        "Assateague Horse",
-        "Banker Horse",
-        "Brumby",
-        "Camargue Horse",
-        "Chincoteague Pony",
-        "Draft Horse",
-        "Exmoor Pony",
-        "Feral Horse",
-        "Jicarilla Wild Horse",
-        "Kaapsehoop Horse",
-        "Kaapsehoop Wild Horse",
-        "Kefalonian Horse",
-        "Misaki",
-        "Mudder",
-        "Mustang",
-        "Pony",
-        "Primitive Polish Horse",
-        "Shetland Pony",
-        "Wild Horse",
-        "Wild Mustang",
-        "Wild Pony",
-        "Wildie"
-      ],
+      "plurals": [ "Horses", "Foals", "Stallions", "Mares", "Geldings", "Colts", "Fillies" ],
+      "otherNames": [ "Alberta Nountain Horse", "American Mustang", "Assateague Horse", "Banker Horse", "Brumby", "Camargue Horse", "Chincoteague Pony", "Draft Horse", "Exmoor Pony", "Feral Horse", "Jicarilla Wild Horse", "Kaapsehoop Horse", "Kaapsehoop Wild Horse", "Kefalonian Horse", "Misaki", "Mudder", "Mustang", "Pony", "Primitive Polish Horse", "Shetland Pony", "Wild Horse", "Wild Mustang", "Wild Pony", "Wildie" ],
       "scientificName": "Equus caballus",
       "rank": "Species",
       "genus": "Equus",
@@ -433,15 +270,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Caution",
       "dangerNotes": "Can kick or bite powerfully. Startled horses may rear or bolt. Requires experienced handling.",
-      "habitats": [
-        "Farms",
-        "Grasslands",
-        "Stables",
-        "Pastures"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Grasslands", "Stables", "Pastures" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 95,
       "photographability": 100,
       "activeTime": "Diurnal",
@@ -465,11 +295,7 @@
       },
       "description": "The domestic horse has been one of humanity's most important working partners for over 5,000 years. Descended from wild Eurasian horses, they were first domesticated on the Pontic steppes and rapidly transformed human civilisation through transport, agriculture, and warfare. Today horses are kept for riding, sport, and companionship.",
       "funFact": "Horses can sleep both standing up and lying down, and they need only around three hours of deep sleep per night.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Working animal"
-      ]
+      "tags": [ "Livestock", "Domestic", "Working animal" ]
     },
     {
       "dexId": "GL007",
@@ -479,15 +305,8 @@
         "male": "Billy",
         "female": "Nanny"
       },
-      "plurals": [
-        "Goats",
-        "Kids",
-        "Billies",
-        "Nannies"
-      ],
-      "otherNames": [
-        "Feral Goat"
-      ],
+      "plurals": [ "Goats", "Kids", "Billies", "Nannies" ],
+      "otherNames": [ "Feral Goat" ],
       "scientificName": "Capra hircus",
       "rank": "Species",
       "genus": "Capra",
@@ -498,15 +317,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "May headbutt. Horned individuals can cause minor injuries. Generally manageable.",
-      "habitats": [
-        "Farms",
-        "Rural",
-        "Mountains",
-        "Scrubland"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Rural", "Mountains", "Scrubland" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 95,
       "photographability": 100,
       "activeTime": "Diurnal",
@@ -530,11 +342,7 @@
       },
       "description": "Domestic goats were among the first animals to be domesticated, roughly 10,000 years ago in the Zagros Mountains of Iran. Exceptionally adaptable, they thrive in environments from deserts to mountains. Goats are raised for milk, meat, fibre (cashmere and mohair), and skins. Their curious and independent nature makes them skilled escape artists.",
       "funFact": "Goats have rectangular pupils that give them a 320-340 degree field of vision, helping them spot predators without moving their heads.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Farm animal"
-      ]
+      "tags": [ "Livestock", "Domestic", "Farm animal" ]
     },
     {
       "dexId": "GL008",
@@ -545,18 +353,8 @@
         "female": "Ewe",
         "maleCastrated": "Wether"
       },
-      "plurals": [
-        "Sheep",
-        "Lambs",
-        "Rams",
-        "Ewes",
-        "Wethers"
-      ],
-      "otherNames": [
-        "Feral Sheep",
-        "Mouflon",
-        "Red Sheep"
-      ],
+      "plurals": [ "Sheep", "Lambs", "Rams", "Ewes", "Wethers" ],
+      "otherNames": [ "Feral Sheep", "Mouflon", "Red Sheep" ],
       "scientificName": "Ovis aries",
       "rank": "Species",
       "genus": "Ovis",
@@ -567,15 +365,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "Rams can headbutt forcefully during mating season. Generally docile.",
-      "habitats": [
-        "Farms",
-        "Grasslands",
-        "Pastures",
-        "Mountains"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Grasslands", "Pastures", "Mountains" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 95,
       "photographability": 100,
       "activeTime": "Diurnal",
@@ -599,11 +390,7 @@
       },
       "description": "Domestic sheep are among the earliest animals to be domesticated, with evidence dating back 10,000 years in Mesopotamia. There are over one billion sheep on Earth, making them one of the most numerous large mammals. Raised for wool, meat, and milk, sheep are highly social herd animals with a strong flocking instinct as a predator defence.",
       "funFact": "Sheep can recognise and remember up to 50 individual sheep faces for over two years, and also remember human faces.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Farm animal"
-      ]
+      "tags": [ "Livestock", "Domestic", "Farm animal" ]
     },
     {
       "dexId": "GL009",
@@ -613,15 +400,8 @@
         "male": "Buck",
         "female": "Doe"
       },
-      "plurals": [
-        "Mice",
-        "Pinkies",
-        "Bucks",
-        "Does"
-      ],
-      "otherNames": [
-        "Rat\u00f3n casero"
-      ],
+      "plurals": [ "Mice", "Pinkies", "Bucks", "Does" ],
+      "otherNames": [ "Rat\u00f3n casero" ],
       "scientificName": "Mus (Mus) musculus",
       "rank": "Species",
       "genus": "Mus",
@@ -632,16 +412,8 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
       "dangerNotes": "Can carry diseases such as hantavirus and salmonella. Bites are rare but possible.",
-      "habitats": [
-        "Urban",
-        "Suburban",
-        "Farms",
-        "Indoors",
-        "Grasslands"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Suburban", "Farms", "Indoors", "Grasslands" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 55,
       "photographability": 35,
       "activeTime": "Nocturnal",
@@ -665,14 +437,8 @@
       },
       "description": "The house mouse is one of the most widely distributed mammals on Earth, found on every continent except Antarctica. Originally from Central Asia, it has spread globally by living in close association with humans. A highly adaptable commensal rodent, it thrives in buildings, farms, and urban environments. It is also the world's most commonly used laboratory animal.",
       "funFact": "A female mouse can produce up to 10 litters of 5-6 pups per year, meaning a single pair can theoretically produce thousands of descendants annually.",
-      "tags": [
-        "Commensal",
-        "Pest",
-        "Wild"
-      ],
-      "aiWarnings": [
-        "Disease-vector content (hantavirus/salmonella) \u2014 keep any generated copy factual, avoid alarmist phrasing."
-      ]
+      "tags": [ "Commensal", "Pest", "Wild" ],
+      "aiWarnings": [ "Disease-vector content (hantavirus/salmonella) \u2014 keep any generated copy factual, avoid alarmist phrasing." ]
     },
     {
       "dexId": "GL010",
@@ -682,31 +448,8 @@
         "male": "Buck",
         "female": "Doe"
       },
-      "plurals": [
-        "Rats",
-        "Pups",
-        "Bucks",
-        "Does"
-      ],
-      "otherNames": [
-        "Common Brown Rat",
-        "Common Rat",
-        "Domestic Rat",
-        "Dumbo Rat",
-        "Fancy Rat",
-        "Hanover Rat",
-        "Lab Rat",
-        "Laboratory Rat",
-        "Norway Rat",
-        "Norwegian Rat",
-        "Pet Rat",
-        "Rata parda",
-        "Sewer Rat",
-        "Street Rat",
-        "Water Rat",
-        "Wharf Rat",
-        "Wanderratte"
-      ],
+      "plurals": [ "Rats", "Pups", "Bucks", "Does" ],
+      "otherNames": [ "Common Brown Rat", "Common Rat", "Domestic Rat", "Dumbo Rat", "Fancy Rat", "Hanover Rat", "Lab Rat", "Laboratory Rat", "Norway Rat", "Norwegian Rat", "Pet Rat", "Rata parda", "Sewer Rat", "Street Rat", "Water Rat", "Wharf Rat", "Wanderratte" ],
       "scientificName": "Rattus norvegicus",
       "rank": "Species",
       "genus": "Rattus",
@@ -717,16 +460,8 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
       "dangerNotes": "Can carry leptospirosis, hantavirus, and other pathogens. May bite if cornered.",
-      "habitats": [
-        "Urban",
-        "Suburban",
-        "Sewers",
-        "Farms",
-        "Riverbanks"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Suburban", "Sewers", "Farms", "Riverbanks" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 65,
       "photographability": 50,
       "activeTime": "Nocturnal",
@@ -750,14 +485,8 @@
       },
       "description": "The brown rat is the largest and most widespread of the commensal rats, originally from northern China and now found on every continent except Antarctica. An exceptional burrower and swimmer, it colonises sewers, rubbish dumps, warehouses, and farmland. Brown rats are highly intelligent, demonstrating problem-solving ability and even showing empathy-like behaviour in laboratory studies.",
       "funFact": "Brown rats communicate using ultrasonic vocalisations beyond human hearing range, and studies suggest they emit high-frequency 'laughter' when tickled or playing.",
-      "tags": [
-        "Commensal",
-        "Pest",
-        "Wild"
-      ],
-      "aiWarnings": [
-        "Disease-vector content (leptospirosis/hantavirus) \u2014 keep any generated copy factual, avoid alarmist phrasing."
-      ]
+      "tags": [ "Commensal", "Pest", "Wild" ],
+      "aiWarnings": [ "Disease-vector content (leptospirosis/hantavirus) \u2014 keep any generated copy factual, avoid alarmist phrasing." ]
     },
     {
       "dexId": "GL011",
@@ -767,18 +496,8 @@
         "male": "Buck",
         "female": "Doe"
       },
-      "plurals": [
-        "Rats",
-        "Pups",
-        "Bucks",
-        "Does"
-      ],
-      "otherNames": [
-        "Common House Rat",
-        "House Rat",
-        "Roof Rat",
-        "Ship Rat"
-      ],
+      "plurals": [ "Rats", "Pups", "Bucks", "Does" ],
+      "otherNames": [ "Common House Rat", "House Rat", "Roof Rat", "Ship Rat" ],
       "scientificName": "Rattus rattus",
       "rank": "Species",
       "genus": "Rattus",
@@ -789,16 +508,8 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Caution",
       "dangerNotes": "Historically a vector for bubonic plague via its fleas. Can carry salmonella and other pathogens.",
-      "habitats": [
-        "Urban",
-        "Coastal",
-        "Ports",
-        "Tropical forests",
-        "Farms"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Coastal", "Ports", "Tropical forests", "Farms" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 45,
       "photographability": 50,
       "activeTime": "Nocturnal",
@@ -822,15 +533,8 @@
       },
       "description": "The black rat, also known as the ship rat or roof rat, is one of the world's most notorious invasive species. Originating in South and Southeast Asia, it spread globally via sailing ships and is considered a significant driver of island bird and reptile extinctions. Slender and agile, it prefers elevated locations - roof spaces, trees, and dense vegetation - in contrast to the burrowing brown rat.",
       "funFact": "The black rat is believed to be the primary host responsible for spreading the bubonic plague pandemic ('Black Death') that killed a third of Europe's population in the 14th century.",
-      "tags": [
-        "Commensal",
-        "Pest",
-        "Invasive",
-        "Wild"
-      ],
-      "aiWarnings": [
-        "References the Black Death / bubonic plague \u2014 historically sensitive content, keep factual and cited-style, no dramatization."
-      ]
+      "tags": [ "Commensal", "Pest", "Invasive", "Wild" ],
+      "aiWarnings": [ "References the Black Death / bubonic plague \u2014 historically sensitive content, keep factual and cited-style, no dramatization." ]
     },
     {
       "dexId": "GL012",
@@ -840,17 +544,8 @@
         "male": "Cock",
         "female": "Hen"
       },
-      "plurals": [
-        "Pigeons",
-        "Squabs",
-        "Cocks",
-        "Hens"
-      ],
-      "otherNames": [
-        "Feral Pigeon",
-        "Rock Dove",
-        "Rock Pigeon"
-      ],
+      "plurals": [ "Pigeons", "Squabs", "Cocks", "Hens" ],
+      "otherNames": [ "Feral Pigeon", "Rock Dove", "Rock Pigeon" ],
       "scientificName": "Columba livia",
       "rank": "Species",
       "genus": "Columba",
@@ -861,15 +556,8 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
       "dangerNotes": "No direct threat to humans. Droppings can be slippery and carry fungal spores (e.g. Cryptococcus) if accumulated in large quantities.",
-      "habitats": [
-        "Urban",
-        "Coastal cliffs",
-        "Farmland",
-        "Open country"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Coastal cliffs", "Farmland", "Open country" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 100,
       "photographability": 90,
       "activeTime": "Diurnal",
@@ -893,14 +581,8 @@
       },
       "description": "The rock pigeon is the wild ancestor of all domestic and feral pigeons, originally native to sea cliffs and rocky outcrops across Europe, North Africa, and South Asia. Today it thrives in cities worldwide, where buildings mimic its ancestral cliff habitat. Pigeons have an extraordinary homing ability and were historically used to carry messages in wartime.",
       "funFact": "Rock pigeons can navigate home from over 1,800 km away, detecting Earth's magnetic field and using the sun as a compass.",
-      "tags": [
-        "Wild",
-        "Urban",
-        "Commensal"
-      ],
-      "aiWarnings": [
-        "Source lifeSpanCaptiveYears (3-6) is really a general/free-living average for this species, not zoo-captive data \u2014 flag for SME review if that distinction matters downstream."
-      ]
+      "tags": [ "Wild", "Urban", "Commensal" ],
+      "aiWarnings": [ "Source lifeSpanCaptiveYears (3-6) is really a general/free-living average for this species, not zoo-captive data \u2014 flag for SME review if that distinction matters downstream." ]
     },
     {
       "dexId": "GL013",
@@ -910,18 +592,8 @@
         "male": "Cock",
         "female": "Hen"
       },
-      "plurals": [
-        "Sparrows",
-        "Chicks",
-        "Cocks",
-        "Hens"
-      ],
-      "otherNames": [
-        "Domestic Sparrow",
-        "English Sparrow",
-        "European Sparrow",
-        "Gutter Bird"
-      ],
+      "plurals": [ "Sparrows", "Chicks", "Cocks", "Hens" ],
+      "otherNames": [ "Domestic Sparrow", "English Sparrow", "European Sparrow", "Gutter Bird" ],
       "scientificName": "Passer domesticus",
       "rank": "Species",
       "genus": "Passer",
@@ -932,15 +604,8 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
       "dangerNotes": "No threat to humans.",
-      "habitats": [
-        "Urban",
-        "Suburban",
-        "Farms",
-        "Gardens"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Urban", "Suburban", "Farms", "Gardens" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 90,
       "photographability": 50,
       "activeTime": "Diurnal",
@@ -964,11 +629,7 @@
       },
       "description": "The house sparrow is one of the most familiar and widespread birds in the world, having spread across every inhabited continent alongside human settlement. A small, sociable seed-eater, it nests in building crevices and dense shrubs close to human habitation. Despite its ubiquity, house sparrow populations have declined sharply in many European cities over recent decades.",
       "funFact": "The house sparrow takes dust baths - vigorously flicking dry soil through its feathers - to help control parasites and maintain plumage condition.",
-      "tags": [
-        "Wild",
-        "Urban",
-        "Commensal"
-      ]
+      "tags": [ "Wild", "Urban", "Commensal" ]
     },
     {
       "dexId": "GL014",
@@ -980,19 +641,8 @@
         "maleYoung": "Cockerel",
         "femaleYoung": "Pullet"
       },
-      "plurals": [
-        "Chickens",
-        "Chicks",
-        "Roosters",
-        "Hens",
-        "Cockerels",
-        "Pullets"
-      ],
-      "otherNames": [
-        "Jungle Fowl",
-        "Red Jungle-fowl",
-        "Red Junglefowl"
-      ],
+      "plurals": [ "Chickens", "Chicks", "Roosters", "Hens", "Cockerels", "Pullets" ],
+      "otherNames": [ "Jungle Fowl", "Red Jungle-fowl", "Red Junglefowl" ],
       "scientificName": "Gallus gallus",
       "rank": "Species",
       "genus": "Gallus",
@@ -1003,15 +653,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "Roosters may peck or spur if provoked. Chickens can carry Salmonella.",
-      "habitats": [
-        "Farms",
-        "Rural",
-        "Suburban",
-        "Free-range paddocks"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Rural", "Suburban", "Free-range paddocks" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 100,
       "photographability": 100,
       "activeTime": "Diurnal",
@@ -1035,11 +678,7 @@
       },
       "description": "The domestic chicken is the most numerous bird on Earth, with over 30 billion individuals worldwide. Descended from the red junglefowl of South and Southeast Asia, chickens were domesticated at least 8,000 years ago. They are raised globally for eggs and meat and display surprisingly complex social behaviour, including a pecking order hierarchy, tool use, and basic problem-solving.",
       "funFact": "Chickens can remember and recognise over 100 individual faces of both chickens and humans.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Farm animal"
-      ]
+      "tags": [ "Livestock", "Domestic", "Farm animal" ]
     },
     {
       "dexId": "GL015",
@@ -1049,18 +688,8 @@
         "male": "Drake",
         "female": "Duck"
       },
-      "plurals": [
-        "Ducks",
-        "Ducklings",
-        "Drakes",
-        "Mallards"
-      ],
-      "otherNames": [
-        "Common Mallard",
-        "Mallard",
-        "Mallard Duck",
-        "Northern Mallard"
-      ],
+      "plurals": [ "Ducks", "Ducklings", "Drakes", "Mallards" ],
+      "otherNames": [ "Common Mallard", "Mallard", "Mallard Duck", "Northern Mallard" ],
       "scientificName": "Anas platyrhynchos",
       "rank": "Species",
       "genus": "Anas",
@@ -1071,15 +700,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "May nip if approached while nesting. Can carry Salmonella. Generally harmless.",
-      "habitats": [
-        "Farms",
-        "Ponds",
-        "Wetlands",
-        "Rural"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Ponds", "Wetlands", "Rural" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 90,
       "photographability": 90,
       "activeTime": "Diurnal",
@@ -1103,11 +725,7 @@
       },
       "description": "The domestic duck is descended from the mallard and has been kept by humans for at least 2,500 years, primarily for eggs, meat, and down feathers. Domestic ducks retain many of the behaviours of their wild ancestors, including dabbling for food in shallow water, preening, and strong waterproofing thanks to oil produced by the uropygial gland. They are sociable and do best kept in groups.",
       "funFact": "A duck's quack does not echo - or rather, it does, but the quack naturally fades in and out in a way that makes the echo imperceptible to human ears.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Farm animal"
-      ]
+      "tags": [ "Livestock", "Domestic", "Farm animal" ]
     },
     {
       "dexId": "GL016",
@@ -1117,20 +735,10 @@
         "male": "Jack",
         "female": "Jenny"
       },
-      "plurals": [
-        "Donkeys",
-        "Foals",
-        "Jacks",
-        "Jennies"
-      ],
-      "otherNames": [
-        "Ass",
-        "Burro",
-        "Feral Donkey",
-        "Wild Ass"
-      ],
-      "scientificName": "Equus africanus asinus",
-      "rank": "Subspecies",
+      "plurals": [ "Donkeys", "Foals", "Jacks", "Jennies" ],
+      "otherNames": [ "Ass", "Burro", "Feral Donkey", "Wild Ass", "African Wild Ass", "African donkey", "Domestic Ass", "Domestic Donkey", "Ethiopian donkey", "Jackass", "Jennet", "Mammoth Donkey", "Miniature Donkey", "Wild Burro", "Feral Burro" ],
+      "scientificName": "Equus asinus",
+      "rank": "Species",
       "genus": "Equus",
       "family": "Equidae",
       "order": "Perissodactyla",
@@ -1139,15 +747,8 @@
       "conservationStatus": "Domesticated (wild ancestor: Critically Endangered)",
       "dangerLevel": "Safe",
       "dangerNotes": "May kick or bite if startled or mistreated. Generally docile and cautious rather than aggressive.",
-      "habitats": [
-        "Farms",
-        "Rural",
-        "Arid regions",
-        "Mountains"
-      ],
-      "nativeRegions": [
-        "Worldwide"
-      ],
+      "habitats": [ "Farms", "Rural", "Arid regions", "Mountains" ],
+      "nativeRegions": [ "Worldwide" ],
       "detectability": 90,
       "photographability": 95,
       "activeTime": "Diurnal",
@@ -1171,14 +772,8 @@
       },
       "description": "The donkey is a domesticated member of the horse family descended from the African wild ass, first tamed in Africa or the Middle East around 5,000-7,000 years ago. Renowned for endurance and surefootedness on rough terrain, donkeys have long served as pack and draught animals in agriculture and trade. They are highly intelligent and cautious, often pausing to assess a situation rather than fleeing, a trait sometimes mistaken for stubbornness.",
       "funFact": "A donkey's oversized ears help radiate heat to keep it cool and give it exceptional hearing, able to detect other donkeys from up to 3 kilometres away.",
-      "tags": [
-        "Livestock",
-        "Domestic",
-        "Working animal"
-      ],
-      "aiWarnings": [
-        "LifeSpanWildYears reflects feral/free-ranging populations, not truly wild ancestral populations (which are Critically Endangered and rare in the wild)."
-      ]
+      "tags": [ "Livestock", "Domestic", "Working animal" ],
+      "aiWarnings": [ "LifeSpanWildYears reflects feral/free-ranging populations, not truly wild ancestral populations. True wild Equus africanus is Critically Endangered and restricted to the Horn of Africa \u2014 tracked separately in the Africa regional dex, not here." ]
     },
     {
       "dexId": "GL017",
@@ -1188,18 +783,8 @@
         "male": "Cock",
         "female": "Hen"
       },
-      "plurals": [
-        "Budgerigars",
-        "Chicks",
-        "Cocks",
-        "Hens"
-      ],
-      "otherNames": [
-        "Budgie",
-        "Common Parakeet",
-        "Shell Parakeet",
-        "Parakeet"
-      ],
+      "plurals": [ "Budgerigars", "Chicks", "Cocks", "Hens" ],
+      "otherNames": [ "Budgie", "Common Parakeet", "Shell Parakeet", "Parakeet" ],
       "scientificName": "Melopsittacus undulatus",
       "rank": "Species",
       "genus": "Melopsittacus",
@@ -1210,16 +795,8 @@
       "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
       "dangerNotes": "No threat to humans. May nip lightly if frightened while handled.",
-      "habitats": [
-        "Grasslands",
-        "Scrubland",
-        "Urban",
-        "Indoors"
-      ],
-      "nativeRegions": [
-        "Australia",
-        "Worldwide (as a pet)"
-      ],
+      "habitats": [ "Grasslands", "Scrubland", "Urban", "Indoors" ],
+      "nativeRegions": [ "Australia", "Worldwide (as a pet)" ],
       "detectability": 80,
       "photographability": 90,
       "activeTime": "Diurnal",
@@ -1243,11 +820,7 @@
       },
       "description": "The budgerigar is a small, nomadic parrot native to the dry interior of Australia, where wild flocks follow rainfall in search of seeding grasses. Widely kept as a pet since the 19th century, it is now one of the most popular cage birds in the world, bred into a huge range of colour mutations. Budgerigars are highly social and vocal, capable of mimicking sounds and human speech.",
       "funFact": "In the wild, budgerigar flocks can number in the thousands and travel long distances, moving nomadically across the Australian outback in response to rain and food availability.",
-      "tags": [
-        "Pet",
-        "Domestic",
-        "Wild"
-      ]
+      "tags": [ "Pet", "Domestic", "Wild" ]
     },
     {
       "dexId": "GL018",
@@ -1257,16 +830,8 @@
         "male": "Boar",
         "female": "Sow"
       },
-      "plurals": [
-        "Guinea Pigs",
-        "Pups",
-        "Boars",
-        "Sows"
-      ],
-      "otherNames": [
-        "Cavy",
-        "Domestic Cavy"
-      ],
+      "plurals": [ "Guinea Pigs", "Pups", "Boars", "Sows" ],
+      "otherNames": [ "Cavy", "Domestic Cavy" ],
       "scientificName": "Cavia porcellus",
       "rank": "Species",
       "genus": "Cavia",
@@ -1277,14 +842,8 @@
       "conservationStatus": "Domesticated",
       "dangerLevel": "Safe",
       "dangerNotes": "No threat to humans. May nip lightly if startled or mishandled.",
-      "habitats": [
-        "Indoors",
-        "Farms",
-        "Suburban"
-      ],
-      "nativeRegions": [
-        "Worldwide (as a pet)"
-      ],
+      "habitats": [ "Indoors", "Farms", "Suburban" ],
+      "nativeRegions": [ "Worldwide (as a pet)" ],
       "detectability": 90,
       "photographability": 95,
       "activeTime": "Crepuscular",
@@ -1308,53 +867,33 @@
       },
       "description": "The guinea pig is a domesticated rodent descended from wild cavies of the South American Andes, first tamed by indigenous peoples over 3,000 years ago for food and, later, companionship. Despite the name, it is neither a pig nor from Guinea. Today it is one of the most popular small pets worldwide, known for its sociable nature, wide variety of coat types, and distinctive range of vocalisations.",
       "funFact": "Guinea pigs cannot synthesise their own vitamin C, much like humans, and require it from their diet to avoid scurvy.",
-      "tags": [
-        "Pet",
-        "Domestic"
-      ],
-      "aiWarnings": [
-        "LifeSpanWildYears reflects related wild cavy species, since true wild guinea pig populations are effectively extinct/undocumented."
-      ]
+      "tags": [ "Pet", "Domestic" ],
+      "aiWarnings": [ "LifeSpanWildYears reflects related wild cavy species, since true wild guinea pig populations are effectively extinct/undocumented." ]
     },
     {
       "dexId": "GL019",
-      "name": "Domestic Canary",
+      "name": "Canary",
       "young": "Chick",
       "gender": {
         "male": "Cock",
         "female": "Hen"
       },
-      "plurals": [
-        "Canaries",
-        "Chicks",
-        "Cocks",
-        "Hens"
-      ],
-      "otherNames": [
-        "Canary",
-        "Island Canary",
-        "Wild Canary"
-      ],
-      "scientificName": "Serinus canaria domestica",
-      "rank": "Subspecies",
+      "plurals": [ "Canaries", "Chicks", "Cocks", "Hens" ],
+      "otherNames": [ "Domestic Canary", "Island Canary", "Atlantic Canary", "Wild Canary" ],
+      "scientificName": "Serinus canaria",
+      "rank": "Species",
       "genus": "Serinus",
       "family": "Fringillidae",
       "order": "Passeriformes",
       "type": "Aves",
       "collectiveNoun": "A choir of canaries",
-      "conservationStatus": "Domesticated (wild ancestor: Least Concern)",
+      "conservationStatus": "Least Concern",
       "dangerLevel": "Safe",
       "dangerNotes": "No threat to humans.",
-      "habitats": [
-        "Indoors",
-        "Urban",
-        "Suburban"
-      ],
-      "nativeRegions": [
-        "Worldwide (as a pet)"
-      ],
-      "detectability": 75,
-      "photographability": 85,
+      "habitats": [ "Woodland", "Scrubland", "Gardens", "Pine forest", "Indoors", "Urban", "Suburban" ],
+      "nativeRegions": [ "Canary Islands", "Azores", "Madeira", "Worldwide (as a pet)" ],
+      "detectability": 60,
+      "photographability": 70,
       "activeTime": "Diurnal",
       "rarity": "Common",
       "diet": "Herbivore",
@@ -1374,12 +913,9 @@
         "min": 12,
         "max": 14
       },
-      "description": "The domestic canary is descended from the wild canary of the Canary Islands, Azores, and Madeira, first bred in captivity by Spanish sailors in the 15th century. Prized for its melodic, sustained song, it was selectively bred over centuries into numerous colour and song varieties. Canaries were historically used in coal mines to detect toxic gases, owing to their sensitivity to airborne toxins.",
+      "description": "The canary is a small finch native to the Canary Islands, Azores, and Madeira, first taken into captivity by Spanish sailors in the 15th century and prized for its melodic, sustained song. Selective breeding over centuries produced numerous colour and song varieties now kept as pets worldwide, while wild populations persist in wooded and scrubby habitats across its native islands. Domesticated canaries were historically used in coal mines to detect toxic gases, owing to their sensitivity to airborne toxins.",
       "funFact": "Canaries were used as living gas detectors in coal mines well into the 20th century, as their fast metabolism and small lungs made them collapse from carbon monoxide or methane long before it became dangerous to humans.",
-      "tags": [
-        "Pet",
-        "Domestic"
-      ]
+      "tags": [ "Pet", "Domestic", "Songbird" ]
     }
   ]
 }

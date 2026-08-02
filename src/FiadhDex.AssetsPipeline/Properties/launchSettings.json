@@ -2,7 +2,7 @@
   "profiles": {
     "AssetsPipeline": {
       "commandName": "Project",
-      "commandLineArgs": "0 AU",
+      "commandLineArgs": "1 AU",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

@@ -13,4 +13,5 @@ public record AnimalBaseData : IAnimalBaseData
     public required string Family { get; init; }
     public required string Order { get; init; }
     public required string Type { get; init; }
+    public required int GbifOccurrenceCount { get; init; }
 }

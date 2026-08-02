@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace FiadhDex.Core.Concrete.Dex;
 
-public class DexCreator
+public sealed class DexCreator
 {
     private readonly FiadhDexDbContext _dbContext;
     private readonly PipelineConfig _config;
@@ -78,11 +78,10 @@ public class DexCreator
          var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
             x.Area.Contains(countryData.Name) == true).Select(x => x.ColId).ToList();
         */
+        var countryOccurrencesData = await _dbContext.GbifAnnualOccurrences.Where(x =>
+            x.CountryCode.Equals(countryData.Code)).GroupBy(x => x.ColId).Select(g => new { ColId = g.Key, TotalOccurrences = g.Sum(x => x.Occurrences) }).ToListAsync();
 
-        var countryOccurrencesIds = _dbContext.GbifAnnualOccurrences.Where(x =>
-            x.CountryCode.Equals(countryData.Code)).Select(x => x.ColId);
-
-        if (!countryOccurrencesIds.Any())
+        if (countryOccurrencesData.Count == 0)
         {
             return new ActionResult(false)
             {
@@ -96,7 +95,7 @@ public class DexCreator
         var allSpecies = _dbContext.Taxa.Where(x => x.Rank.Equals(rank)).Include(taxon => taxon.VernacularNames)
             .ToList();
 
-        var countrySpecies = allSpecies.IntersectBy(countryOccurrencesIds, x => x.ColId).ToList();
+        var countrySpecies = allSpecies.IntersectBy(countryOccurrencesData.Select(x => x.ColId), x => x.ColId).ToList();
 
         var globalScientificNames = _globalDex.Animals.Select(x => x.ScientificName).ToArray();
 
@@ -109,11 +108,13 @@ public class DexCreator
         var countryAnimalsFilteredFamilies = countryAnimalsFilteredOrders
             .Where(x => !DexExclusions.ExcludedFamilies.Contains(x.Order, StringComparer.OrdinalIgnoreCase));
 
+        List<AnimalBaseData> lowOccurrenceAnimals = [];
         var animals = countryAnimalsFilteredFamilies
             .Select((x, index) =>
             {
                 var name = x.VernacularNames.FirstOrDefault()?.Name ?? string.Empty;
                 var otherNames = x.VernacularNames.Select(y => y.Name).Except([name]).ToList();
+                var gbifDataCount = countryOccurrencesData.FirstOrDefault(y => y.ColId.Equals(x.ColId))?.TotalOccurrences ?? 0;
 
                 var animal = new AnimalBaseData
                 {
@@ -126,7 +127,13 @@ public class DexCreator
                     Family = x.Family,
                     Order = x.Order,
                     Type = x.Type,
+                    GbifOccurrenceCount = gbifDataCount,
                 };
+
+                if (gbifDataCount < 20)
+                {
+                    lowOccurrenceAnimals.Add(animal);
+                }
 
                 return animal;
             })
@@ -140,18 +147,29 @@ public class DexCreator
             MammaliaCount = animals.Count(x => x.Type.Equals("Mammalia")),
             ReptiliaCount = animals.Count(x => x.Type.Equals("Reptilia")),
             DateGenerated = DateTime.UtcNow,
-            Animals = animals
+            Animals = animals,
+            LowOccurrenceAnimals = lowOccurrenceAnimals
         };
 
         var differenceCount = countrySpecies.Count - countrySpeciesWithoutGlobals.Length;
-        Console.WriteLine($"Stripped {differenceCount} global entries from new dex of total {animals.Count} count.");
+        Console.WriteLine($"Stripped {differenceCount} entries from new dex using global-dex count: {_globalDex.TotalCount}.");
 
-        var dexPath = Path.Combine(_dexesOutputPath, $"{countryData.Name.ToLower()}-dex.json.");
+        if (differenceCount != _globalDex.TotalCount)
+        {
+            Console.WriteLine("GLOBAL DEX NOT FULLY STRIPPED FROM GENERATED COUNTRY DEX!");
+            var remaingGlobalEntries = _globalDex.Animals.Where(x => !countrySpecies.Select(y => y.ScientificName).Contains(x.ScientificName));  //countrySpecies.IntersectBy(globalScientificNames, x => x.ScientificName).ToList();
+            foreach (var remainer in remaingGlobalEntries)
+            {
+                Console.WriteLine($"Remaining global entry: {remainer.Name}.");
+            }
+        }
+
+        var dexPath = Path.Combine(_dexesOutputPath, $"{countryData.Name.ToLower()}-base-dex.json.");
 
         var json = JsonSerializer.Serialize(countryDex, JsonConfigSettings.Options);
 
         await File.WriteAllTextAsync(dexPath, json);
-        Console.WriteLine($"Created dex for country: `{countryData.Name}` in: {_dexesOutputPath}.");
+        Console.WriteLine($"Created base dex for country: `{countryData.Name}` in: {_dexesOutputPath}.");
 
         return new ActionResult(true);
     }
