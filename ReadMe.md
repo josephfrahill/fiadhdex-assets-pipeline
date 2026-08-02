@@ -49,7 +49,7 @@ Run the interactive menu:
 Stages 0–3 and 5 can also be run directly via the .NET project:
 
 ```powershell
-dotnet run --project ./src/AnimalAssetsPipeline -- "<stage>"
+dotnet run --project ./src/FiadhDex.AssetsPipeline -- "<stage>"
 ```
 
 Python stages require the local virtual environment:
@@ -67,7 +67,7 @@ Pipeline behaviour for the full run (option 9) is driven by `config.json` *(loca
 
 ## Tech Stack
 
-**.NET 10** console application (`src/AnimalAssetsPipeline`)
+**.NET 10** console application (`src/FiadhDex.AssetsPipeline`)
 
 - `AWSSDK.S3` — asset storage
 - `Microsoft.EntityFrameworkCore` (+ `.Sqlite`, `.Relational`, `.Design`, `.Tools`) — SQLite data layer

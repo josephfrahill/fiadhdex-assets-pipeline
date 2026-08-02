@@ -11,11 +11,11 @@ public class AssetGenerator
     private readonly DexFetcher _dexFetcher;
     private readonly SourceImageFetcher _imageFetcher;
 
-    public AssetGenerator(IOptions<PipelineConfig> options, DexFetcher lifeDexDataFetcher,
+    public AssetGenerator(IOptions<PipelineConfig> options, DexFetcher dexFetcher,
         SourceImageFetcher imageFetcher)
     {
         _config = options.Value;
-        _dexFetcher = lifeDexDataFetcher;
+        _dexFetcher = dexFetcher;
         _imageFetcher = imageFetcher;
 
         var outputPathRoot = Path.Combine(_config.SolutionRoot, _config.Folders.Output).Replace('\\', '/');
