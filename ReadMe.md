@@ -63,7 +63,7 @@ deactivate
 
 ## Configuration
 
-Pipeline behaviour for the full run (option 9) is driven by `config.json` *(location/schema TBD — document once finalised)*.
+Pipeline behaviour for the full run (option 9) will be established once all the previous stages are implemented.
 
 ## Tech Stack
 

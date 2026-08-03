@@ -3,7 +3,7 @@
 data-col/
 data-gbif/
 output/assets
-src/FiadhDex.AssetsPipeline/Properties/launchSettings.json
+launchSettings.json
 
 .wrangler/
 .vs/
