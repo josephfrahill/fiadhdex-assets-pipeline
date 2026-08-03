@@ -3,11 +3,14 @@
 data-col/
 data-gbif/
 output/assets
+src/FiadhDex.AssetsPipeline/Properties/launchSettings.json
 
 .wrangler/
 .vs/
 bin/
 obj/
+*.db-wal
+*.db-shm
 *.sql
 *.db
 *.user

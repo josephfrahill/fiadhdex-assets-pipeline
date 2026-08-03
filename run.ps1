@@ -4,7 +4,7 @@ Write-Host ""
 Write-Host "=== FiadhDex Asset Pipeline ==="
 Write-Host ""
 
-Write-Host "0. Initial DB Generation"
+Write-Host "0. Initial DB Generation & Cloud Backup"
 Write-Host "1. Generate selected base CountryDex from DB"
 Write-Host "2. Enrich base CountryDex DB data with OpenAI"
 Write-Host "3. Generate full CountryDex from DB with enriched data"
@@ -44,10 +44,19 @@ switch ($choice)
 
     "4"
     {
+        $tables = @(
+        "ColDistributions",
+        "GbifAnnualOccurrences",
+        "Taxa"
+        "VernacularNames"        
+        )
+
         cd ./powershell_scripts/
-        .\create-d1-dump.ps1
+        foreach ($table in $tables) {
+            .\create-d1-dump-single.ps1 -TableName $table
+            .\import-d1-dump.ps1 -SqlFile "..\db\$table.sql"
+        }      
         cd ../
-        # npx wrangler d1 create fiadhdex     - DB too large
     }
 
     "5"

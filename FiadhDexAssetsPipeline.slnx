@@ -3,6 +3,11 @@
     <File Path=".github/workflows/dexes-publish.yml" />
     <File Path=".github/workflows/validate-json.yml" />
   </Folder>
+  <Folder Name="/Powershell Scripts/">
+    <File Path="powershell_scripts/create-d1-dump-full.ps1" />
+    <File Path="powershell_scripts/create-d1-dump-single.ps1" />
+    <File Path="powershell_scripts/import-d1-dump.ps1" />
+  </Folder>
   <Folder Name="/Python Scripts/">
     <File Path="python_scripts/rank_images.py" />
     <File Path="python_scripts/remove_backgrounds.py" />
@@ -12,7 +17,6 @@
     <File Path="FiadhDexAssetsPipeline.sln.DotSettings.user" />
     <File Path="output/dexes/global-dex.json" />
     <File Path="pipeline-config.json" />
-    <File Path="powershell_scripts/create-d1-dump.ps1" />
     <File Path="ReadMe.md" />
     <File Path="run.ps1" />
   </Folder>

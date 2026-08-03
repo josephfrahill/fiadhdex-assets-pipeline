@@ -37,7 +37,7 @@ Run the interactive menu:
 | 1 | Generate CountryDexBase | Builds a base dex for a selected country from the DB | ✅ |
 | 2 | Enrich CountryDexBase | Enriches base dex data using OpenAI | 🔜 |
 | 3 | Generate full CountryDex | Produces the final enriched CountryDex from DB data | 🔜 |
-| 4 | Cloud DB Generation | Dumps/pushes DB data to Cloudflare D1 | 🟡 Partial |
+| 4 | Cloud DB Generation | Dumps/pushes DB data to Cloudflare D1 | ✅ |
 | 5 | Download source images | Fetches source images via Wikimedia API for icon generation | ✅ |
 | 6 | Remove backgrounds | Runs Python background removal on downloaded images | ✅ |
 | 7 | Rank images (planned) | Ranks images using Gemini Vision | 🔜 |
