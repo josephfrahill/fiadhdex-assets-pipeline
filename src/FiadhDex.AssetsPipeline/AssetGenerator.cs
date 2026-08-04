@@ -38,7 +38,10 @@ public class AssetGenerator
 
         switch (args[0])
         {
-            case "2":
+            case "4" or "6" or "7" or "8":
+                throw new NotSupportedException("This option is not supported here.");
+            case "5":
+                Console.WriteLine($"Processing input: `{args[0]}`: Image downloading.");
                 await _imageFetcher.FetchImagesAsync(animals);
                 break;
         }

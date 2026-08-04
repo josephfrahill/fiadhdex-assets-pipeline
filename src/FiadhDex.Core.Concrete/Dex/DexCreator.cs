@@ -164,7 +164,7 @@ public sealed class DexCreator
             }
         }
 
-        var dexPath = Path.Combine(_dexesOutputPath, $"{countryData.Name.ToLower()}-base-dex.json.");
+        var dexPath = Path.Combine(_dexesOutputPath, $"{countryData.Code.ToLower()}-base-dex.json.");
 
         var json = JsonSerializer.Serialize(countryDex, JsonConfigSettings.Options);
 

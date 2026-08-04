@@ -61,7 +61,7 @@ switch ($choice)
 
     "5"
     {
-        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "4"
+        dotnet run --project ./src/FiadhDex.AssetsPipeline -- "5"
     }
 
     "6"

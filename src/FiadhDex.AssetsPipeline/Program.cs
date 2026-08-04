@@ -24,103 +24,83 @@ if (args.Length < 1)
 var solutionDirectory = Utils.GetSolutionDirectory();
 var configPath = Path.Combine(solutionDirectory, "pipeline-config.json");
 
-var personalEmail = string.Empty;
 var dbPath = string.Empty;
 const string dbFileName = "fiadhdex.db";
-var host = Host.CreateDefaultBuilder(args)
-    .ConfigureAppConfiguration(config => { config.AddJsonFile(configPath); })
-    .ConfigureLogging(logging => logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None))
-    .ConfigureServices((context, services) =>
+
+// Passing args is standard even though not relevant for now
+var builder = Host.CreateApplicationBuilder(args);
+builder.Configuration.AddJsonFile(configPath);
+
+if (builder.Environment.IsDevelopment())
+{
+    //(optional: true) // continues if user secrets are not set up
+    builder.Configuration.AddUserSecrets<Program>();
+}
+builder.Configuration.AddEnvironmentVariables();
+
+var configuration = builder.Configuration;
+var accountId = configuration["R2_ACCOUNT_ID"]
+    ?? throw new InvalidOperationException();
+var accessKey = configuration["R2_ACCESS_KEY_ID"]
+    ?? throw new InvalidOperationException();
+var secretKey = configuration["R2_SECRET_ACCESS_KEY"]
+    ?? throw new InvalidOperationException();
+var personalEmail = configuration["PERSONAL_EMAIL"]
+    ?? throw new InvalidOperationException();
+
+builder.Services.Configure<PipelineConfig>(configuration);
+builder.Services
+    .AddSingleton<IAmazonS3>(_ =>
     {
-        services.Configure<PipelineConfig>(context.Configuration);
-        services.AddDbContext<FiadhDexDbContext>(options =>
+        var s3Config = new AmazonS3Config
         {
-            var dbDirectory = Path.Combine(solutionDirectory, "db");
-            Directory.CreateDirectory(dbDirectory);
-            dbPath = Path.Combine(dbDirectory, dbFileName);
-            options.UseSqlite(
-                $"Data Source={dbPath};Pooling=False");
-        });
-
-        services.AddScoped<NameUsageImporter>();
-        services.AddScoped<VernacularNameImporter>();
-        services.AddScoped<ColDistributionImporter>();
-        services.AddScoped<GbifAnnualOccurrenceImporter>();
-        services.AddSingleton<IAmazonS3>(provider =>
-        {
-            var configuration =
-                provider.GetRequiredService<IConfiguration>();
-
-            personalEmail =
-                configuration["PERSONAL_EMAIL"]
-                ?? throw new InvalidOperationException(
-                    "Personal email is missing.");
-
-            var accountId =
-                configuration["R2_ACCOUNT_ID"]
-                ?? throw new InvalidOperationException(
-                    "R2 account ID is missing.");
-
-            var accessKey =
-                configuration["R2_ACCESS_KEY_ID"]
-                ?? throw new InvalidOperationException(
-                    "R2 access key is missing.");
-
-            var secretKey =
-                configuration["R2_SECRET_ACCESS_KEY"]
-                ?? throw new InvalidOperationException(
-                    "R2 secret key is missing.");
-
-            var s3Config = new AmazonS3Config
-            {
-                ServiceURL =
-                    $"https://{accountId}.r2.cloudflarestorage.com",
-                Timeout = TimeSpan.FromMinutes(5),
-                ConnectTimeout = TimeSpan.FromMinutes(5)
-            };
-
-            return new AmazonS3Client(
-                accessKey,
-                secretKey,
-                s3Config);
-        });
-
-        /*
-        services.AddScoped<DexCreator>(provider =>
-            ActivatorUtilities.CreateInstance<DexCreator>(provider)
-        );
-        */
-        services.AddSingleton<AssetGenerator>();
-        services.AddSingleton<DbCloudBackupService>();
-        services.AddSingleton<SourceImageFetcher>();
-        services.AddHttpClient();
-        services.AddHttpClient<DexFetcher>(client => client.BaseAddress = new Uri("https://fetch-dex.fiadhdex.workers.dev/"));
-        services.AddHttpClient<WikimediaImageQuerrier>(client =>
-        {
-            ConfigureGlobalUserAgent(client, personalEmail);
-
-            client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
-        });
-        services.AddHttpClient<WikimediaImageDownloader>(client =>
-        {
-            ConfigureGlobalUserAgent(client, personalEmail);
-            client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
-        });
+            ServiceURL = $"https://{accountId}.r2.cloudflarestorage.com"
+        };
+        return new AmazonS3Client(accessKey, secretKey, s3Config);
     })
-    .Build();
+    .AddSingleton<AssetGenerator>()
+    .AddSingleton<DbCloudBackupService>()
+    .AddSingleton<SourceImageFetcher>()
+    .AddScoped<NameUsageImporter>()
+    .AddScoped<VernacularNameImporter>()
+    .AddScoped<ColDistributionImporter>()
+    .AddScoped<GbifAnnualOccurrenceImporter>();
 
-Console.WriteLine(
-    host.Services
-        .GetRequiredService<IHostEnvironment>()
-        .EnvironmentName);
+builder.Services.AddDbContext<FiadhDexDbContext>(options =>
+{
+    var dbDirectory = Path.Combine(solutionDirectory, "db");
+    Directory.CreateDirectory(dbDirectory);
+    dbPath = Path.Combine(dbDirectory, dbFileName);
+    options.UseSqlite($"Data Source={dbPath};Pooling=False");
+});
+
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<DexFetcher>(client =>
+{
+    client.BaseAddress = new Uri(
+        "https://fetch-dex.fiadhdex.workers.dev/");
+});
+builder.Services.AddHttpClient<WikimediaImageQuerrier>(client =>
+{
+    ConfigureGlobalUserAgent(client, personalEmail);
+    client.DefaultRequestHeaders.Accept.ParseAdd(
+        "application/json");
+});
+builder.Services.AddHttpClient<WikimediaImageDownloader>(client =>
+{
+    ConfigureGlobalUserAgent(client, personalEmail);
+    client.DefaultRequestHeaders.Accept.ParseAdd(
+        "application/json");
+});
+builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None);
+var host = builder.Build();
 
 var argAsInt = int.Parse(args[0]);
 switch (argAsInt)
 {
     case 0:
     {
-        Console.WriteLine($"Processing input: `{args[0]}`: Db Generation.");
-
+        Console.WriteLine($"Processing input: `{args[0]}`: Db Generation & Backup.");
         {
             using var scope = host.Services.CreateScope();
 
@@ -149,9 +129,7 @@ switch (argAsInt)
             await gbifOccurrenceImporter.ImportAsync();
         } // DbContext and other scoped services disposed here
 
-        var dbBackupService =
-            host.Services
-                .GetRequiredService<DbCloudBackupService>();
+        var dbBackupService = host.Services.GetRequiredService<DbCloudBackupService>();
 
         await dbBackupService.PushToCloudAsync(dbPath, dbFileName);
 
@@ -180,9 +158,9 @@ switch (argAsInt)
             Console.WriteLine(dexCreationResult.ErrorMessage);
         break;
     }
-    case >= 2:
+    //case 2 or 3:
+    case >= 4:
     {
-        Console.WriteLine($"Processing input: `{args[0]}`: Image downloading.");
         var generator = host.Services.GetRequiredService<AssetGenerator>();
         await generator.ExecuteFlowAsync(args);
         break;

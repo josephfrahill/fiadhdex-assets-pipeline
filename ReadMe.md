@@ -64,6 +64,20 @@ deactivate
 ## Configuration
 
 Pipeline behaviour for the full run (option 9) will be established once all the previous stages are implemented.
+It is advisable to run the app with a launchSettings.json profile similar to below in 
+`src/FiadhDex.AssetsPipeline/Properties/launchSettings.json`:
+
+{
+  "profiles": {
+    "AssetsPipeline": {
+      "commandName": "Project",
+      "commandLineArgs": "1 IE",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
 
 ## Tech Stack
 
