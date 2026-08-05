@@ -1,6 +1,8 @@
 {
+  "county": "Australia",
+  "countryCode": "AU",
   "version": 1,
-  "dateGenerated": "2026-08-04T16:59:22.3748698Z",
+  "dateGenerated": "2026-08-05T11:07:51.1345128Z",
   "totalCount": 2592,
   "amphibiaCount": 244,
   "avesCount": 1007,

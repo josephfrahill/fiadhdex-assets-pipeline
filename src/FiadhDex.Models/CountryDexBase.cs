@@ -4,6 +4,8 @@ namespace FiadhDex.Models;
 
 public record CountryDexBase
 {
+    public required string County { get; init; }
+    public required string CountryCode { get; init; }
     public int Version { get; init; } = 1;
     public required DateTime DateGenerated { get; init; }
     public required int TotalCount { get; init; }

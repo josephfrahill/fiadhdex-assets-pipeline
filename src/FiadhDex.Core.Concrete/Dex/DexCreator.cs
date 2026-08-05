@@ -141,6 +141,8 @@ public sealed class DexCreator
 
         var countryDex = new CountryDexBase
         {
+            County = countryData.Name,
+            CountryCode = countryData.Code,
             TotalCount = animals.Count,
             AmphibiaCount = animals.Count(x => x.Type.Equals("Amphibia")),
             AvesCount = animals.Count(x => x.Type.Equals("Aves")),
