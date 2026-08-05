@@ -4,10 +4,11 @@ namespace FiadhDex.Models;
 
 public record CountryDexBase
 {
-    public required string County { get; init; }
+    public required string CountryName { get; init; }
     public required string CountryCode { get; init; }
+    public required string CountryFlag { get; init; }
     public int Version { get; init; } = 1;
-    public required DateTime DateGenerated { get; init; }
+    public string DateGenerated { get; init; } = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mmK");
     public required int TotalCount { get; init; }
     public required int AmphibiaCount { get; init; }
     public required int AvesCount { get; init; }

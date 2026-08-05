@@ -263,4 +263,20 @@ public record CountryInfo
 {
     public required string Code { get; set; }
     public required string Name { get; set; }
+    public string Flag => Code.ToFlagEmoji();
+}
+
+public static class CountryExtensions
+{
+    public static string ToFlagEmoji(this string countryCode)
+    {
+        if (string.IsNullOrWhiteSpace(countryCode) || countryCode.Length != 2)
+            return string.Empty;
+
+        // Shift ASCII characters 'A'-'Z' to Unicode Regional Indicator Symbols (0x1F1E6 - 0x1F1FF)
+        var firstChar = char.ToUpperInvariant(countryCode[0]) + 0x1F1A5;
+        var secondChar = char.ToUpperInvariant(countryCode[1]) + 0x1F1A5;
+
+        return char.ConvertFromUtf32(firstChar) + char.ConvertFromUtf32(secondChar);
+    }
 }

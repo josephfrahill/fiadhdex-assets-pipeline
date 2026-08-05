@@ -141,14 +141,14 @@ public sealed class DexCreator
 
         var countryDex = new CountryDexBase
         {
-            County = countryData.Name,
+            CountryName = countryData.Name,
             CountryCode = countryData.Code,
+            CountryFlag = countryData.Flag,
             TotalCount = animals.Count,
             AmphibiaCount = animals.Count(x => x.Type.Equals("Amphibia")),
             AvesCount = animals.Count(x => x.Type.Equals("Aves")),
             MammaliaCount = animals.Count(x => x.Type.Equals("Mammalia")),
             ReptiliaCount = animals.Count(x => x.Type.Equals("Reptilia")),
-            DateGenerated = DateTime.UtcNow,
             Animals = animals,
             LowOccurrenceAnimals = lowOccurrenceAnimals
         };
