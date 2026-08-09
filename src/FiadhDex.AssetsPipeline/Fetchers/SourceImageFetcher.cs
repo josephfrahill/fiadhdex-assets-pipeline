@@ -52,7 +52,7 @@ public class SourceImageFetcher
             {
                 var metadata = await ReturnOrCreateAnimalMetadata(metadataPath, metadataList);
                 var fileName = Utils.SanitiseFileName(img.Title);
-                var result = ImageFilterService.IsValid(img, fileName, species.Name, species.Plurals,
+                var result = ImageFilterService.IsValid(img, fileName, species.Name, species.PluralNames,
                     metadata.ManualBlackList,
                     outputPathSpeciesPathDownloaded);
 

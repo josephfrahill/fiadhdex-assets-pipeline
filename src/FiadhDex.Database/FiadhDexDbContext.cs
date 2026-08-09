@@ -9,6 +9,7 @@ public class FiadhDexDbContext(DbContextOptions<FiadhDexDbContext> options) : Db
     public DbSet<VernacularName> VernacularNames => Set<VernacularName>();
     public DbSet<ColDistribution> ColDistributions => Set<ColDistribution>();
     public DbSet<GbifAnnualOccurrence> GbifAnnualOccurrences => Set<GbifAnnualOccurrence>();
+    public DbSet<AiEnrichment> AiEnrichments => Set<AiEnrichment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -51,6 +52,20 @@ public class FiadhDexDbContext(DbContextOptions<FiadhDexDbContext> options) : Db
             x.CountryCode,
             x.Year
         }).IsUnique();
+
+        modelBuilder.Entity<AiEnrichment>()
+            .HasKey(x => x.Id);
+
+        modelBuilder.Entity<AiEnrichment>()
+            .HasOne<Taxon>()
+            .WithOne(t => t.AiEnrichment)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<AiEnrichment>().HasIndex(x => new
+        {
+            x.ColId,
+            x.Data
+        });
 
         // Note: EF Core automatically creates an index on Foreign Key columns
     }

@@ -29,7 +29,7 @@ public class DexFetcher
         CountryDex countryDex;
         if (File.Exists(dexPathLocalFull))
         {
-            countryDex = await JsonDexLoader.LoadAsync(dexPathLocalFull);
+            countryDex = await JsonDexLoader.LoadAsync<CountryDex>(dexPathLocalFull);
             Console.WriteLine($"Loading local dex: `{dexName}`...");
         }
         else

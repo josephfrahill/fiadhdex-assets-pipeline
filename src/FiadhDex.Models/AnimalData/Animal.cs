@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace FiadhDex.Models.AnimalData;
 
-public record Animal : AnimalAiDto, IAnimalBaseData
+public record Animal : AiEnrichmentDto, IAnimalBaseData
 {
     [property: JsonPropertyOrder(1)] public required string DexId { get; init; }
     [property: JsonPropertyOrder(2)] public required string Name { get; init; }

@@ -1,6 +1,7 @@
 ﻿using Amazon.S3;
 using FiadhDex.AssetsPipeline;
 using FiadhDex.AssetsPipeline.Fetchers;
+using FiadhDex.Core.Abstraction.Api;
 using FiadhDex.Core.Concrete;
 using FiadhDex.Core.Concrete.Api;
 using FiadhDex.Core.Concrete.Dex;
@@ -47,6 +48,8 @@ var secretKey = configuration["R2_SECRET_ACCESS_KEY"]
     ?? throw new InvalidOperationException();
 var personalEmail = configuration["PERSONAL_EMAIL"]
     ?? throw new InvalidOperationException();
+var openAiApiKey = configuration["OPENAI_API_KEY"]
+    ?? throw new InvalidOperationException();
 
 builder.Services.Configure<PipelineConfig>(configuration);
 builder.Services
@@ -64,7 +67,15 @@ builder.Services
     .AddScoped<NameUsageImporter>()
     .AddScoped<VernacularNameImporter>()
     .AddScoped<ColDistributionImporter>()
-    .AddScoped<GbifAnnualOccurrenceImporter>();
+    .AddScoped<GbifAnnualOccurrenceImporter>()
+    .AddScoped<IOpenAiEnrichmentService, OpenAiEnrichmentService>();
+    /*(_ =>
+    {
+        return new OpenAiEnrichmentService(
+            new OptionsWrapper<OpenAiOptions>(new OpenAiOptions { ApiKey = openAiApiKey }),
+            builder.Services.GetRequiredService<FiadhDexDbContext>(),
+            host.Services.GetRequiredService<IOptions<PipelineConfig>>());
+    });*/
 
 builder.Services.AddDbContext<FiadhDexDbContext>(options =>
 {
@@ -80,6 +91,13 @@ builder.Services.AddHttpClient<DexFetcher>(client =>
     client.BaseAddress = new Uri(
         "https://fetch-dex.fiadhdex.workers.dev/");
 });
+/*
+builder.Services.AddHttpClient<OpenAiClient>(client =>
+{
+    client.BaseAddress = new Uri(
+        "https://fetch-dex.fiadhdex.workers.dev/");
+});
+*/
 builder.Services.AddHttpClient<WikimediaImageQuerrier>(client =>
 {
     ConfigureGlobalUserAgent(client, personalEmail);
@@ -158,7 +176,25 @@ switch (argAsInt)
             Console.WriteLine(dexCreationResult.ErrorMessage);
         break;
     }
-    //case 2 or 3:
+
+    case 2:
+    {
+        Console.WriteLine($"Processing input: `{args[0]}`: OpenAI Enrichment.");
+        if (args.Length < 2)
+        {
+            Console.WriteLine("No second arg for this flow.");
+            return;
+        }
+
+        using var scope = host.Services.CreateScope();
+        var openAiService = scope.ServiceProvider.GetRequiredService<OpenAiEnrichmentService>();
+        var enrichmentResult = await openAiService.EnrichBaseDexWithOpenAiAsync();
+
+        if (!enrichmentResult.Successful)
+            Console.WriteLine(enrichmentResult.ErrorMessage);
+        break;
+    }
+    //case 3:
     case >= 4:
     {
         var generator = host.Services.GetRequiredService<AssetGenerator>();

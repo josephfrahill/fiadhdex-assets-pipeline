@@ -5,11 +5,11 @@ namespace FiadhDex.Core.Concrete.Json;
 
 public static class JsonDexLoader
 {
-    public static async Task<CountryDex> LoadAsync(string path)
+    public static async Task<T> LoadAsync<T>(string path)
     {
         var json = await File.ReadAllTextAsync(path);
 
-        return JsonSerializer.Deserialize<CountryDex>(json, JsonConfigSettings.Options)
+        return JsonSerializer.Deserialize<T>(json, JsonConfigSettings.Options)
                ?? throw new JsonException($"Error deserialising requested dex at path: `{path}`.");
     }
 }

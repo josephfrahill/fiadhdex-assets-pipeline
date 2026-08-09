@@ -73,11 +73,10 @@ public sealed class DexCreator
             };
         }
 
-        /*
-         Ignoring COL distribution data for now
-         var countryDistributionIds = _dbContext.ColDistributions.Where(x =>
-            x.Area.Contains(countryData.Name) == true).Select(x => x.ColId).ToList();
-        */
+        var colDistributionDataForCountry = await _dbContext.ColDistributions
+            .Where(x => EF.Functions.Like(x.Area, $"%{countryData.Name}%"))
+            .Select(x => new { x.ColId, x.Area }).ToListAsync();
+
         var countryOccurrencesData = await _dbContext.GbifAnnualOccurrences.Where(x =>
             x.CountryCode.Equals(countryData.Code)).GroupBy(x => x.ColId).Select(g => new { ColId = g.Key, TotalOccurrences = g.Sum(x => x.Occurrences) }).ToListAsync();
 
@@ -119,6 +118,7 @@ public sealed class DexCreator
                 var animal = new AnimalBaseData
                 {
                     DexId = string.Concat(countryData.Code, (index + 1).ToString("000")),
+                    ColId = x.ColId,
                     Name = name,
                     OtherNames = otherNames,
                     ScientificName = x.ScientificName,
@@ -128,6 +128,7 @@ public sealed class DexCreator
                     Order = x.Order,
                     Type = x.Type,
                     GbifOccurrenceCount = gbifDataCount,
+                    ColDistributionTag = colDistributionDataForCountry.FirstOrDefault(y => y.ColId.Equals(x.ColId))?.Area
                 };
 
                 if (gbifDataCount < 20)

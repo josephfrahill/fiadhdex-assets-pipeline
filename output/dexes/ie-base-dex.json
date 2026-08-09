@@ -3,7 +3,7 @@
   "countryCode": "IE",
   "countryFlag": "\uD83C\uDDEE\uD83C\uDDEA",
   "version": 1,
-  "dateGenerated": "2026-08-05T11:32+00:00",
+  "dateGenerated": "2026-08-08T15:52+00:00",
   "totalCount": 562,
   "amphibiaCount": 5,
   "avesCount": 487,
@@ -4623,7 +4623,8 @@
       "family": "Anguidae",
       "order": "Squamata",
       "type": "Reptilia",
-      "gbifOccurrenceCount": 198
+      "gbifOccurrenceCount": 198,
+      "colDistributionTag": "finland, norway, sweden, england (incl. channel islands guernsey, herm, jethou, jersey), ireland, denmark, germany, austria, switzerland, liechtenstein, belgium, luxembourg, netherlands, portugal, spain, france, czech republic, slovakia, hungary, albania, bulgaria, greece (incl. corfu = corfou), croatia (incl. krk etc.), slovenia, bosnia and hercegovina, montenegro, macedonia, serbia, poland, turkey (from trabzon, hopa) [clark & clark 1973]"
     },
     {
       "dexId": "IE293",

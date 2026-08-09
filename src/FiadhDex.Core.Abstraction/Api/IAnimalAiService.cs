@@ -1,12 +1,10 @@
-﻿using FiadhDex.Models.Dto;
+﻿using FiadhDex.Models;
+using FiadhDex.Models.Dto;
 
 namespace FiadhDex.Core.Abstraction.Api;
 
-public interface IAnimalAiService
+public interface IOpenAiEnrichmentService
 {
-    Task<AnimalAiDto> EnrichAsync(
-        string scientificName,
-        string? commonName,
-        string country,
+    Task<ActionResult> EnrichBaseDexWithOpenAiAsync(
         CancellationToken cancellationToken = default);
 }

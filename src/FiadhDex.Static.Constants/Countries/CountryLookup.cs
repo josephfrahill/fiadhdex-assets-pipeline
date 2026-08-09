@@ -75,7 +75,8 @@ public static class CountryLookup
         new() { Name = "Argentina", Code = "AR" },
         new() { Name = "Armenia", Code = "AM" },
         new() { Name = "Aruba", Code = "AW" },
-        new() { Name = "Australia", Code = "AU" },
+        new() { Name = "Australia", Code = "AU",
+            Regions = ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania", "Northern Territory"] },
         new() { Name = "Austria", Code = "AT" },
         new() { Name = "Azerbaijan", Code = "AZ" },
         new() { Name = "Bahamas (The)", Code = "BS" },
@@ -261,9 +262,10 @@ public static class CountryLookup
 
 public record CountryInfo
 {
-    public required string Code { get; set; }
-    public required string Name { get; set; }
+    public required string Code { get; init; }
+    public required string Name { get; init; }
     public string Flag => Code.ToFlagEmoji();
+    public string[]? Regions { get; init; } = [];
 }
 
 public static class CountryExtensions

@@ -16,4 +16,5 @@ public record Taxon
     public List<VernacularName> VernacularNames { get; init; } = [];
     public List<ColDistribution> ColDistributions { get; init; } = [];
     public List<GbifAnnualOccurrence> GbifAnnualOccurrences { get; init; } = [];
+    public AiEnrichment? AiEnrichment { get; init; }
 }

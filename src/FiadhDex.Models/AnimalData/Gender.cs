@@ -1,6 +1,6 @@
 ﻿namespace FiadhDex.Models.AnimalData;
 
-public record Gender
+public record GenderNames
 {
     public required string Male { get; init; }
     public required string Female { get; init; }

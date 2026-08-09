@@ -5,6 +5,7 @@ public record PipelineConfig
     public ColConfig? ColConfig { get; init; }
     public GbifConfig? GbifConfig { get; init; }
     public required DexConfig DexConfig { get; init; }
+    public required OpenAiConfig OpenAiConfig { get; init; }
     public required AssetsConfig AssetsConfig { get; init; }
     public required string SolutionRoot { get; init; }
     public required string MetadataFileName { get; init; }
@@ -31,6 +32,11 @@ public record DexConfig
 {
     public required string GlobalDexName { get; init; }
     public required bool IgnoreSubspecies { get; init; }
+}
+
+public record OpenAiConfig
+{
+    public required string WorkingDexName { get; init; }
 }
 
 public record AssetsConfig
