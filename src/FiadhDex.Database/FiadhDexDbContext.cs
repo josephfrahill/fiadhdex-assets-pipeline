@@ -54,11 +54,12 @@ public class FiadhDexDbContext(DbContextOptions<FiadhDexDbContext> options) : Db
         }).IsUnique();
 
         modelBuilder.Entity<AiEnrichment>()
-            .HasKey(x => x.Id);
+            .HasKey(x => x.Id);            
 
         modelBuilder.Entity<AiEnrichment>()
             .HasOne<Taxon>()
             .WithOne(t => t.AiEnrichment)
+            .HasForeignKey<AiEnrichment>(x => x.ColId)
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<AiEnrichment>().HasIndex(x => new

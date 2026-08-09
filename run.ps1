@@ -45,9 +45,11 @@ switch ($choice)
     "4"
     {
         $tables = @(
+        "__EFMigrationsHistory",
+        "AiEnrichments",
         "ColDistributions",
         "GbifAnnualOccurrences",
-        "Taxa"
+        "Taxa",
         "VernacularNames"        
         )
 
@@ -55,6 +57,7 @@ switch ($choice)
         foreach ($table in $tables) {
             .\create-d1-dump-single.ps1 -TableName $table
             .\import-d1-dump.ps1 -SqlFile "..\db\$table.sql"
+            Write-Host ""
         }      
         cd ../
     }
