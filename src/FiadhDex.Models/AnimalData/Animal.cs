@@ -1,10 +1,11 @@
 ﻿using FiadhDex.Models.Abstract;
+using FiadhDex.Models.AiEnrichment;
 using FiadhDex.Models.Dto;
 using System.Text.Json.Serialization;
 
 namespace FiadhDex.Models.AnimalData;
 
-public record Animal : AiEnrichmentDto, IAnimalBaseData
+public record Animal : AiEnrichmentData, IAnimalBaseData
 {
     [property: JsonPropertyOrder(1)] public required string DexId { get; init; }
     [property: JsonPropertyOrder(2)] public required string Name { get; init; }
@@ -16,4 +17,22 @@ public record Animal : AiEnrichmentDto, IAnimalBaseData
     [property: JsonPropertyOrder(11)] public required string Order { get; init; }
     [property: JsonPropertyOrder(12)] public required string Type { get; init; }
     [property: JsonPropertyOrder(24)] public required string Rarity { get; init; }
+
+    public Animal()
+    {
+        if (!string.IsNullOrEmpty(PreferedName))
+        {
+            Name = PreferedName;
+        }
+
+        if (OtherNames is { Count: 0 } && OtherPossibleNames is { Count: > 0 })
+        {
+            OtherNames = OtherPossibleNames;
+        }
+
+        if (OtherNames is { Count: > 0} && OtherPossibleNames is { Count: > 0 })
+        {
+            OtherNames.AddRange(OtherPossibleNames);
+        }
+    }
 };

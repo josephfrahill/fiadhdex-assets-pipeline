@@ -1,4 +1,6 @@
 ﻿using FiadhDex.Models.AnimalData;
+using FiadhDex.Models.Dto;
+using FiadhDex.Models.Enums;
 using FiadhDex.Models.Range;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +10,8 @@ namespace FiadhDex.Models.Abstract;
 
 public interface IAiEnrichmentData
 {
+    [JsonPropertyOrder(2)] string? PreferedName { get; init; }
+    [JsonPropertyOrder(6)] List<string>? OtherPossibleNames { get; init; }
     [JsonPropertyOrder(3)] string? YoungName { get; init; }
     [JsonPropertyOrder(4)] GenderNames? GenderNames { get; init; }
     [JsonPropertyOrder(5)] string[] PluralNames { get; init; }
@@ -16,8 +20,8 @@ public interface IAiEnrichmentData
     [JsonPropertyOrder(15)] string DangerLevel { get; init; }
     [JsonPropertyOrder(16)] string DangerNotes { get; init; }
     [JsonPropertyOrder(17)] bool? IsVenomous { get; init; }
-    [JsonPropertyOrder(18)] string[] Habitats { get; init; }
-    [JsonPropertyOrder(19)] string[] GeographicRegions { get; init; }
+    [JsonPropertyOrder(18)] Habitat[] Habitats { get; init; }
+    [JsonPropertyOrder(19)] GeographicRegion[] GeographicRegions { get; init; }
     [JsonPropertyOrder(20)] string[]? EndemicTo { get; init; }
     [JsonPropertyOrder(21)] int Detectability { get; init; }
     [JsonPropertyOrder(22)] int Photographability { get; init; }

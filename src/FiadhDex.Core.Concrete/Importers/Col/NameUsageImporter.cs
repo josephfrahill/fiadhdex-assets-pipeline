@@ -1,5 +1,4 @@
-﻿using FiadhDex.Core.Concrete.Json;
-using FiadhDex.Database;
+﻿using FiadhDex.Database;
 using FiadhDex.Database.DbModels;
 using FiadhDex.Models;
 using FiadhDex.Static.Constants.Col.Existence;

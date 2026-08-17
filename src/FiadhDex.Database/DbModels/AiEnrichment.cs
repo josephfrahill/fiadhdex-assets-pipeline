@@ -10,6 +10,6 @@ public record AiEnrichment
     public required string ColId { get; init; }
     public required string Model { get; init; }
     public required string PromptVersion { get; init; }
-    public required string GeneratedAt { get; init; } = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mmK");
+    public string GeneratedAt { get; init; } = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mmK");
     public required string Data { get; init; }
 }

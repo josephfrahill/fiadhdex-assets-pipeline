@@ -1,59 +1,38 @@
 ﻿using FiadhDex.Models.Abstract;
 using FiadhDex.Models.AnimalData;
+using FiadhDex.Models.Enums;
 using FiadhDex.Models.Range;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace FiadhDex.Models.Dto;
 
 public record AiEnrichmentDto : IAiEnrichmentData
 {
-    [JsonPropertyOrder(3)] public string? YoungName { get; init; }
-    [JsonPropertyOrder(4)] public GenderNames? GenderNames { get; init; }
-    [JsonPropertyOrder(5)] public required string[] PluralNames { get; init; }
-    [JsonPropertyOrder(13)] public string? CollectiveNoun { get; init; }
-    [JsonPropertyOrder(14)] public required string ConservationStatus { get; init; }
-    [JsonPropertyOrder(15)] public required string DangerLevel { get; init; }
-    [JsonPropertyOrder(16)] public required string DangerNotes { get; init; }
-    [JsonPropertyOrder(17)] public bool? IsVenomous { get; init; }
-    [JsonPropertyOrder(18)] public required string[] Habitats { get; init; }
-    [JsonPropertyOrder(19)] public required string[] GeographicRegions { get; init; }
-    [JsonPropertyOrder(20)] public string[]? EndemicTo { get; init; }
-    [JsonPropertyOrder(21)] public required int Detectability { get; init; }
-    [JsonPropertyOrder(22)] public required int Photographability { get; init; }
-    [JsonPropertyOrder(23)] public required string ActiveTime { get; init; }
-    [JsonPropertyOrder(25)] public required string Diet { get; init; }
-    [JsonPropertyOrder(26)] public string[]? PrimaryFoods { get; init; }
-    [JsonPropertyOrder(27)] public required DoubleRange? LifeSpanWildYears { get; init; }
-    [JsonPropertyOrder(28)] public required DoubleRange? LifeSpanCaptiveYears { get; init; }
-    [JsonPropertyOrder(29)] public required DoubleRange WeightKg { get; init; }
-    [JsonPropertyOrder(30)] public required DoubleRange LengthCm { get; init; }
-    [JsonPropertyOrder(31)] public required string Description { get; init; }
-    [JsonPropertyOrder(32)] public required string FunFact { get; init; }
-    [JsonPropertyOrder(33)] public required string[] Tags { get; init; }
-    [JsonPropertyOrder(34)] public string[]? AiNotesOrWarnings { get; init; }
-}
-
-//This describes the physical environment/ecosystem the animal lives in:
-public enum Habitat
-{
-    Forest,
-    TropicalRainforest,
-    Desert,
-    Grassland,
-    Wetland,
-    Freshwater,
-    Mangrove,
-    FreshwaterWetlands,
-    Marine,
-    Coastal,
-    Urban,
-    Suburban,
-    Agricultural,
-    Caves,
-    Mountainous,
-}
-
-//This describes the physical environment/ecosystem the animal lives in:
-public enum GeographicRegions
-{
+    public string? PreferedName { get; init; }
+    public List<string>? OtherPossibleNames { get; init; }
+    public string? YoungName { get; init; }
+    public GenderNames? GenderNames { get; init; }
+    public required string[] PluralNames { get; init; }
+    public string? CollectiveNoun { get; init; }
+    public required string ConservationStatus { get; init; }
+    public required string ActiveTime { get; init; }
+    public int Detectability { get; init; }
+    public int Photographability { get; init; }
+    public required Habitat[] Habitats { get; init; }
+    public required GeographicRegion[] GeographicRegions { get; init; }
+    public string[]? EndemicTo { get; init; }
+    public required string Diet { get; init; }
+    public string[]? PrimaryFoods { get; init; }
+    public required string DangerLevel { get; init; }
+    public bool? IsVenomous { get; init; }
+    public required string DangerNotes { get; init; }
+    public required DoubleRange? LifeSpanWildYears { get; init; }
+    public required DoubleRange? LifeSpanCaptiveYears { get; init; }
+    public required DoubleRange WeightKg { get; init; }
+    public required DoubleRange LengthCm { get; init; }
+    public required string Description { get; init; }
+    public required string FunFact { get; init; }
+    public required string[] Tags { get; init; }
+    public string[]? AiNotesOrWarnings { get; init; }
 }

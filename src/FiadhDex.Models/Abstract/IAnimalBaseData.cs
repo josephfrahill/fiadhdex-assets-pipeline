@@ -6,7 +6,8 @@ public interface IAnimalBaseData
 {
     [property: JsonPropertyOrder(1)] string DexId { get; init; }
 
-    [property: JsonPropertyOrder(2)] string Name { get; init; }
+    // Setting ability is defined in concrete inheritors, to allow for nullablility mutation
+    [property: JsonPropertyOrder(2)] string? Name { get; }
 
     [property: JsonPropertyOrder(6)] List<string>? OtherNames { get; init; }
 

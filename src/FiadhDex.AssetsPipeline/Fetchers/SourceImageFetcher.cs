@@ -4,7 +4,6 @@ using System.Text.Json;
 using FiadhDex.Core.Concrete;
 using FiadhDex.Core.Concrete.Api;
 using FiadhDex.Core.Concrete.IconPipeline;
-using FiadhDex.Core.Concrete.Json;
 using FiadhDex.Models;
 using FiadhDex.Models.AnimalData;
 using FiadhDex.Models.Images;

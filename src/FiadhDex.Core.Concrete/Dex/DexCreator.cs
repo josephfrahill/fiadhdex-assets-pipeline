@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using FiadhDex.Core.Concrete.Json;
 using FiadhDex.Database;
 using FiadhDex.Models;
 using FiadhDex.Models.AnimalData;
@@ -50,7 +49,6 @@ public sealed class DexCreator
 
     public async Task<ActionResult> CreateCountryDexBase(string givenCountry)
     {
-        // Todo: add the country flag to the generated json
         var countryValidated = givenCountry.ToLower().Trim();
 
         if (string.IsNullOrEmpty(countryValidated))

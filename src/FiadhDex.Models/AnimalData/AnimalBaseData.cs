@@ -6,8 +6,8 @@ namespace FiadhDex.Models.AnimalData;
 public record AnimalBaseData : IAnimalBaseData
 {
     public required string DexId { get; init; }
-    [property: JsonPropertyOrder(3)] public required string ColId { get; init; }
-    public required string Name { get; init; }
+    public required string ColId { get; init; }
+    public string? Name { get; init; }
     public List<string>? OtherNames { get; init; }
     public required string ScientificName { get; init; }
     public required string Rank { get; init; }
